@@ -1,6 +1,6 @@
 # L01_04
 
-###Team Members
+### Team Members
 
 | Name                  | Email                         |
 | --------------------- | ----------------------------- |
@@ -12,4 +12,4 @@
 
 ### Available Hours
 
-![Available Hours] (https://github.com/CSCC01F17/L01_04/blob/master/AvailableHours.png)
+![Available Hours](https://github.com/CSCC01F17/L01_04/blob/master/AvailableHours.png)
