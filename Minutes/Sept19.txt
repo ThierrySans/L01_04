@@ -1,0 +1,10 @@
+Meeting Minutes
+
+September 19, 2017
+Type: Physical
+Attendees: All
+> Discussed: the demographic of the product, specifically on the student side. Most of the team agreeing that student users who are taking STAB22/STAB23, are likely not majoring/specializing in any of CMS.
+> Discussed: What can encourage students who are not interested in course content? Team is unsure of the impact of game-fying the process. 
+> Decided: The user interface is cluttered, and shows unnecessary information. This is likely one of the reasons that students are discouraged.
+> Decided: Cheng will ask some questions for Sohee this Wednesday, inquiring what she expects from the product
+> Decided: The website will be hosted by Fides on another server.

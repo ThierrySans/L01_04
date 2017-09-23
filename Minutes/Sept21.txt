@@ -1,0 +1,9 @@
+Meeting Minutes
+
+September 21, 2017
+Type: Physical
+Attendees: All
+> Discussed: What platforms we will be using. Tentatively decided on using Java because all members of the team have used it. Team is hesitant on building a web-application, because almost all team members have little experience.
+> Discussed: Pros and Cons of creating a Java App, versus a web application. Agreed that it is easier to produce the back-end with the Java App, but may struggle with user interface. 
+> Discussed: Building a web-application will better enable us to test the application, and maybe even have ‘would-be’ users, try it out.
+> Decided: The team will be using feature-branching on Git, to manage files.

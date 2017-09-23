@@ -1,0 +1,11 @@
+Meeting Minutes
+
+September 18, 2017
+Type: Digital
+Attendees: All
+> Decided: checking WebWork sample website and take note of aspects that we’d like to keep, as well as those that we’d remove/add, before Tuesday.
+> Decided: Charles to start Team Agreements outline.
+> Decided: All members to write their biography and submit to Charles, who will be grammar-checking, before Tuesday.
+> Decided: Fides would create a mock-up of the website layout that will host the team report (Project Deliverable 1).
+> Decided: Mahesh would create the skeleton for the website, and push the source code to Git.
+
