@@ -1,59 +1,71 @@
-div.Main_Screen {
-	height: 100%;
-	width: 96%;
-	margin: 2%;
-}
-#logo {
-	height: 50%;
-	width: 50%;
-	margin-left: auto;
-	margin-right: auto;
-	border-radius: 50%;
-	background-color: B6B3B2;
-}
-#title {
-	height: 25%;
-}
-h1 {
-	text-align: center;
-	font-size: 8em;
-}
-#subtitles {
-	height: 25%;
-	margin-left: 25%;
-	margin-right: auto;
-}
-#subtitle0 {
-	float: left;
-	margin-right: 3%;
-}
-#subtitle1 {
-	float: left;
-}
-h2 {
-	text-align: center;
-	font-size: 3em;
+html, body {
+  font-family: "Raleway", Helvetica;
+  /*font-family: "Muli", sans-serif;*/
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #f2ecda;
+  /*background-color: #f2ecda;*/
+  
 }
 
-div.Introduction {
-	height: 100%;
-	width: 96%;
-	margin: 2%;
-	text-align: center;
+a {
+	text-decoration: none;
+	color: #96968c;
 }
-#team_photo {
+div.Main_Screen {
+	
+}
+div.Page {
+	width: 750px;
+	margin: 0 auto;
+    color: #96968c;
+	min-height: 90vh;
+	text-align: center;
+	
+}
+div.Break {
+	min-width: 750px;
+	margin: 40px 0px 40px 0px;
+	min-height: 10vh;
+	background-color: #a4d9e3;
+}
+#logo {
+	margin: 40px 0px 10px 0px;
+}
+#logo img{
+	height: 300px;
+}
+.title {
+	font-size: 6em;
+}
+.title_small {
+	font-size: 3em;
+}
+#subtitles {
+}
+.subtitle {
+	display: inline-block;
+	margin: 20px;
+	font-size: 2em;
+}
+div.Introduction {
+
+}
+.team_photo {
+	margin: 30px auto 30px auto;
 	height: 46%;
-	width: 80%;
-	margin-left: auto;
-	margin-right: auto;
-	border-radius: 5%;
-	background-color: B6B3B2;
+	width: 100%;
+}
+.team_photo img {
+	border-radius: 30px;
+	height: 100%;
 }
 #intro{
-	height: 46%;
 	width: 80%;
-	margin-left: auto;
-	margin-right: auto;
+	margin: 30px auto 30px auto;
+
 }
 h3 {
 	font-size: 3em;
@@ -63,19 +75,32 @@ p1 {
 }
 
 div.Biography {
-	height: 400%;
-	width: 80%;
-	margin-left: auto;
-	margin-right: auto;
-	margin-bottom: 4%;
-	text-align: center;
 }
-#member {
-	border-radius: 5%;
-	height: 20%;
+.member {
+	min-height: 400px;
+	width: 700px;
+	/*
 	background-color: B6B3B2;
-	margin: 4%;
+	border-radius: 30px;
+	*/
+	margin: 25px auto 25px auto;
 }
-
+.pic img {
+	border-radius: 20px;
+	display: table-cell;
+	float: left;
+	width: 40%;
+	margin-right: 5%;
+}
+.bio {	
+	display: table-cell;
+	float: left;
+	text-align: left;
+	width: 55%;
+}
+.name {
+	font-size: 2em;
+	font-weight: 700;
+}
 div.TeamAgreement {
 }
