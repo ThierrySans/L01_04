@@ -3,8 +3,6 @@ html, body {
   /*font-family: "Muli", sans-serif;*/
   margin: 0;
   padding: 0;
-  height: 100%;
-  width: 100%;
   background-color: #f2ecda;
   /*background-color: #f2ecda;*/
   
@@ -15,27 +13,28 @@ a {
 	color: #96968c;
 }
 div.Main_Screen {
-	
+	height: 85vh;
 }
 div.Page {
-	width: 750px;
+	width: 80%;
+	max-width: 800px;
 	margin: 0 auto;
     color: #96968c;
-	min-height: 90vh;
 	text-align: center;
 	
 }
 div.Break {
-	min-width: 750px;
+	width: 100%;
 	margin: 40px 0px 40px 0px;
-	min-height: 10vh;
+	height: 40px;
 	background-color: #a4d9e3;
 }
 #logo {
-	margin: 40px 0px 10px 0px;
+	margin: 15% auto 30px auto;
 }
 #logo img{
-	height: 300px;
+	width: 30%;
+	min-width: 300px;
 }
 .title {
 	font-size: 6em;
@@ -44,6 +43,7 @@ div.Break {
 	font-size: 3em;
 }
 #subtitles {
+	/*text-transform: uppercase;*/
 }
 .subtitle {
 	display: inline-block;
@@ -54,17 +54,17 @@ div.Introduction {
 
 }
 .team_photo {
-	margin: 30px auto 30px auto;
-	height: 46%;
-	width: 100%;
+	margin: 10% auto 10% auto;
+	width: 90%;
 }
 .team_photo img {
 	border-radius: 30px;
-	height: 100%;
+	width: 100%;
 }
 #intro{
-	width: 80%;
-	margin: 30px auto 30px auto;
+	font-size: 1em;
+	width: 90%;
+	margin: 5% auto 5% auto;
 
 }
 h3 {
@@ -77,13 +77,11 @@ p1 {
 div.Biography {
 }
 .member {
-	min-height: 400px;
-	width: 700px;
-	/*
-	background-color: B6B3B2;
-	border-radius: 30px;
-	*/
-	margin: 25px auto 25px auto;
+	height: 60%;
+	max-height: 400px;
+	width: 100%;
+	margin: 0 auto;
+	padding: 3% 0% 3% 0%;
 }
 .pic img {
 	border-radius: 20px;
@@ -96,11 +94,17 @@ div.Biography {
 	display: table-cell;
 	float: left;
 	text-align: left;
+	margin-top: 5px;
 	width: 55%;
 }
 .name {
 	font-size: 2em;
 	font-weight: 700;
+}
+.bordered {
+	padding-bottom: 25px;
+	margin-bottom: 25px;
+	border-bottom: 1px solid #96968c;
 }
 div.TeamAgreement {
 }
