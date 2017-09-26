@@ -1,0 +1,31 @@
+Decided on java as a language
+Look for modules/libraries 
+Interview on Thursday 
+Look over team agreement and team goals 
+
+Frameworks to look up: java EE, 
+
+General persona:
+
+Mostly non-statistics people 
+Most likely not the most active participants in the course/program
+Could any year, most likely first/second
+Not technically inept but cannot assume most competent 
+May not be open to complicated interface/software
+Most likely to take the path of least resistance for marks
+May not like statistics at all, forced to take
+
+
+Thoughts on requirement:
+
+Mahesh: basic functionality of web work, more enticing, webwork cluttered, most relevant information in your face 
+
+Cheng: make an easier to use version of webwork, interface simple, webwork too much information, only show one course 
+
+Jerry: basically just remove obtrusive, look to pcrs 
+
+Achievement system should be kept because Sohee likes it and we have to fulfil client requirements first but we have to improve it somehow
+
+Don't miss the interview Thursday 4-5
+
+Cheng to prepare agenda for next week 
