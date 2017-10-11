@@ -1,0 +1,19 @@
+Meeting Minutes
+
+October 5, 2017
+Type: Physical
+Attendees: All
+
+> Done: Fides had merged the user personas as discussed on Tuesday, and switched to a paragraph format.
+> Done: Cheng reordered the user stories that were uploaded by the team members. Is now awaiting review by team-members.
+> Done: TA Brandon looked over the User Stories and Personas
+
+Brandon's Comments:
+> None of the user stories are particularly bad.
+> Need more user stories that are specific to a persona, all of the ones we currently have  are general to professors/students
+> Persona descriptions are superfluous and contain unnecessary detail.
+> Persona descriptions should be specific to technical prowess of user, and their needs regarding WebWork.
+
+> Decided: Each member will be taking another look at the personas, and each member will fix one persona. 
+> Decided: We will change the personas to be describe the needs of the user, specifically in regards to WebWork.
+> Decided: During reading week, the possibility to discuss with the library liaison to look over user stories and personas.

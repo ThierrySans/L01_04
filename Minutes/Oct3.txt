@@ -1,0 +1,28 @@
+Meeting Minutes
+
+October 3, 2017
+Type: Physical
+Attendees: All
+
+> Decided: Responsibilities of TAs in regards to WebWork are not clear. We will be asking Sohee some questions regarding this.
+
+Questions to ask Sohee:
+1. What are responsibilities for TA? Are they involved in WebWork?
+2. What is her role in WebWork, other than uploading questions.
+
+> Discussed: The personas we came up with this week (one professor and one student for each team member), and merging similar personas.
+
+1. Professors:
+> Charles: a professor that cares about students, but isn't good at teaching.
+> Mahesh + Fides: a professor that cares about students, and is great at teaching.
+> Jerry + Cheng: a professor that enjoys research, but isn't good at teaching, nor cares about students.
+
+2. Students:
+> Charles + Cheng: a student with bad study habits, unmotivated and needs reminders to complete assignments.
+> Fides: a student with bad study habits, but is doing well academically regardless.
+> Jerry: an average student that is trying to succeed, but is struggling anyway.
+> Mahesh: an all around responsible student, good study habits, and is doing well academically.
+
+> Decided: some tasks for this week as well as reading week
+> Cheng will list and reorder all user stories and remove the duplications. The rest of the team will check later.
+> Fides will list and reorder all personas and remove the duplications. The rest of the team will check later.
