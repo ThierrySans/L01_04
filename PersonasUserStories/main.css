@@ -53,19 +53,13 @@ div.Break {
 div.Introduction {
 
 }
-.team_photo {
-	margin: 10% auto 10% auto;
-	width: 90%;
-}
-.team_photo img {
-	border-radius: 30px;
-	width: 100%;
-}
+
 #intro{
 	font-size: 1em;
 	width: 90%;
 	margin: 5% auto 5% auto;
-
+	float: center;
+	text-align: left;
 }
 h3 {
 	font-size: 3em;
@@ -77,25 +71,17 @@ p1 {
 div.Biography {
 }
 .member {
-	height: 60%;
-	max-height: 400px;
+	height: auto;
 	width: 100%;
-	margin: 0 auto 20px auto;
+	margin-top: 5%;
+	margin-bottom: 5%;
 	padding: 3% 0% 3% 0%;
-}
-.pic img {
-	border-radius: 20px;
-	display: table-cell;
-	float: left;
-	width: 40%;
-	margin-right: 5%;
 }
 .bio {	
 	display: table-cell;
-	float: left;
+	float: center;
 	text-align: left;
-	margin-top: 5px;
-	width: 55%;
+	width: 80%;
 }
 .name {
 	font-size: 2em;
@@ -106,5 +92,4 @@ div.Biography {
 	margin-bottom: 25px;
 	border-bottom: 1px solid #96968c;
 }
-div.TeamAgreement {
-}
+
