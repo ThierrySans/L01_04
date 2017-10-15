@@ -73,11 +73,12 @@ p1 {
 div.Biography {
 }
 .member {
+	border: 1px solid #d3d3c0;
 	height: auto;
-	width: 100%;
+	width: 94%;
 	margin-top: 5%;
 	margin-bottom: 5%;
-	padding: 3% 0% 3% 0%;
+	padding: 6% 3% 6% 3%;
 }
 .bio {	
 	display: table-cell;
@@ -86,12 +87,20 @@ div.Biography {
 	width: 80%;
 }
 .name {
+	text-align: center;
 	font-size: 2em;
 	font-weight: 700;
+}
+.personapic {
+	margin: 20px 0px 20px 0px;
+	text-align: center
+}
+.personapic img {
+	width: 25%;
 }
 .bordered {
 	padding-bottom: 25px;
 	margin-bottom: 25px;
-	border-bottom: 1px solid #96968c;
+	border-bottom: 1px solid #d3d3c0;
 }
 
