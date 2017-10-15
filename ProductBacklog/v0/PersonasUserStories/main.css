@@ -103,4 +103,9 @@ div.Biography {
 	margin-bottom: 25px;
 	border-bottom: 1px solid #d3d3c0;
 }
+.story-subtitle {
+	font-weight: 700;
+	font-size: 1.2em;
+	border-bottom: 1px solid #d3d3c0;
+}
 

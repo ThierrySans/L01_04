@@ -141,22 +141,71 @@
             <div class="Introduction">
                <div class="name bordered">User Stories</div>
                <div id="intro">
+				   
+				   
                   <ol>
-                     <li> As Ben, I want to add students to a course. </li>
-                     <li> As Ben, I want to be able to create a unit for a course. </li>
-                     <li> As Ben, I want to add problem sets with a due-date to a unit. (A unit is defined as a chapter in the course and a problem set is a generated set of similar problems.) </li>
-                     <li> As Ben, I want to be able to share/unlock problem sets to students at a set time, so that students start the problem set at the right time.</li>
-                     <li> As Sonja, I want to be able to answer questions in a problem set.</li>
-                     <li> As a student, I want to be able to submit my answers to a problem set. </li>
-                     <li> As Sonja, I want to see the results (a %grade) after completing a problem set. </li>
-                     <li> As Sonja, I want to be able to know when a new unit is unlocked/shared by the professor so that I can practice the material. </li>
-                     <li> As Sonja, I want to be able to save my progress on a problem set and resume at another time, so that I can take small breaks in between. </li>
-                     <li> As Sonja, I want the software to send me reminder email when the due date is close. </li>
-                     <li> As Ben, I want the system to prevent students from attempting a problem set past the due date. </li>
-                     <li> As Ben, I want to have a system that will automatically compare the student's' choice and the given solution for a quiz, so that I don't need to mark any problem-set. </li>
-                     <li> As Ben, I want to be able to track how many times a student tried a question, so that I know which types of questions are the most challenging for students. </li>
-                     <li> As a Ben, I want to have the ability to let the TA to see what the questions students are sending me, so that I can minimize my work and let TA do my work. </li>
-                     <li> As Ben, I want to see which questions were answered correctly by what  percent of the students. </li>
+					  
+					 <span class="story-subtitle">CORE FUNCTIONALITY</span>
+					 <br/><br/>
+					  
+                     <li>As Professor Ben, I want to add students to a course.</li>
+					 <li>As Professor Ben, I want to create a unit.</li>
+					 <li>As Professor Ben, I want to add problem sets with a due-date to a unit. (A unit is defined as a chapter in the course and a problem set is a generated set of similar problems.)</li>
+					 <li>As Professor Sophie, I want the software to be able to take problem sets that I've created and release them students with only changed variables.</li>
+					 <li>As Professor Ben, I want to create several distinct versions of a problem-set to release to students.</li>
+					 <li>As Professor Ben, I want to unlock problem sets to students at a set time, so that all students start the problem set at the right time.</li>
+					 <li>As Student Sonja, I want to be able to answer questions and submit my answers for a problem set.</li>
+					 <li>As Professor Ben, I want the system to prevent students from attempting a problem set past the due date.</li>
+					 <li>As Professor Ben, I want to have a system that will automatically compare the student's choice and the given solution for a problem-set, so that I don't need to manually mark problem-sets.</li>
+					 <li>As Student Sonja, I want to see my grades for a problem-set after completing it.</li>
+					 <li>As Student Sonja, I want to see a summary of my marks from different problem sets all in one page, so that I don't have to calculate them myself.</li>
+					 <br/>
+					 <li>As Professor Ben, I want the option to upload pictures for specific problems in a problem set so that I can provide students with visual aids.</li>
+					 <li>As Professor Sophie, I want the system to allow me to release a problem set at some time in the future, so that I can prepare problem sets in advance.</li>
+					 
+					 <br/><br/>
+					 <span class="story-subtitle">MANAGING ACADEMIC PROGRESS</span>
+					 <br/><br/>
+					  
+                     <li>As Professor Sophie, I want to see the distribution of marks on a problem set for all students, so that I can see the entire course's progress.</li>
+					 <li>As Professor Ben, I want to see a list of each student's performance in a problem-set, so that I can be able to see which students are struggling/doing well.</li>
+					 <li>As Professor Ben, I want to see which questions were answered correctly by what percent of the students, so that I can distinguish which questions are challenging.</li>
+					  
+					 <br/>
+					  
+					 <li>As Student Sonja, I want the option to see which questions I got wrong for each graded problem set, so that I know exactly how I lost marks.</li>
+					 <li>As Student Sonja, I want to the option to see the solutions to a problem-set after I complete it, so that I can learn the material.</li>
+					 <li>As Student Sonja, I want to see the average mark for a problem set, so that I can compare it with my mark.</li>
+					 
+					 <br/><br/>
+					 <span class="story-subtitle">MANAGING PROBLEM SETS</span>
+					 <br/><br/>
+					  
+                     <li>As Student Sonja, I want to be able to download a hard-copy of the problem set, so I can work on it by hand.</li>
+					 <li>As Student Robert, I want to be able to save my progress on a problem set and resume at another time, so that I can take small breaks in between.</li>
+					 <li>As Student Sonja, I want to see the due-dates of problem sets I haven't submitted.</li> 
+					 <li>As Student Sonja, I want to be notified when a new problem-set is released, so that I can start my homework early.</li>
+					 <li>As Student Robert, I want to receive an email to remind me when a due date is close for a problem-set.</li>
+					  
+					 <br/><br/>
+					 <span class="story-subtitle">SPECIAL</span>
+					 <br/><br/>
+					  
+                     <li>As Professor Ben, I want to be able to create badges that students can earn for doing well in problem-sets.</li>
+					 <li>As Student Robert, I want to earn badges for doing well in problem sets.</li>
+					 
+					 <br/><br/>
+					 <span class="story-subtitle">TA INVOLVEMENT</span>
+					 <br/><br/>
+					  
+					 <li>As Professor Ben, I want to be able to grant my TAs access to submit and edit problem sets.</li>
+					 <li>As TA David, I want to add problem sets if given permission by the professor, so that I can help them out.</li>
+					 <li>As TA David, I want to release problem sets if given permission by the Professor.</li>
+					 <li>As TA David, I want to edit problem sets so that I can fix errors the professor may have made.</li>
+					 <li>As Professor Sophie, I want the option to assign a set of students to a TA, so that a TA can see the progress of their tutorial.</li>
+					 <li>As TA David, I want to track the academic progress of a list of students assigned to me by the professor.</li>
+					 <li>As TA David, I want students to be able to contact me online if they have questions.</li>
+					 <li>As Student Sonja, I want to ask my TA online about some questions regarding a problem-set, so that I don't have to ask in person.</li>
                   </ol>
                </div>
             </div>
