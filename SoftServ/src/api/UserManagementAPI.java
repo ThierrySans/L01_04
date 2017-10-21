@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package driver;
+package api;
 
+import database.DatabaseDriver;
 import database.DatabaseInsert;
 import database.DatabaseInsertException;
 import database.DatabaseSelect;
@@ -19,7 +20,7 @@ import java.sql.SQLException;
 
 public class UserManagementAPI {
     
-    public static Connection connection;
+    public static Connection connection =  DatabaseDriver.connectOrCreateDataBase();
        
     public static  int insertStudent(String utorId, String firstName, String lastName) throws DatabaseInsertException {
         return DatabaseInsert.insertStudent(utorId, firstName, lastName, connection);

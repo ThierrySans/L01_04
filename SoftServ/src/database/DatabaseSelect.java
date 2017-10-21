@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 public class DatabaseSelect {
   /**
@@ -28,6 +29,7 @@ public class DatabaseSelect {
   public static ResultSet getStudents(String name, Connection connection) throws SQLException {
     Statement statement = connection.createStatement();
     ResultSet results = statement.executeQuery("SELECT * FROM STUDENTS WHERE FIRSTNAME LIKE " + name.toUpperCase() + "%;");
+    
     return results;
   }
   
@@ -41,6 +43,7 @@ public class DatabaseSelect {
   public static ResultSet getStudent(String utorId, Connection connection) throws SQLException {
     Statement statement = connection.createStatement();
     ResultSet results = statement.executeQuery("SELECT * FROM STUDENTS WHERE ID = " + utorId + ";");
+    
     return results;
   }
   

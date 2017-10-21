@@ -1,6 +1,13 @@
 package userinterface;
 
-import driver.UserManagementAPI;
+import database.DatabaseInsertException;
+import api.UserManagementAPI;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JList;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -13,12 +20,16 @@ import driver.UserManagementAPI;
  * @author fideslinga
  */
 public class Professor_StudentMonitor extends javax.swing.JFrame {
-
     /**
      * Creates new form Professor_StudentMonitor
      */
     public Professor_StudentMonitor() {
-        initComponents();
+        try {
+            initComponents();
+            updateStudentList();
+        } catch (SQLException ex) {
+            Logger.getLogger(Professor_StudentMonitor.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -169,10 +180,16 @@ public class Professor_StudentMonitor extends javax.swing.JFrame {
         String newStudentFirstName = fieldNewStudentFirstName.getText();
         String newStudentLastName = fieldNewStudentLastName.getText();
         String newStudentUTORid = fieldNewStudentUTORid.getText();
-        //UserManagementAPI.insertStudent(newStudentUTORid, newStudentFirstName, newStudentLastName, connection);
+        try {
+            UserManagementAPI.insertStudent(newStudentUTORid, newStudentFirstName, newStudentLastName);
+            updateStudentList();
+        } catch (DatabaseInsertException ex) {
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Professor_StudentMonitor.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_buttonAddStudentActionPerformed
     
- 
     private void fieldNewStudentLastNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldNewStudentLastNameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_fieldNewStudentLastNameActionPerformed
@@ -232,4 +249,30 @@ public class Professor_StudentMonitor extends javax.swing.JFrame {
     private javax.swing.JLabel labelStudentUtorid;
     private javax.swing.JList<String> listStudents;
     // End of variables declaration//GEN-END:variables
+
+    private void updateStudentList() throws SQLException {
+        ResultSet newStudents;
+        newStudents = UserManagementAPI.getStudents();
+        ArrayList<String> alistStudents = new ArrayList<>();
+    
+        while (newStudents.next()) {
+            String studentFirstName = newStudents.getString("FIRSTNAME");
+            String studentLastName = newStudents.getString("LASTNAME");
+            String studentutorID = newStudents.getString("UTORID");
+            
+            String studentInfo = studentFirstName + ", " + studentLastName + ", " + studentutorID;
+            /*
+            ArrayList studentInfo = new ArrayList<ArrayList>();
+            studentInfo.add(studentFirstName);
+            studentInfo.add(studentLastName);
+            studentInfo.add(studentutorID);
+            */
+
+            alistStudents.add(studentInfo);
+        }
+        
+        listStudents = new JList(alistStudents.toArray());
+        
+    }
+    
 }
