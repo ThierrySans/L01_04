@@ -1,4 +1,4 @@
-package Database;
+package database;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -12,7 +12,7 @@ public class DatabaseSelect {
    * @return A ResultSet containing the rows of the STUDENT table
    * @throws SQLException
    */
-  protected static ResultSet getStudents(Connection connection) throws SQLException {
+  public static ResultSet getStudents(Connection connection) throws SQLException {
     Statement statement = connection.createStatement();
     ResultSet results = statement.executeQuery("SELECT * FROM STUDENTS;");
     return results;
@@ -25,7 +25,7 @@ public class DatabaseSelect {
    * @return The rows of STUDENTS with a matching name
    * @throws SQLException
    */
-  protected static ResultSet getStudents(String name, Connection connection) throws SQLException {
+  public static ResultSet getStudents(String name, Connection connection) throws SQLException {
     Statement statement = connection.createStatement();
     ResultSet results = statement.executeQuery("SELECT * FROM STUDENTS WHERE FIRSTNAME LIKE " + name.toUpperCase() + "%;");
     return results;
@@ -38,7 +38,7 @@ public class DatabaseSelect {
    * @return The row of STUDENTS containing the student with the matching id.
    * @throws SQLException
    */
-  protected static ResultSet getStudent(String utorId, Connection connection) throws SQLException {
+  public static ResultSet getStudent(String utorId, Connection connection) throws SQLException {
     Statement statement = connection.createStatement();
     ResultSet results = statement.executeQuery("SELECT * FROM STUDENTS WHERE ID = " + utorId + ";");
     return results;
@@ -50,7 +50,7 @@ public class DatabaseSelect {
    * @return A ResultSet containing the rows of the PROFESSORS table
    * @throws SQLException
    */
-  protected static ResultSet getProfessors(Connection connection) throws SQLException {
+  public static ResultSet getProfessors(Connection connection) throws SQLException {
     Statement statement = connection.createStatement();
     ResultSet results = statement.executeQuery("SELECT * FROM PROFESSORS;");
     return results;
@@ -63,7 +63,7 @@ public class DatabaseSelect {
    * @return The row of PROFESSORS containing the professor with the matching id.
    * @throws SQLException
    */
-  protected static ResultSet getProfessor(String utorId, Connection connection) throws SQLException {
+  public static ResultSet getProfessor(String utorId, Connection connection) throws SQLException {
     Statement statement = connection.createStatement();
     ResultSet results = statement.executeQuery("SELECT * FROM PROFESSORS WHERE ID = " + utorId + ";");
     return results;
