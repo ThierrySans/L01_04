@@ -56,7 +56,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="labelStudentUtorid" min="-2" pref="88" max="-2" attributes="0"/>
+                              <Component id="labelNewStudentUtorid" min="-2" pref="88" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="fieldNewStudentUTORid" max="32767" attributes="0"/>
                           </Group>
@@ -72,6 +72,11 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="fieldNewStudentFirstName" min="-2" pref="229" max="-2" attributes="0"/>
                               </Group>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Component id="labelNewStudentPassword" min="-2" pref="88" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="fieldNewStudentPassword" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -116,9 +121,14 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="fieldNewStudentUTORid" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="labelStudentUtorid" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="labelNewStudentUtorid" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="99" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="fieldNewStudentPassword" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="labelNewStudentPassword" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="67" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -193,7 +203,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonAddStudentActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="labelStudentUtorid">
+    <Component class="javax.swing.JLabel" name="labelNewStudentUtorid">
       <Properties>
         <Property name="text" type="java.lang.String" value="UTORid"/>
       </Properties>
@@ -201,6 +211,16 @@
     <Component class="javax.swing.JTextField" name="fieldNewStudentUTORid">
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="fieldNewStudentUTORidActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="labelNewStudentPassword">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Password"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="fieldNewStudentPassword">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="fieldNewStudentPasswordActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

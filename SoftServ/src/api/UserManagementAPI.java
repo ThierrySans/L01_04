@@ -22,11 +22,11 @@ public class UserManagementAPI {
     
     public static Connection connection =  DatabaseDriver.connectOrCreateDataBase();
        
-    public static  int insertStudent(String utorId, String firstName, String lastName) throws DatabaseInsertException {
-        return DatabaseInsert.insertStudent(utorId, firstName, lastName, connection);
+    public static  int insertStudent(String utorId, String firstName, String lastName, String password) throws DatabaseInsertException {
+        return DatabaseInsert.insertStudent(utorId, firstName, lastName, password, connection);
     }
-    public static int insertProfessor(String utorId, String firstName, String lastName) throws DatabaseInsertException{
-        return DatabaseInsert.insertProfessor(utorId, firstName, lastName, connection);
+    public static int insertProfessor(String utorId, String firstName, String lastName, String password) throws DatabaseInsertException{
+        return DatabaseInsert.insertProfessor(utorId, firstName, lastName, password, connection);
     }
     public static ResultSet getStudents() throws SQLException {
         return DatabaseSelect.getStudents(connection);

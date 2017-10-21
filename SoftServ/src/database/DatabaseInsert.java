@@ -16,14 +16,15 @@ public class DatabaseInsert {
      * @throws database.DatabaseInsertException
    * @throws DatabaseInsertException
    */
-  public static  int insertStudent(String utorId, String firstName, String lastName, Connection connection) throws DatabaseInsertException {
-    String sql = "INSERT INTO STUDENTS(ID, FIRSTNAME, LASTNAME) VALUES(?,?,?)";
+  public static  int insertStudent(String utorId, String firstName, String lastName, String password, Connection connection) throws DatabaseInsertException {
+    String sql = "INSERT INTO STUDENTS(STUDENTID, FIRSTNAME, LASTNAME, PASSWORD) VALUES(?,?,?,?)";
     try {
       PreparedStatement preparedStatement = connection.prepareStatement(sql, 
                                               Statement.RETURN_GENERATED_KEYS);
       preparedStatement.setString(1,utorId);
       preparedStatement.setString(2, firstName);
       preparedStatement.setString(3, lastName);
+      preparedStatement.setString(4, password);
       int id = preparedStatement.executeUpdate();
       if (id > 0) {
         ResultSet uniqueKey = preparedStatement.getGeneratedKeys();
@@ -46,14 +47,15 @@ public class DatabaseInsert {
    * @return An integer > 0 to represent a successful new row.
    * @throws DatabaseInsertException
    */
-  public static int insertProfessor(String utorId, String firstName, String lastName, Connection connection) throws DatabaseInsertException{
-    String sql = "INSERT INTO PROFESSORS(ID, FIRSTNAME, LASTNAME) VALUES(?,?,?)";
+  public static int insertProfessor(String utorId, String firstName, String lastName, String password, Connection connection) throws DatabaseInsertException{
+    String sql = "INSERT INTO PROFESSORS(ID, FIRSTNAME, LASTNAME, PASSWORD) VALUES(?,?,?,?)";
     try {
       PreparedStatement preparedStatement = connection.prepareStatement(sql, 
                                               Statement.RETURN_GENERATED_KEYS);
       preparedStatement.setString(1,utorId);
       preparedStatement.setString(2, firstName);
       preparedStatement.setString(3, lastName);
+      preparedStatement.setString(4, password);
       int id = preparedStatement.executeUpdate();
       if (id > 0) {
         ResultSet uniqueKey = preparedStatement.getGeneratedKeys();

@@ -15,7 +15,7 @@ public class DatabaseSelect {
    */
   public static ResultSet getStudents(Connection connection) throws SQLException {
     Statement statement = connection.createStatement();
-    ResultSet results = statement.executeQuery("SELECT * FROM STUDENTS;");
+    ResultSet results = statement.executeQuery("SELECT STUDENTID, FIRSTNAME, LASTNAME FROM STUDENTS;");
     return results;
   }
   
@@ -42,7 +42,7 @@ public class DatabaseSelect {
    */
   public static ResultSet getStudent(String utorId, Connection connection) throws SQLException {
     Statement statement = connection.createStatement();
-    ResultSet results = statement.executeQuery("SELECT * FROM STUDENTS WHERE ID = " + utorId + ";");
+    ResultSet results = statement.executeQuery("SELECT * FROM STUDENTS WHERE STUDENTID = " + utorId + ";");
     
     return results;
   }

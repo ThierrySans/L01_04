@@ -1,5 +1,6 @@
 package database;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -19,7 +20,10 @@ public class DatabaseDriver {
     Connection connection = null;
     try {
       Class.forName("org.sqlite.JDBC");
-      connection = DriverManager.getConnection("jdbc:sqlite:homework.db");
+      File file = new File("homework.db");
+      String path = "jdbc:sqlite:" + file.getAbsolutePath();
+      System.out.println(path);
+      connection = DriverManager.getConnection(path);
       
     } catch (Exception e) {
       System.out.println("Something went wrong with the connection.");
@@ -66,13 +70,15 @@ public class DatabaseDriver {
       String sql = "CREATE TABLE STUDENTS " 
           + "(ID TEXT PRIMARY KEY NOT NULL," 
           + "FIRSTNAME TEXT NOT NULL,"
-          + "LASTNAME TEXT NOT NULL)";
+          + "LASTNAME TEXT NOT NULL,"
+          + "PASSWORD TEXT NOT NULL)";
       statement.executeUpdate(sql);
       
       sql = "CREATE TABLE PROFESSORS " 
           + "(ID TEXT PRIMARY KEY NOT NULL," 
           + "FIRSTNAME TEXT NOT NULL,"
-          + "LASTNAME TEXT NOT NULL)";
+          + "LASTNAME TEXT NOT NULL,"
+          + "PASSWORD TEXT NOT NULL,";
       statement.executeUpdate(sql);
       
       statement.close();

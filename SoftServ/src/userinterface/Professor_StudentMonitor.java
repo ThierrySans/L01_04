@@ -52,8 +52,10 @@ public class Professor_StudentMonitor extends javax.swing.JFrame {
         fieldNewStudentLastName = new javax.swing.JTextField();
         labelNewStudent = new javax.swing.JLabel();
         buttonAddStudent = new javax.swing.JButton();
-        labelStudentUtorid = new javax.swing.JLabel();
+        labelNewStudentUtorid = new javax.swing.JLabel();
         fieldNewStudentUTORid = new javax.swing.JTextField();
+        labelNewStudentPassword = new javax.swing.JLabel();
+        fieldNewStudentPassword = new javax.swing.JTextField();
 
         jList2.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -100,11 +102,19 @@ public class Professor_StudentMonitor extends javax.swing.JFrame {
             }
         });
 
-        labelStudentUtorid.setText("UTORid");
+        labelNewStudentUtorid.setText("UTORid");
 
         fieldNewStudentUTORid.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 fieldNewStudentUTORidActionPerformed(evt);
+            }
+        });
+
+        labelNewStudentPassword.setText("Password");
+
+        fieldNewStudentPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fieldNewStudentPasswordActionPerformed(evt);
             }
         });
 
@@ -118,7 +128,7 @@ public class Professor_StudentMonitor extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(labelStudentUtorid, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(labelNewStudentUtorid, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(fieldNewStudentUTORid))
                             .addGroup(layout.createSequentialGroup()
@@ -130,7 +140,11 @@ public class Professor_StudentMonitor extends javax.swing.JFrame {
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                     .addComponent(labelNewStudentFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(fieldNewStudentFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(fieldNewStudentFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(labelNewStudentPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(fieldNewStudentPassword)))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -163,8 +177,12 @@ public class Professor_StudentMonitor extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(fieldNewStudentUTORid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelStudentUtorid))
-                .addContainerGap(99, Short.MAX_VALUE))
+                    .addComponent(labelNewStudentUtorid))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(fieldNewStudentPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelNewStudentPassword))
+                .addContainerGap(67, Short.MAX_VALUE))
         );
 
         pack();
@@ -180,8 +198,9 @@ public class Professor_StudentMonitor extends javax.swing.JFrame {
         String newStudentFirstName = fieldNewStudentFirstName.getText();
         String newStudentLastName = fieldNewStudentLastName.getText();
         String newStudentUTORid = fieldNewStudentUTORid.getText();
+        String newStudentPassword = fieldNewStudentPassword.getText();
         try {
-            UserManagementAPI.insertStudent(newStudentUTORid, newStudentFirstName, newStudentLastName);
+            UserManagementAPI.insertStudent(newStudentUTORid, newStudentFirstName, newStudentLastName, newStudentPassword);
             updateStudentList();
         } catch (DatabaseInsertException ex) {
             
@@ -197,6 +216,10 @@ public class Professor_StudentMonitor extends javax.swing.JFrame {
     private void fieldNewStudentUTORidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldNewStudentUTORidActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_fieldNewStudentUTORidActionPerformed
+
+    private void fieldNewStudentPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldNewStudentPasswordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fieldNewStudentPasswordActionPerformed
   
     
     /**
@@ -238,6 +261,7 @@ public class Professor_StudentMonitor extends javax.swing.JFrame {
     private javax.swing.JButton buttonAddStudent;
     private javax.swing.JTextField fieldNewStudentFirstName;
     private javax.swing.JTextField fieldNewStudentLastName;
+    private javax.swing.JTextField fieldNewStudentPassword;
     private javax.swing.JTextField fieldNewStudentUTORid;
     private javax.swing.JList<String> jList2;
     private javax.swing.JScrollPane jScrollPane1;
@@ -246,7 +270,8 @@ public class Professor_StudentMonitor extends javax.swing.JFrame {
     private javax.swing.JLabel labelNewStudent;
     private javax.swing.JLabel labelNewStudentFirstName;
     private javax.swing.JLabel labelNewStudentLastName;
-    private javax.swing.JLabel labelStudentUtorid;
+    private javax.swing.JLabel labelNewStudentPassword;
+    private javax.swing.JLabel labelNewStudentUtorid;
     private javax.swing.JList<String> listStudents;
     // End of variables declaration//GEN-END:variables
 
@@ -258,7 +283,7 @@ public class Professor_StudentMonitor extends javax.swing.JFrame {
         while (newStudents.next()) {
             String studentFirstName = newStudents.getString("FIRSTNAME");
             String studentLastName = newStudents.getString("LASTNAME");
-            String studentutorID = newStudents.getString("UTORID");
+            String studentutorID = newStudents.getString("STUDENTID");
             
             String studentInfo = studentFirstName + ", " + studentLastName + ", " + studentutorID;
             /*
