@@ -1,0 +1,116 @@
+<HTML>
+   <head>
+      <link rel="stylesheet" type="text/css" href="main.css">
+      <title>Team SoftServ</title>
+      <link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
+   </head>
+   <body>
+      <div id="Container">
+         <div class="Page">
+            <div class="Main_Screen">
+               <div id="logo">
+                  <img src="images/softserv_logo.png" alt="Logo">
+               </div>
+               <div class="title">
+                  Team SoftServ
+               </div>
+               <div id="subtitles">
+                  <div class="subtitle">
+                     <a href="#User_Stories_Break_down">User Stories Break-down</a>
+                  </div>
+                  <div class="subtitle">
+                     <a href="#Burn_Down_Chart">Burn Down Chart</a>  
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="Break"></div>
+
+         <a name="User_Stories_Break_down"></a>
+         <div class="Page">
+            <div class="Introduction">
+               <div class="name bordered">User Stories Break-down</div>
+               <div id="intro">
+                  <ol>
+					<li><span class="story_break_down">As Professor Ben, I want to add students to a course.</span>
+						<ol>
+	                   			<li>Initialize a mySQL database with tables to store professors (id, name, password) and students (id, name, password)</li>
+						point: 1<br>Dependent: None
+	                   			<li>Implement API for professors to add students.</li>
+	                   			point: 3<br>Dependent: 1
+	                   			<li>Design a UI for professors to interact with.</li>
+	                   			point: 8<br>Dependent: None
+	                   			<li>Connect UI with API.</li>
+	                   			point: 2<br>Dependent: 1 and 3
+						</ol>
+					</li> 
+					<li><span class="story_break_down">As Professor Ben, I want to create a unit. (A unit is defined as a chapter in the course and a problem set is a generated set of similar problems.)</span>
+						<ol>
+	                   			<li>Add a unit table (id, name, release date) to the database.</li>
+	                   			point: 1<br>Dependent: None
+	                   			<li>Implement API for professors to add units.</li>
+	                   			point: 2<br>Dependent: 1
+	                   			<li>Extend UI to allow professors to add units.</li>
+	                   			point: 4<br>Dependent: None
+	                   			<li>Connect UI with API.</li>
+	                   			point: 2<br>Dependent: 1 and 3
+						</ol>
+					</li> 
+					<li><span class="story_break_down">As Professor Sophie, I want to add problem sets with a due-date to a unit.</span>
+						 <ol>
+	                   			 <li>Add a problem set table (id, unit id, name, release date, end date)</li>
+	                   			point: 1
+	                   			<br>Dependent: None
+						 </ol>
+					</li> 
+					<li><span class="story_break_down">As Professor Sophie, I want the software to be able to take problem sets that I've created and release them to sstudents with only changed variables.</span>
+						<ol>
+	                   			<li>Extend API to read a problem set file by searching. Query will be done via problem set Id and problem set name and return a list of all files that match.</li>
+	                   			point: 1<br>Dependent: None
+	                   			<li>Implement variable replacement for files being stored. Variables in a file denoted by [$var(x-y)] will be replaced by a value between x and y when they are added to a unit.</li>
+	                   			point: 3<br>Dependent: 1
+	                   			<li>Extend API to allow the release of problem set files by changing the release date in the sql tables.</li>
+	                   			point: 1<br>Dependent: None
+	                   			<li>Extend UI to allow the change of variables to be done.</li>
+	                   			point: 2<br>Dependent: None
+	                   			<li>Extend UI to support the querying of problem set files that have been added to the unit.</li>
+	                   			point: 2<br>Dependent: None
+	                   			<li>Extend UI to allow the release of problem set files.</li>
+	                   			point: 2<br>Dependent: None
+	                   			<li>Connect the UI and API to allow the release of problem sets.</li>
+	                   			point: 2<br>Dependent: 3 and 6
+	                   			<li>Connect the UI and API to allow the added problem sets to have changed variables.</li>
+	                   			point: 2<br>Dependent: 2, 4, and 5
+						</ol>
+					</li> 
+					<li><span class="story_break_down">As Professor Ben, I want to create several distinct versions of a problem-set to release to students.</span>
+						<ol>
+	                   			<li>Extend UI to display more than 1 problem set per unit if possible based on queried results.</li>
+	                   			point: 1<br>Dependent: None
+						</ol>
+					</li> 
+                  </ol>
+               </div>
+            </div>
+         </div>
+
+
+
+
+         <a name="Burn_Down_Chart"></a>
+         <div class="Page">
+            <div class="Introduction">
+               <div class="name bordered">Burn Down Chart</div>
+               <div id="intro">
+				   
+			---------------------Burn Down Chart insert here---------------------   
+
+               </div>
+            </div>
+         </div>
+
+
+
+      </div>
+   </body>
+</HTML>
