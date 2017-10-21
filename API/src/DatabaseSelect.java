@@ -27,7 +27,7 @@ public class DatabaseSelect {
    */
   protected static ResultSet getStudents(String name, Connection connection) throws SQLException {
     Statement statement = connection.createStatement();
-    ResultSet results = statement.executeQuery("SELECT * FROM STUDENTS WHERE NAME LIKE " + name.toUpperCase() + "%;");
+    ResultSet results = statement.executeQuery("SELECT * FROM STUDENTS WHERE FIRSTNAME LIKE " + name.toUpperCase() + "%;");
     return results;
   }
   
@@ -38,7 +38,7 @@ public class DatabaseSelect {
    * @return The row of STUDENTS containing the student with the matching id.
    * @throws SQLException
    */
-  protected static ResultSet getStudent(int utorId, Connection connection) throws SQLException {
+  protected static ResultSet getStudent(String utorId, Connection connection) throws SQLException {
     Statement statement = connection.createStatement();
     ResultSet results = statement.executeQuery("SELECT * FROM STUDENTS WHERE ID = " + utorId + ";");
     return results;
@@ -63,7 +63,7 @@ public class DatabaseSelect {
    * @return The row of PROFESSORS containing the professor with the matching id.
    * @throws SQLException
    */
-  protected static ResultSet getProfessor(int utorId, Connection connection) throws SQLException {
+  protected static ResultSet getProfessor(String utorId, Connection connection) throws SQLException {
     Statement statement = connection.createStatement();
     ResultSet results = statement.executeQuery("SELECT * FROM PROFESSORS WHERE ID = " + utorId + ";");
     return results;
