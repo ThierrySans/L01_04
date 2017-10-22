@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
 import javax.swing.JList;
 
 /*
@@ -40,9 +41,8 @@ public class Professor_StudentMonitor extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList<>();
         labelCurrentStudents = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         listStudents = new javax.swing.JList<>();
@@ -57,13 +57,6 @@ public class Professor_StudentMonitor extends javax.swing.JFrame {
         labelNewStudentPassword = new javax.swing.JLabel();
         fieldNewStudentPassword = new javax.swing.JTextField();
 
-        jList2.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane2.setViewportView(jList2);
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         labelCurrentStudents.setFont(new java.awt.Font("Menlo", 0, 18)); // NOI18N
@@ -74,6 +67,10 @@ public class Professor_StudentMonitor extends javax.swing.JFrame {
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
+
+        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, listStudents, org.jdesktop.beansbinding.ObjectProperty.create(), listStudents, org.jdesktop.beansbinding.BeanProperty.create("elements"));
+        bindingGroup.addBinding(binding);
+
         jScrollPane1.setViewportView(listStudents);
 
         fieldNewStudentFirstName.addActionListener(new java.awt.event.ActionListener() {
@@ -185,6 +182,8 @@ public class Professor_StudentMonitor extends javax.swing.JFrame {
                 .addContainerGap(67, Short.MAX_VALUE))
         );
 
+        bindingGroup.bind();
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
     
@@ -263,9 +262,7 @@ public class Professor_StudentMonitor extends javax.swing.JFrame {
     private javax.swing.JTextField fieldNewStudentLastName;
     private javax.swing.JTextField fieldNewStudentPassword;
     private javax.swing.JTextField fieldNewStudentUTORid;
-    private javax.swing.JList<String> jList2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel labelCurrentStudents;
     private javax.swing.JLabel labelNewStudent;
     private javax.swing.JLabel labelNewStudentFirstName;
@@ -273,12 +270,13 @@ public class Professor_StudentMonitor extends javax.swing.JFrame {
     private javax.swing.JLabel labelNewStudentPassword;
     private javax.swing.JLabel labelNewStudentUtorid;
     private javax.swing.JList<String> listStudents;
+    private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 
     private void updateStudentList() throws SQLException {
         ResultSet newStudents;
         newStudents = UserManagementAPI.getStudents();
-        ArrayList<String> alistStudents = new ArrayList<>();
+        DefaultListModel<String> alistStudents = new DefaultListModel<String>();
     
         while (newStudents.next()) {
             String studentFirstName = newStudents.getString("FIRSTNAME");
@@ -293,10 +291,10 @@ public class Professor_StudentMonitor extends javax.swing.JFrame {
             studentInfo.add(studentutorID);
             */
 
-            alistStudents.add(studentInfo);
+            alistStudents.addElement(studentInfo);
         }
         
-        listStudents = new JList(alistStudents.toArray());
+        listStudents.setModel(alistStudents);
         
     }
     

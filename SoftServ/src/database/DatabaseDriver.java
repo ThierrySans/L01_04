@@ -20,7 +20,7 @@ public class DatabaseDriver {
     Connection connection = null;
     try {
       Class.forName("org.sqlite.JDBC");
-      File file = new File("homework.db");
+      File file = new File("SoftServ/src/database/homework.db");
       String path = "jdbc:sqlite:" + file.getAbsolutePath();
       System.out.println(path);
       connection = DriverManager.getConnection(path);
