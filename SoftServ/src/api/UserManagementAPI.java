@@ -28,6 +28,9 @@ public class UserManagementAPI {
     public static int insertProfessor(String utorId, String firstName, String lastName, String password) throws DatabaseInsertException{
         return DatabaseInsert.insertProfessor(utorId, firstName, lastName, password, connection);
     }
+    public static int insertUnit(String unitID, String unitName) throws DatabaseInsertException{
+        return DatabaseInsert.insertUnit(unitID, unitName, connection);
+    }
     public static ResultSet getStudents() throws SQLException {
         return DatabaseSelect.getStudents(connection);
     }
@@ -42,6 +45,15 @@ public class UserManagementAPI {
     }
     public static ResultSet getProfessor(String utorId) throws SQLException {
         return DatabaseSelect.getProfessor(utorId, connection);
+    }
+    public static ResultSet getUnits() throws SQLException {
+        return DatabaseSelect.getUnits(connection);
+    }
+    public static ResultSet getUnits(String unitName) throws SQLException {
+        return DatabaseSelect.getUnits(unitName, connection);
+    }
+    public static ResultSet getUnit(String unitID) throws SQLException {
+        return DatabaseSelect.getUnit(unitID, connection);
     }
     
 }
