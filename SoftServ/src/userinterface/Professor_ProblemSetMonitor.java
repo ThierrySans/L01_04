@@ -5,6 +5,10 @@
  */
 package userinterface;
 
+import api.ProblemSetManagementAPI;
+import database.DatabaseInsertException;
+import java.sql.SQLException;
+
 /**
  *
  * @author fideslinga
@@ -28,26 +32,43 @@ public class Professor_ProblemSetMonitor extends javax.swing.JFrame {
     private void initComponents() {
 
         labelCurrentStudents = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        labelNewUnit = new javax.swing.JLabel();
+        labelNewUnitID = new javax.swing.JLabel();
+        labelNewUnitName = new javax.swing.JLabel();
+        fieldNewUnitName = new javax.swing.JTextField();
+        fieldNewUnitID = new javax.swing.JTextField();
+        buttonAddUnit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         labelCurrentStudents.setFont(new java.awt.Font("Menlo", 0, 18)); // NOI18N
-        labelCurrentStudents.setText("Problem Sets");
+        labelCurrentStudents.setText("Problem Set Management");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+        labelNewUnit.setFont(new java.awt.Font("Menlo", 0, 18)); // NOI18N
+        labelNewUnit.setText("New Unit");
+
+        labelNewUnitID.setText("Unit ID");
+
+        labelNewUnitName.setText("Unit Name");
+
+        fieldNewUnitName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fieldNewUnitNameActionPerformed(evt);
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        });
+
+        fieldNewUnitID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fieldNewUnitIDActionPerformed(evt);
+            }
+        });
+
+        buttonAddUnit.setText("Add Unit");
+        buttonAddUnit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonAddUnitActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -55,26 +76,67 @@ public class Professor_ProblemSetMonitor extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(75, 75, 75)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(labelNewUnitName, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(fieldNewUnitName))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(labelNewUnitID, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(fieldNewUnitID, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addComponent(labelCurrentStudents, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(415, 415, 415))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(labelCurrentStudents, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
-                        .addGap(415, 415, 415))))
+                        .addComponent(labelNewUnit)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(buttonAddUnit)
+                        .addGap(75, 75, 75))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(41, 41, 41)
                 .addComponent(labelCurrentStudents, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelNewUnit, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonAddUnit, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(183, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(fieldNewUnitID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelNewUnitID))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(fieldNewUnitName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelNewUnitName))
+                .addContainerGap(491, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void fieldNewUnitNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldNewUnitNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fieldNewUnitNameActionPerformed
+
+    private void fieldNewUnitIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldNewUnitIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fieldNewUnitIDActionPerformed
+
+    private void buttonAddUnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddUnitActionPerformed
+        // TODO add your handling code here:
+        String newUnitID = fieldNewUnitID.getText();
+        String newUnitName = fieldNewUnitName.getText();
+        try {
+            ProblemSetManagementAPI.insertUnit(newUnitID, newUnitName);
+        } catch (DatabaseInsertException ex) {
+        } 
+    }//GEN-LAST:event_buttonAddUnitActionPerformed
 
     /**
      * @param args the command line arguments
@@ -112,8 +174,12 @@ public class Professor_ProblemSetMonitor extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JButton buttonAddUnit;
+    private javax.swing.JTextField fieldNewUnitID;
+    private javax.swing.JTextField fieldNewUnitName;
     private javax.swing.JLabel labelCurrentStudents;
+    private javax.swing.JLabel labelNewUnit;
+    private javax.swing.JLabel labelNewUnitID;
+    private javax.swing.JLabel labelNewUnitName;
     // End of variables declaration//GEN-END:variables
 }

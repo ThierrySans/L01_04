@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
+import javax.swing.JFileChooser;
 import javax.swing.JList;
 
 /*
@@ -56,9 +57,8 @@ public class Professor_StudentMonitor extends javax.swing.JFrame {
         fieldNewStudentUTORid = new javax.swing.JTextField();
         labelNewStudentPassword = new javax.swing.JLabel();
         fieldNewStudentPassword = new javax.swing.JTextField();
-        jMenuBar2 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
+        jButton1 = new javax.swing.JButton();
+        navProblemSets = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -84,7 +84,7 @@ public class Professor_StudentMonitor extends javax.swing.JFrame {
 
         labelNewStudentLastName.setText("Last Name");
 
-        labelNewStudentFirstName.setText("First Name");
+        labelNewStudentFirstName.setText("Unit Name");
 
         fieldNewStudentLastName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -93,7 +93,7 @@ public class Professor_StudentMonitor extends javax.swing.JFrame {
         });
 
         labelNewStudent.setFont(new java.awt.Font("Menlo", 0, 18)); // NOI18N
-        labelNewStudent.setText("New Student");
+        labelNewStudent.setText("New Unit");
 
         buttonAddStudent.setText("Add Student");
         buttonAddStudent.addActionListener(new java.awt.event.ActionListener() {
@@ -118,20 +118,32 @@ public class Professor_StudentMonitor extends javax.swing.JFrame {
             }
         });
 
-        jMenu1.setText("Students");
-        jMenuBar2.add(jMenu1);
+        jButton1.setBackground(new java.awt.Color(204, 204, 204));
+        jButton1.setText("Students");
+        jButton1.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
-        jMenu2.setText("Problem Sets");
-        jMenuBar2.add(jMenu2);
-
-        setJMenuBar(jMenuBar2);
+        navProblemSets.setBackground(new java.awt.Color(204, 204, 204));
+        navProblemSets.setText("ProblemSets");
+        navProblemSets.setToolTipText("");
+        navProblemSets.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        navProblemSets.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                navProblemSetsActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(75, 75, 75)
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -151,7 +163,7 @@ public class Professor_StudentMonitor extends javax.swing.JFrame {
                                 .addComponent(labelNewStudentPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(fieldNewStudentPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(286, Short.MAX_VALUE))
+                        .addContainerGap(260, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
@@ -161,13 +173,18 @@ public class Professor_StudentMonitor extends javax.swing.JFrame {
                             .addComponent(jScrollPane1))
                         .addGap(75, 75, 75))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(labelCurrentStudents)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelCurrentStudents)
+                            .addComponent(navProblemSets, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(65, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(navProblemSets))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
                 .addComponent(labelCurrentStudents, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -224,15 +241,34 @@ public class Professor_StudentMonitor extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_fieldNewStudentLastNameActionPerformed
 
-    private void fieldNewStudentUTORidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldNewStudentUTORidActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_fieldNewStudentUTORidActionPerformed
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void navProblemSetsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_navProblemSetsActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        System.out.println("HELLO");
+        new Professor_ProblemSetMonitor().setVisible(true);
+    }//GEN-LAST:event_navProblemSetsActionPerformed
 
     private void fieldNewStudentPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldNewStudentPasswordActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_fieldNewStudentPasswordActionPerformed
+
+    private void fieldNewStudentUTORidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldNewStudentUTORidActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fieldNewStudentUTORidActionPerformed
   
-    
+    private void problemSets(java.awt.event.ActionEvent evt) {                                  
+        // TODO add your handling code here:
+        //this.setVisible(false);
+        System.out.println("HELLO");
+        JFileChooser chooser = new JFileChooser();
+                chooser.showOpenDialog(null);
+        //new Professor_StudentMonitor().setVisible(true);
+        
+    } 
     /**
      * @param args the command line arguments
      */
@@ -274,9 +310,7 @@ public class Professor_StudentMonitor extends javax.swing.JFrame {
     private javax.swing.JTextField fieldNewStudentLastName;
     private javax.swing.JTextField fieldNewStudentPassword;
     private javax.swing.JTextField fieldNewStudentUTORid;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenuBar jMenuBar2;
+    private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelCurrentStudents;
     private javax.swing.JLabel labelNewStudent;
@@ -285,6 +319,7 @@ public class Professor_StudentMonitor extends javax.swing.JFrame {
     private javax.swing.JLabel labelNewStudentPassword;
     private javax.swing.JLabel labelNewStudentUtorid;
     private javax.swing.JList<String> listStudents;
+    private javax.swing.JButton navProblemSets;
     private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 
