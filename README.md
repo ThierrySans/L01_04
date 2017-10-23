@@ -18,9 +18,12 @@
 
 This folder contains the product backlog for this project.
 Within **ProductBacklog** are folders to classify different versions of the backlog.
-1) **v0** :
-Contains version 0 of the product backlog, which is a folder **PersonasUserStories**. This folder exists to store the html, css and image files associated with our report regarding personas and user stories. This website will display our team logo, personas and user stories.
-The website is hosted [here](http://fideslinga.com/cscc01/productbacklog/v0/personasuserstories/)
+1) **v0** (Effective Sprint 0 - Sprint 1):
+Contains version 0 of the product backlog. This folder exists to store the html, css and image files associated with our report regarding personas and user stories. This website will display our team logo, personas and user stories.
+The website is hosted [here](http://fideslinga.com/cscc01/productbacklog/v0/)
+1) **v1** (Effective Sprint 1 - Present):
+Contains version 1 of the product backlog. This folder exists to store the html, css and image files associated with our report regarding personas and user stories, as well as Task Breakdowns for the User Stories 1-5. This website will display our team logo, personas and user stories, and task-breakdowns.
+The website is hosted [here](http://fideslinga.com/cscc01/productbacklog/v1/)
 
 ### ProjectWebsite
 
