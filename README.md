@@ -31,7 +31,7 @@ This folder contains the spring backlog for this project.
 Within **SprintBacklog** are folders to classify different sprints of the backlog.
 1) **Sprint 0**:
 Contains Sprint 0 of the sprint backlog. This folder exists to store the report for this sprint.
-The report is hosted [here](SpringBacklog/s0/report.pdf)
+The report is hosted [here](SprintBacklog/s0/report.pdf)
 
 ### ProjectWebsite
 
