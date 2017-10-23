@@ -154,7 +154,7 @@
                      <br/><br/>
                      <li>As Professor Ben, I want to add students to a course.</li>
                      <li>As Professor Ben, I want to create a unit. (A unit is defined as a chapter in the course and a problem set is a generated set of similar problems.)</li>
-                     <li>As Professor Sophie, I want to add problem sets with a due-date to a unit.</li>
+                     <li>As Professor Sophie, I want to add problem set informations with a due-date to a unit.</li>
                      <li>As Professor Sophie, I want the software to be able to take problem sets that I've created and release them to sstudents with only changed variables.</li>
                      <li>As Professor Sophie, I want to unlock problem sets to students and allow them to attempt the questions an unlimited times before the due-date</li>
                      <li>As Professor Ben, I want to restrict students into having to retry an entire problem-set if they want to make another attempt for marks.</li>
@@ -208,47 +208,49 @@
                      <li>
                         <span class="story_break_down">As Professor Ben, I want to add students to a course.</span>
                         <ol>
-                           <li>Initialize a mySQL database with tables to store professors (id, name, password) and students (id, name, password)</li>
+                           <li>Initialize a SQLite database with tables to store professors with attributes (ID, FIRSTNAME, LASTNAME, PASSWORD) and students with attributes (UTORID, FIRSTNAME, LASTNAME, PASSWORD), and create a Databse Driver to handle queries and connections in Java.</li>
                            POINTS: 3<br>DEPENDENCIES: None
-                           <li>Implement API for professors to add students.</li>
+                           <li>Create Java Classes that handle insertions, selections, and updates to the database under a package 'database'. Add methods in the appropriate class, that enable professors to insert students into the database, select a list of all students, and select a specific student using their UTORID.  Also implement methods to do the same tasks for professors. Implement a User Management API under package 'api' and add these methods to it.</li>
                            POINTS: 3<br>DEPENDENCIES: T1
-                           <li>Design a UI for professors to interact with.</li>
+                           <li>Design a 'View Students' UI for professors that includes a list view of all students, and a form including text-fields for the first name, last name, utorid, email, and password of a student, where a professor can add a student by pressing a button 'Add Student'. Add this UI under package 'ui'.</li>
                            POINTS: 6<br>DEPENDENCIES: None
-                           <li>Connect UI with API.</li>
+                           <li>Connect the User Management API with the 'View Students' UI. Bind the list view of students to the list of students in the database. Add an event listener to the button 'Add Students', such that it grabs the values inputted in the text-fields: first name, last name, utorid, email, and password, and uses the User Management API to add the students. After insertion, update the list view of students to include the new student.
+							</li>
                            POINTS: 3<br>DEPENDENCIES: T1 and T3
                         </ol>
                      </li>
                      <li>
                         <span class="story_break_down">As Professor Ben, I want to create a unit. (A unit is defined as a chapter in the course and a problem set is a generated set of similar problems.)</span>
                         <ol>
-                           <li>Add a unit table (id, name, release date) to the database.</li>
+                           <li>Add a unit table with attributes (UNITID, NAME) to the SQLite database.</li>
                            POINTS: 1<br>DEPENDENCIES: None
-                           <li>Implement API for professors to add units.</li>
+                           <li>Under package 'database', add methods to the appropriate Java Classes to handle insertion of a unit, selection of all units, and selection of a specific unit using its UNITID. Initialize a Problem Set Management API for professors under package 'api', and add these methods to it.</li>
                            POINTS: 2<br>DEPENDENCIES: T1
-                           <li>Extend UI to allow professors to add units.</li>
+                           <li>Design a 'Problem Set View' UI for professors to be able add a unit. Include a form with text-fields: UnitID and Unit Name, where a professor can add a unit by a pressing a button 'Add Unit'. Add this UI under package 'ui'.</li>
                            POINTS: 4<br>DEPENDENCIES: None
-                           <li>Connect UI with problemset-management API.</li>
+                           <li>Connect the Problem Set Management API with the UI for professors to add units. Add an event listener to the button 'Add Students', such that it grabs the values inputted in the text-fields Unit ID, and Unit Name, and uses the Problem Set Management API to add the units. </li>
                            POINTS: 2<br>DEPENDENCIES: T1 and T3
                         </ol>
                      </li>
                      <li>
-                        <span class="story_break_down">As Professor Sophie, I want to add problem sets with a due-date to a unit.</span>
+                        <span class="story_break_down">As Professor Sophie, I want to add problem set informations with a due-date to a unit.</span>
                         <ol>
-                           <li>Add a problem set table (id, unit id, name, release date, end date)</li>
+                           <li>Add a problem set table with attributes (PROBLEMSETID, UNITID, NAME, RELEASE_DATE, END_DATE) to the SQLite database</li>
                            POINTS: 1
                            <br>DEPENDENCIES: None
-						   <li>Implement API for professors to add problem-sets.</li>
+						   <li>Under package 'database', add methods to the appropriate Java Classes to handle insertion of a problem set (info only), selection of problem sets per their unit, and specific problem set given the PROBLEMSETID. Extend the Problem Set Management API to include these new methods.</li>
                            POINTS: 3<br>DEPENDENCIES: T1
-                           <li>Extend UI to allow professors to add problem-sets.</li>
+                           <li>Extend the same UI used by professors to view problem sets 'Problem Set View' to include a form with text-fields: Problem Set ID, Unit ID, Name, and Date Pickers for Release-Date and End-Date. Include a button 'Add Problem Set' that the professors can use to add a problem set. Include a list-view of problem-sets available for each unit, and show the name, release date, and due date.</li>
                            POINTS: 4<br>DEPENDENCIES: None
-                           <li>Connect UI with problemset-management API.</li>
+                           <li>Connect the new forms in the 'Problem Set View' UI with the new methods in Problem Set Management API. Add an event listener for the button 'Add Problem Set' to grab inputted values in the form with fields (Problem Set ID, Unit ID, Name, Release-Date, and End-Date) and uses the Problem Set Management API to add the problem sets. Bind the list view of problem sets to the all problem sets in the database.</li>
                            POINTS: 2<br>DEPENDENCIES: T1 and T3
                         </ol>
                      </li>
+					  <!--
                      <li>
                         <span class="story_break_down">As Professor Sophie, I want the software to be able to take problem sets that I've created and release them to sstudents with only changed variables.</span>
                         <ol>
-                           <li>Extend API to read a problem set file by searching. Query will be done via problem set Id and problem set name and return a list of all files that match.</li>
+                           <li>Implement a Problem Set Uploading API to read a text file and store it into an external folder ProblemSets which includes all problem sets available for the course. The text file will be stored with the PROBLEMSETID as its name.</li>
                            POINTS: 1<br>DEPENDENCIES: None
                            <li>Implement variable replacement for files being stored. Variables in a file denoted by [$var(x-y)] will be replaced by a value between x and y when they are added to a unit.</li>
                            POINTS: 3<br>DEPENDENCIES: T1
@@ -264,8 +266,9 @@
                            POINTS: 3<br>DEPENDENCIES: T3 and T6
                            <li>Connect the UI and API to allow the added problem sets to have changed variables.</li>
                            POINTS: 2<br>DEPENDENCIES: T2, T4, and T5
-                        </ol>
+						</ol>
                      </li>
+						-->
                   </ol>
                </div>
             </div>
