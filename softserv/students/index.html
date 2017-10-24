@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <script src="../js/jquery.js"></script>
+		<script src="script.js"></script>
+        <meta charset="UTF-8">
+		<!--Styles-->
+        <link rel="stylesheet" href="../master.css" type="text/css">
+		<link rel="stylesheet" href="main.css" type="text/css">
+        <!--Fonts-->
+	    <link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
+		<!--Stuff-->
+		<title>Students</title>
+    </head>
+    <body>
+		<div id="container">
+		<div class="title">SoftServ's WebWork</div>
+       
+		<table>
+			<thead>
+				<tr>
+					<td>UTORID</td>
+					<td>First Name</td>
+					<td>Last Name</td>
+				</tr>
+			</thead>
+			<tbody id="list-students">
+				
+			</tbody>
+        </table>
+		
+		<div id="insert-student">
+			<span class='insert-student-label'>utorID</span>
+			<input type = 'text' id='newstudent-utorid'>
+			<br/>
+			<span class='insert-student-label'>First Name</span>
+			<input type = 'text' id='newstudent-firstname'>
+			<br/>
+			<span class='insert-student-label'>Last Name</span>
+			<input type = 'text' id='newstudent-lastname'>
+			<br/>
+			<span class='insert-student-label'>UTORID</span>
+			<input type = 'password' id='newstudent-password'>
+			
+			<div class="button-large" onclick="insertstudent()">
+				Add Student
+			</div>
+		</div>
+			
+	    </div>
+    </body>
+</html>

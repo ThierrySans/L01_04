@@ -1,0 +1,61 @@
+/*Defaults */
+
+html, body {
+ font-family: "Raleway";
+  letter-spacing: 1px;
+  margin: 0;
+  padding: 0;
+  background-color: #FEFDF7;
+}
+
+
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
+input {
+	width: 100%;
+}
+/*Main Divs */
+#container {
+  margin: 0 auto;
+  width: 90%;
+  text-align: center;
+
+}
+#body {
+  margin:auto;
+  width: 90%;
+  height: auto;
+
+}
+.title {
+	font-size: 4em;
+	font-weight: 700;
+}
+#user-picker {
+	margin: 0 auto;
+	width: 50%;
+	height: 150px;
+	border: 1px solid #EEEEEE;
+}
+#user-picker a {
+	line-height: 60px;
+}
+.button-large {
+	background-color: #FEEDF7;
+	margin: 10px 10% 10px 10%;
+	width: 80%;
+	height: 60px;
+	border-radius: 5px;
+	font-size: 20pt;
+	font-weight: 700;
+}
+
