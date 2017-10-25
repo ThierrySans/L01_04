@@ -21,10 +21,7 @@ $sql_getstudents =<<<EOF
       SELECT * from STUDENTS;
 EOF;
 
-
 $result_getstudents = $conn->query($sql_getstudents);
-
-$frommysql_getstudents = array(); //retrieve from assoc array
 
 // GET students
 while ($row_getstudents = $result_getstudents->fetcharray(SQLITE3_ASSOC)) {
