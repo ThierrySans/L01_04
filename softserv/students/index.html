@@ -16,8 +16,10 @@
     <body>
 		<div id="container">
 		<div class="title">SoftServ's WebWork</div>
-       
-		<table>
+       	<div class="subtitle">
+				Current Students
+		</div>
+		<table id="list-students-table">
 			<thead>
 				<tr>
 					<td>UTORID</td>
@@ -26,12 +28,16 @@
 				</tr>
 			</thead>
 			<tbody id="list-students">
-				
+				<tr>
+					<td>lingafid</td>
+					<td>First Name</td>
+					<td>Last Name</td>
+				</tr>
 			</tbody>
         </table>
 		
 		<div id="insert-student">
-			<span class='insert-student-label'>utorID</span>
+			<span class='insert-student-label'>UTORID</span>
 			<input type = 'text' id='newstudent-utorid'>
 			<br/>
 			<span class='insert-student-label'>First Name</span>
@@ -40,10 +46,10 @@
 			<span class='insert-student-label'>Last Name</span>
 			<input type = 'text' id='newstudent-lastname'>
 			<br/>
-			<span class='insert-student-label'>UTORID</span>
+			<span class='insert-student-label'>Password</span>
 			<input type = 'password' id='newstudent-password'>
 			
-			<div class="button-large" onclick="insertstudent()">
+			<div class="button-small" onclick="insertstudent()">
 				Add Student
 			</div>
 		</div>
