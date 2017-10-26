@@ -37,7 +37,11 @@ input {
 
 }
 .title {
-	font-size: 4em;
+	font-size: 25pt;
+	font-weight: 700;
+}
+.subtitle {
+	font-size: 18pt;
 	font-weight: 700;
 }
 #user-picker {
