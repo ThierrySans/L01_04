@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <script src="../../../js/jquery.js"></script>
+    <script src="script.js"></script>
+    <meta charset="UTF-8">
+    <!--Styles-->
+    <link rel="stylesheet" href="main.css" type="text/css">
+    <!--Fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
+    <!--Stuff-->
+    <title>SoftServ</title>
+  </head>
+
+  <body>
+    <div id="container">
+      <div class="title">SoftServ's WebWork</div>
+
+      <div>
+        <button onclick="addOneQ()">Add 1 question</button>
+        <button onclick="addFiveQ()">Add 5 questions</button>
+        <button onclick="deleteAllQ()">Delete all questions</button>
+        <br/>
+      </div>
+
+      <div id="qsFields"></div>
+
+      <div>
+        <br />
+        <button onclick="submit()">Submit all questions</button>
+        <br />
+      </div>
+
+      <div id="qsContents"></div>
+    </div>
+  </body>
+</html>

@@ -24,7 +24,7 @@ function getstudents() {
     "use strict";
     console.log("hey");
 
-    $.getJSON("../php/getstudents.php", function(data) {
+    $.getJSON("../../php/getstudents.php", function(data) {
         console.log("success!");
     }).done(function(data) {
 		console.log(data);
@@ -51,7 +51,7 @@ function insertstudent() {
 	
 	console.log(param);
 	
-	$.getJSON("../php/insertstudent.php", param, function(data) {
+	$.getJSON("../../php/insertstudent.php", param, function(data) {
         console.log("success!");
     }).done(function(data) {
 		console.log(data);

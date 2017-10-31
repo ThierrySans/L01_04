@@ -1,59 +1,25 @@
 <!DOCTYPE html>
 <html>
-
+ 
     <head>
-        <script src="../js/jquery.js"></script>
-		<script src="script.js"></script>
         <meta charset="UTF-8">
-		<!--Styles-->
-        <link rel="stylesheet" href="../master.css" type="text/css">
-		<link rel="stylesheet" href="main.css" type="text/css">
+        <!--Styles-->
+        <link rel="stylesheet" href="main.css" type="text/css">
         <!--Fonts-->
-	    <link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
-		<!--Stuff-->
-		<title>Students</title>
+        <link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
+        <!--Stuff-->
+        <title>Students</title>
     </head>
     <body>
-		<div id="container">
-		<div class="title">SoftServ's WebWork</div>
-       	<div class="subtitle">
-				Current Students
-		</div>
-		<table id="list-students-table">
-			<thead>
-				<tr>
-					<td>UTORID</td>
-					<td>First Name</td>
-					<td>Last Name</td>
-				</tr>
-			</thead>
-			<tbody id="list-students">
-				<tr>
-					<td>lingafid</td>
-					<td>First Name</td>
-					<td>Last Name</td>
-				</tr>
-			</tbody>
-        </table>
-		
-		<div id="insert-student">
-			<span class='insert-student-label'>UTORID</span>
-			<input type = 'text' id='newstudent-utorid'>
-			<br/>
-			<span class='insert-student-label'>First Name</span>
-			<input type = 'text' id='newstudent-firstname'>
-			<br/>
-			<span class='insert-student-label'>Last Name</span>
-			<input type = 'text' id='newstudent-lastname'>
-			<br/>
-			<span class='insert-student-label'>Password</span>
-			<input type = 'password' id='newstudent-password'>
-			
-			<div class="button-small" onclick="insertstudent()">
-				Add Student
-			</div>
-		</div>
-			
-	    </div>
+       
+        <div id="container">
+        <div class="title">SoftServ's WebWork</div>
+ 
+       
+        <div id="user-picker">
+            <div class="button-large gold"><a id="add_students" href="sdir/StudentDirectory.html" class="button">Student Directory</a></div>
+            <div class="button-large gold"><a id="add_units" href="udir/UnitDirectory.html" class="button">Course Content Directory</a></div>
+            <div class="button-large gold"><a id="add_problems" href="problems/index.html" class="button">Add Problem Sets</a></div>
+        </div>
     </body>
 </html>

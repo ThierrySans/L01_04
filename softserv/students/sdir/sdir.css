@@ -21,7 +21,7 @@ a {
 }
 
 input {
-	width: 100%;
+	width: 300px;
 }
 /*Main Divs */
 #container {
@@ -37,14 +37,7 @@ input {
 
 }
 .title {
-	font-size: 25pt;
-	font-weight: 700;
-	width: 50%;
-	margin-left: auto;
-	margin-right:auto;
-}
-.subtitle {
-	font-size: 18pt;
+	font-size: 4em;
 	font-weight: 700;
 }
 #user-picker {
@@ -56,13 +49,28 @@ input {
 #user-picker a {
 	line-height: 60px;
 }
-.button-large {
-	background-color: #FEEDF7;
+.button-small {
+	background-color: #bcb698;
 	margin: 10px 10% 10px 10%;
-	width: 80%;
-	height: 60px;
+	width: 200px;
+	height: 30px;
+	line-height: 30px;
 	border-radius: 5px;
-	font-size: 20pt;
+	font-size: 13pt;
 	font-weight: 700;
 }
-
+#list-students-table {
+	width: 80%;
+	margin-top: 70px;
+	margin: 0 auto;
+}
+#list-students {
+	background-color: blanchedalmond;
+}
+#list-students tr{
+}
+#insert-student {
+	margin: 0 auto;
+	padding: 20px;
+	border: 1px solid #FEEDF7;
+}

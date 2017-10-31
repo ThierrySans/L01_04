@@ -1,5 +1,5 @@
 /*Defaults */
-
+ 
 html, body {
  font-family: "Raleway";
   letter-spacing: 1px;
@@ -7,70 +7,61 @@ html, body {
   padding: 0;
   background-color: #FEFDF7;
 }
-
-
+ 
+ 
 * {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
-
+ 
 a {
-	text-decoration: none;
-	color: inherit;
+    text-decoration: none;
+    color: inherit;
 }
-
+ 
 input {
-	width: 300px;
+    width: 100%;
 }
 /*Main Divs */
 #container {
   margin: 0 auto;
   width: 90%;
   text-align: center;
-
+ 
 }
 #body {
   margin:auto;
   width: 90%;
   height: auto;
-
+ 
 }
 .title {
-	font-size: 4em;
-	font-weight: 700;
+    font-size: 25pt;
+    font-weight: 700;
+    width: 50%;
+    margin-left: auto;
+    margin-right:auto;
+}
+.subtitle {
+    font-size: 18pt;
+    font-weight: 700;
 }
 #user-picker {
-	margin: 0 auto;
-	width: 50%;
-	height: 150px;
-	border: 1px solid #EEEEEE;
+    margin: 0 auto;
+    width: 50%;
+    height: 225px;
+    border: 1px solid #EEEEEE;
 }
 #user-picker a {
-	line-height: 60px;
+    line-height: 60px;
 }
-.button-small {
-	background-color: #bcb698;
-	margin: 10px 10% 10px 10%;
-	width: 200px;
-	height: 30px;
-	line-height: 30px;
-	border-radius: 5px;
-	font-size: 13pt;
-	font-weight: 700;
-}
-#list-students-table {
-	width: 80%;
-	margin-top: 70px;
-	margin: 0 auto;
-}
-#list-students {
-	background-color: blanchedalmond;
-}
-#list-students tr{
-}
-#insert-student {
-	margin: 0 auto;
-	padding: 20px;
-	border: 1px solid #FEEDF7;
+.button-large {
+    background-color: #FEEDF7;
+    margin: 10px 10% 10px 10%;
+    width: 80%;
+    height: 60px;
+    border-radius: 5px;
+    font-size: 20pt;
+    font-weight: 700;
 }

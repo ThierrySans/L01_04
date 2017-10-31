@@ -13,15 +13,13 @@ if (!$conn) {
 	die("Connection failed: " . mysqli_connect_error());
 }
 
-// Set SQL query and input the partial course name
-
 //variables
-$studentid = $fieldvals[0];
-$studentfirstname = $fieldvals[1];
-$studentlastname = $fieldvals[3];
-$studentutorid = $fieldvals[4];
-$sql_getstudents = "INSERT INTO STUDENTS VALUES ('$studentid', '$studentfirstname', '$studentlastname', '$studentutorid')";
-$result_getstudents = mysqli_query($conn, $sql_getstudents);
+$unitname = $fieldvals[0];
+$unitstart = $fieldvals[1];
+$unitend = $fieldvals[2];
+$sql_getunits = "INSERT INTO UNITS (NAME, START, END) VALUES ('$unitname', '$unitstart', '$unitend')";
+
+$result_getunits = mysqli_query($conn, $sql_getunits);
 echo json_encode("done");
 mysqli_close($conn);
 
