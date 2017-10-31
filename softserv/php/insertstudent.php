@@ -21,6 +21,7 @@ $studentfirstname = $fieldvals[1];
 $studentlastname = $fieldvals[3];
 $studentutorid = $fieldvals[4];
 $sql_getstudents = "INSERT INTO STUDENTS VALUES ('$studentid', '$studentfirstname', '$studentlastname', '$studentutorid')";
+
 $result_getstudents = mysqli_query($conn, $sql_getstudents);
 echo json_encode("done");
 mysqli_close($conn);
