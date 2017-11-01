@@ -246,6 +246,32 @@
                            POINTS: 2<br>DEPENDENCIES: T1, T2, and T3
                         </ol>
                      </li>
+					 <li>
+                        <span class="story_break_down">As Student Sonja, I want to view problem sets, so that I can answer them on my own.</span>
+                        <ol>
+                           <li>Create a list based UI for students to be able to view available problem sets.</li>
+                           POINTS: 2
+                           <br>DEPENDENCIES: None
+						   <li>Create database table for problem sets with attributes(PROBLEMSETID, PROBLEMSETUNITID, PROBLEMSETNAME, DUEDATE) and table for questions with attributes(ID, PROBLEMSETID, QUESTIONTEXT, ANSWER).</li>
+						   POINTS: 2
+						   <br>DEPENDENCIES: None
+						   <li>Create API to get problem set information from database based on selection from student.</li>
+                           POINTS: 2<br>DEPENDENCIES:T2
+                        </ol>
+                     </li>
+					 <li>
+                        <span class="story_break_down">As Student Sonja, I want to answer problem sets through the application, so that I can see the correct solutions.</span>
+                        <ol>
+                           <li>Add text box UI element to collect student answer. Add UI element "submit" to collect all answers.</li>
+                           POINTS: 2
+                           <br>DEPENDENCIES: None
+						   <li>Create API to compare collected answers with the answer given in the database.</li>
+						   POINTS: 2
+						   <br>DEPENDENCIES: T1
+						   <li>Create UI element that displays the correct answer from the database and whether or not the submitted answer matches.</li>
+                           POINTS: 2<br>DEPENDENCIES:T1, T2
+                        </ol>
+                     </li>
 					  <!--
                      <li>
                         <span class="story_break_down">As Professor Sophie, I want the software to be able to take problem sets that I've created and release them to sstudents with only changed variables.</span>
