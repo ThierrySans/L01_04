@@ -1,0 +1,33 @@
+<div class="container" id="nav-bar">
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">WebWork - Professor</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li><a href="../softserv/#!prof-students">Students</a></li>
+      <li class="active"><a href="../softserv/#!prof-problemsets">Problem Sets</a></li>
+	  <li><a href="../softserv/#!prof-newproblemset">New Problem Set</a></li>
+    </ul>
+  </div>
+</nav>
+</div>
+<div class="jumbotron" align="center" style="background:transparent !important" >
+   <span class="big dark-grey b">
+   WebWork
+   </span>
+</div>
+<div class="container">
+   <span class="med dark-grey b">
+   Viewing Problem Set ...
+   </span>
+   <div class="container">
+	   <div class="viewquestion" ng-repeat="(questionid, questiondata) in problemset">
+		   <span class="sma dark-grey">
+			   Question {{$index + 1}}
+		   </span>
+		   <div class="well well-sm">{{questiondata.text}}</div>
+		   <div class="well well-sm">{{questiondata.answer}}</div>
+	   </div>
+	</div>
+</div>
