@@ -152,15 +152,37 @@ var navApp = angular.module('navApp', ['ngRoute']);
 		$scope.addproblemset = function() {
 	
 			//Create an array of valid questions and answers
+			$scope.validquestions = [];
 			//Pass this array, and other data to PHP to update database
 			
-			for (var i=0; i<$scope.questions.length; i++){
+			for (var i=1; i<$scope.questions.length; i++){
 				//Checks if question & answer is empty
+				var question = ($scope.questions[i]).question;
+				var answer = ($scope.questions[i]).answer;
 				//If both are non-empty, then add to the questions database
-				if (/\S/.test(($scope.questions[i]).question)) {
-					
+				if (/\S/.test(question)) {
+					if (/\S/.test(answer)) {
+						var questionSet = {question: question,
+										   answer: answer}
+						$scope.validquestions.push(questionSet);
+					}
 				}
 			}
+			var config = {
+				params: {
+					unitid: $scope.unitid,
+					problemsetname: $scope.problemsetname,
+					datedue: $scope.datedue,
+					questions: angular.toJson($scope.validquestions)
+				},
+				headers : {'Accept' : 'application/json'}
+			}
+				
+			$http.get("php/insertproblemset.php", config).then(function(data) {
+				console.log(data);
+			});
+		
+			
 		}
 		
 	});	
