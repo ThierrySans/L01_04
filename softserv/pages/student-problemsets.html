@@ -1,0 +1,52 @@
+<div class="container" id="nav-bar">
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">WebWork</a>
+    </div>
+    <ul class="nav navbar-nav">
+
+      <li class="active"><a href="../softserv/#!student-problemsets">Problem Sets</a></li>
+    </ul>
+  </div>
+</nav>
+</div>
+<div class="jumbotron" align="center" style="background:transparent !important" >
+   <span class="big dark-grey b">
+   WebWork
+   </span>
+</div>
+<div class="container">
+   <span class="med dark-grey b">
+   Problem Sets
+   </span>
+   <div class="container">
+	   <div ng-repeat="(unitid, unitdat) in unitproblemsets">
+		   <table class="table table-bordered">
+			  <thead>
+				 <span class="med dark-grey b">
+					 {{unitdat.unitname}}
+				 </span>
+				 <tr>
+					<th>Problem Set ID</th>
+					<th>Subject</th>
+					<th>Date Due</th>
+					<th>View</th>
+				 </tr>
+			  </thead>
+			  <tbody>
+				 <tr ng-repeat="(problemsetid, problemsetdata) in unitdat.unitdata">
+					<td>{{problemsetid}}</td>
+					<td>{{problemsetdata.name}}</td>
+					<td>{{problemsetdata.datedue}}</td>
+					<td>
+						<button type="button" ng-click="viewproblemset(problemsetid)">
+							View
+						</button>
+					</td>
+				 </tr>
+			  </tbody>
+		   </table>
+	   </div>
+	</div>
+</div>

@@ -21,6 +21,14 @@ var navApp = angular.module('navApp', ['ngRoute']);
 			        .when('/prof-viewproblemset', {
 						templateUrl : 'pages/prof-viewproblemset.html',
 						controller  : 'prof-viewproblemsetController'
+					})
+					.when('/student-problemsets', {
+						templateUrl : 'pages/student-problemsets.html',
+						controller : 'student-problemsetsController'
+					})
+					.when('/student-viewproblemset', {
+						templateUrl : 'pages/student-viewproblemset.html',
+						controller : 'student-viewproblemsetController'
 					});
 			});
 	//PASSING DATA SERVICE
@@ -208,6 +216,24 @@ var navApp = angular.module('navApp', ['ngRoute']);
 		}
 		$scope.getproblemsets();
 	});
+
+    navApp.controller('student-problemsetsController', function($scope, $http, dataService) {
+		$scope.getproblemsets = function() {
+			$http.get("php/getproblemsetinfo.php").then(function(data) {
+				console.log("getting problem set info");
+				$scope.unitproblemsets = data.data;
+				console.log($scope.unitproblemsets);
+				//$scope.$apply();
+			});	
+		}
+		$scope.viewproblemset = function(id) {
+			console.log("from problemsets page, the id ps id", id);
+			dataService.setData(id);
+			console.log(dataService);
+			window.location.href = "../softserv/#!student-viewproblemset";
+		}
+		$scope.getproblemsets();
+	});
 	
     // *****************************************
 	// *****************************************
@@ -215,6 +241,27 @@ var navApp = angular.module('navApp', ['ngRoute']);
 	// *****************************************
 	// *****************************************
 	navApp.controller('prof-viewproblemsetController', function($scope, $http, dataService) {
+		$scope.problemsetid = dataService.getData();
+		console.log("problemsetid",$scope.problemsetid);
+		$scope.getquestions = function() {
+			var config = {
+				params: {
+					problemsetid: $scope.problemsetid
+				},
+				headers : {'Accept' : 'application/json'}
+			}
+			console.log("config",config);
+			$http.get("php/getproblemset.php",config).then(function(data) {
+				console.log("getting problem set questions",data);
+				$scope.problemset = data.data;
+				console.log("problemset",$scope.problemset);
+				//$scope.$apply();
+			});	
+		}
+		$scope.getquestions();
+	});
+
+	navApp.controller('student-viewproblemsetController', function($scope, $http, dataService) {
 		$scope.problemsetid = dataService.getData();
 		console.log("problemsetid",$scope.problemsetid);
 		$scope.getquestions = function() {
