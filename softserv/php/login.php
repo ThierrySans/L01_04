@@ -1,4 +1,3 @@
-
 <?php
 header('Content-Type: application/json');
 // php config
@@ -8,9 +7,8 @@ $password = 'softserv';
 $db = 'softserv';
 
 $studentid = $_GET["utorid"];
-$studentfirstname = $_GET["firstname"];
-$studentlastname = $_GET["lastname"];
 $studentpassword = $_GET["password"];
+
 // create a connection
 $conn = mysqli_connect($servername, $username, $password, $db);
 if (!$conn) {
@@ -18,12 +16,12 @@ if (!$conn) {
 }
 
 // Set SQL query and input the partial course name
-$studentpassword = password_hash($studentpassword, PASSWORD_DEFAULT);
-//variables
-$sql_getstudents = "INSERT INTO STUDENTS VALUES ('$studentid', '$studentfirstname', '$studentlastname', '$studentpassword')";
 
-$result_getstudents = mysqli_query($conn, $sql_getstudents);
-echo json_encode($fieldvals);
+$sql_compare= "SELECT PASSWORD FROM STUDENTS WHERE UTORID = " + $studentid;
+
+$password = mysqli_query($conn, $sql_getstudents);
+
+echo json_encode(strcmp($password, password_hash($studentpassword, PASSWORD_DEFAULT)));
 mysqli_close($conn);
 
 ?>
