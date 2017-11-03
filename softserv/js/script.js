@@ -58,6 +58,10 @@ var navApp = angular.module('navApp', ['ngRoute']);
 		$scope.profnav = function() {
 			window.location.href = "../softserv/#!prof-students";
 		}
+		
+		$scope.studnav = function() {
+			window.location.href = "../softserv/#!student-problemsets";
+		}
     });
 
     // *****************************************
