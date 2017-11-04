@@ -1,0 +1,35 @@
+<div class="container" id="nav-bar">
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">WebWork</a>
+    </div>
+    <ul class="nav navbar-nav">
+    	<li class="active"><a href="../softserv/#!student-problemsets">Problem Sets</a></li>
+    </ul>
+  </div>
+</nav>
+</div>
+<div class="jumbotron" align="center" style="background:transparent !important" >
+   <span class="big dark-grey b">
+   WebWork
+   </span>
+</div>
+<div class="container">
+   <span class="med dark-grey b">
+   Viewing Problem Set ...
+   </span>
+   <div class="container">
+	   <div class="viewquestion" ng-repeat="(questionid, questiondata) in problemset">
+		   <span class="sma dark-grey">
+			   Question {{$index + 1}}
+		   </span>
+		   <div class="well well-sm">{{questiondata.text}}</div>
+		   <span class="sma dark-grey">
+			   Answer
+		   </span>
+		   <div class="well well-sm"><input type="text"></input></div>
+	   </div>
+	   <div><button class="submit-answers" ng-click="checkanswers()">submit</button></div>
+	</div>
+</div>
