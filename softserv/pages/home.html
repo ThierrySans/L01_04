@@ -4,6 +4,26 @@
 	</span>
 	<!--IS THIS EVEN WORKING-->
 	<br/>
-	<button type="button" class="btn btn-default" ng-click="profnav()">Professor</button>
-	<button type="button" class="btn btn-default" ng-click="studnav()">Student</button>
+	<div class="row" style="text-align:left">
+	  <div class="col-sm-2"></div>
+	  <div class="col-sm-8 border border-dark" style="border: 1px solid #eeeeee; padding: 10px">
+	      <button type="button" class="btn btn-block" ng-click="profnav()">Professor</button>
+	  </div>
+	  <div class="col-sm-2"></div>
+	</div>
+	<div class="row" style="text-align:left">
+	  <div class="col-sm-2"></div>
+	  <div class="col-sm-8" style="border: 1px solid #eeeeee; padding: 10px">
+		  <div class="form-group" id="username">
+			 <label for="username">Username</label>
+			 <input type="text" class="form-control" ng-model="username"></textarea>
+		  </div>
+		  <div class="form-group" id="password">
+			 <label for="password">Password</label>
+			 <input type="password" class="form-control" ng-model="password">
+		  </div>
+	      <button type="submit" class="btn btn-block" ng-click="studnav()">Student</button>
+	  </div>
+	  <div class="col-sm-2"></div>
+	</div>
 </div>

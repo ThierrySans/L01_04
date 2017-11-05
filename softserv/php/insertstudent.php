@@ -1,4 +1,3 @@
-
 <?php
 header('Content-Type: application/json');
 // php config
@@ -18,7 +17,6 @@ if (!$conn) {
 }
 
 // Set SQL query and input the partial course name
-$studentpassword = password_hash($studentpassword, PASSWORD_DEFAULT);
 //variables
 $sql_getstudents = "INSERT INTO STUDENTS VALUES ('$studentid', '$studentfirstname', '$studentlastname', '$studentpassword')";
 

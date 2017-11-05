@@ -5,7 +5,7 @@
       <a class="navbar-brand" href="#">WebWork</a>
     </div>
     <ul class="nav navbar-nav">
-
+      <li>Logged in as: {{user}}</li>
       <li class="active"><a href="../softserv/#!student-problemsets">Problem Sets</a></li>
     </ul>
   </div>
@@ -31,7 +31,6 @@
 					<th>Problem Set ID</th>
 					<th>Subject</th>
 					<th>Date Due</th>
-					<th>Grade</th>
 					<th>View</th>
 				 </tr>
 			  </thead>
@@ -40,7 +39,6 @@
 					<td>{{problemsetid}}</td>
 					<td>{{problemsetdata.name}}</td>
 					<td>{{problemsetdata.datedue}}</td>
-					<td>{{problemsetdata.grade}}</td>
 					<td>
 						<button type="button" ng-click="viewproblemset(problemsetid)">
 							View

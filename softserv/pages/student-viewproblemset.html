@@ -20,6 +20,7 @@
    Viewing Problem Set ...
    </span>
    <div class="container">
+   	<form ng-submit="checkanswers()" ng-model="answer">
 	   <div class="viewquestion" ng-repeat="(questionid, questiondata) in problemset">
 		   <span class="sma dark-grey">
 			   Question {{$index + 1}}
@@ -29,7 +30,10 @@
 			   Answer
 		   </span>
 		   <div class="well well-sm"><input type="text"></input></div>
+		    
 	   </div>
-	   <div><button class="submit-answers" ng-click="checkanswers()">submit</button></div>
+	<div><input class="submit-answers" type="submit"></input></div>
+	  
 	</div>
+	</form>
 </div>

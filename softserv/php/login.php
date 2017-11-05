@@ -6,7 +6,7 @@ $username = 'softserv_admin';
 $password = 'softserv';
 $db = 'softserv';
 
-$studentid = $_GET["utorid"];
+$studentid = $_GET["username"];
 $studentpassword = $_GET["password"];
 
 // create a connection
@@ -17,11 +17,14 @@ if (!$conn) {
 
 // Set SQL query and input the partial course name
 
-$sql_compare= "SELECT PASSWORD FROM STUDENTS WHERE UTORID = " + $studentid;
+$sql_compare= "SELECT PASSWORD FROM STUDENTS WHERE UTORID = '$studentid'";
 
-$password = mysqli_query($conn, $sql_getstudents);
-
-echo json_encode(strcmp($password, password_hash($studentpassword, PASSWORD_DEFAULT)));
+$expected_hashed_password = mysqli_query($conn, $sql_compare);
+$expected_hashed_password = mysqli_fetch_assoc($expected_hashed_password);
+$expected_hashed_password = $expected_hashed_password["PASSWORD"];
+$cmp_result = strcmp("$expected_hashed_password","$studentpassword");
+echo json_encode($cmp_result);
+// echo json_encode($expected_hashed_password, password_hash($studentpassword, PASSWORD_DEFAULT)));
 mysqli_close($conn);
 
 ?>

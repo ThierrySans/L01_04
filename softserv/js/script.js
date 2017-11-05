@@ -18,7 +18,7 @@ var navApp = angular.module('navApp', ['ngRoute']);
 						templateUrl : 'pages/prof-problemsets.html',
 						controller  : 'prof-problemsetsController'
 					})
-			        	.when('/prof-viewproblemset', {
+			        .when('/prof-viewproblemset', {
 						templateUrl : 'pages/prof-viewproblemset.html',
 						controller  : 'prof-viewproblemsetController'
 					})
@@ -46,12 +46,28 @@ var navApp = angular.module('navApp', ['ngRoute']);
 	  };
 
 	});
+	
+	//PASSING ACCOUNT SERVICE
+    navApp.service('accountService', function() {
+	  var data = {
+		  utorid: ''
+	  };
+	  return {
+		setData: function(newObj) {
+		  data.utorid = newObj;
+	    },
+		getData: function(){
+		  return data.utorid;
+	    }
+	  };
+
+	});
     // *****************************************
 	// *****************************************
 	// HOME PAGE CONTROLLER
 	// *****************************************
 	// *****************************************
-    navApp.controller('mainController', function($scope) {
+    navApp.controller('mainController', function($scope, $http, accountService) {
         // create a message to display in our view
         $scope.message = 'Everyone come and see how good I look!';
 		
@@ -59,10 +75,34 @@ var navApp = angular.module('navApp', ['ngRoute']);
 			window.location.href = "../softserv/#!prof-students";
 		}
 		
-<<<<<<< HEAD
+
 		$scope.studnav = function() {
-			window.location.href = "../softserv/#!student-problemsets";
+			// login edit start ------------------------------------------
+			var config = {
+				params: {
+					username: $scope.username,
+					password: $scope.password
+				},
+				headers : {'Accept' : 'application/json'}
+			}
+
+
+			$http.get("php/login.php",config).then(function(data) {
+				console.log("getting login status",data);
+				$scope.loginSuccess = data.data;
+				console.log("login status: ",$scope.loginSuccess);
+
+				if ($scope.loginSuccess === 0){ // strcmp result is 0
+				console.log("successful login!");
+				window.location.href = "../softserv/#!student-problemsets";
+				accountService.setData($scope.username);
+			}
+			});
+			
+			// login edit end ------------------------------
+
 		}
+
     });
 
     // *****************************************
@@ -222,7 +262,10 @@ var navApp = angular.module('navApp', ['ngRoute']);
 		$scope.getproblemsets();
 	});
 
-    navApp.controller('student-problemsetsController', function($scope, $http, dataService) {
+    navApp.controller('student-problemsetsController', function($scope, $http, dataService, accountService) {
+    		$scope.user = accountService.getData();
+		console.log("accout user is",$scope.user);
+    	
 		$scope.getproblemsets = function() {
 			$http.get("php/getproblemsetinfo.php").then(function(data) {
 				console.log("getting problem set info");
@@ -239,25 +282,6 @@ var navApp = angular.module('navApp', ['ngRoute']);
 		}
 		$scope.getproblemsets();
 	});
-	
-	navApp.controller('student-problemsetsController', function($scope, $http, dataService) {
-		$scope.getproblemsets = function() {
-			$http.get("php/getproblemsetinfo.php").then(function(data) {
-				console.log("getting problem set info");
-				$scope.unitproblemsets = data.data;
-				console.log($scope.unitproblemsets);
-				//$scope.$apply();
-			});	
-		}
-		$scope.viewproblemset = function(id) {
-			console.log("from problemsets page, the id ps id", id);
-			dataService.setData(id);
-			console.log(dataService);
-			window.location.href = "../softserv/#!student-viewproblemset";
-		}
-		$scope.getproblemsets();
-	});
-	
 	
     // *****************************************
 	// *****************************************
@@ -284,8 +308,15 @@ var navApp = angular.module('navApp', ['ngRoute']);
 		}
 		$scope.getquestions();
 	});
-
-	navApp.controller('student-viewproblemsetController', function($scope, $http, dataService) {
+	
+	// *****************************************
+	// *****************************************
+	// PROBLEM SET VIEW FOR STUDENTS
+	// *****************************************
+	// *****************************************
+	navApp.controller('student-viewproblemsetController', function($scope, $http, dataService, accountService) {
+		$scope.user = accountService.getData();
+		console.log($scope.user);
 		$scope.problemsetid = dataService.getData();
 		console.log("problemsetid",$scope.problemsetid);
 		$scope.getquestions = function() {
@@ -304,4 +335,27 @@ var navApp = angular.module('navApp', ['ngRoute']);
 			});	
 		}
 		$scope.getquestions();
+		
+		//INCOMPLETE 
+		//INCOMPLETE
+		//INCOMPLETE
+		//INCOMPLETE
+		// needs to record the results somewhere
+
+		$scope.checkanswers = function() {
+			var config = {
+				params: {
+					answer: $scope.answer,
+					realanswer: $scope.problemset.answer
+				},
+				headers : {'Accept' : 'application/json'}
+			}
+			for (i=0; i<answer.length; i++) {
+				if (answer == realanswer) {
+					console.log("right");
+				} else {
+					console.log("wrong");
+				}
+			}
+		}
 	});
