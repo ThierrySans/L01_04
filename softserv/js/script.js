@@ -351,12 +351,17 @@ var navApp = angular.module('navApp', ['ngRoute']);
         counter += 1;
         if (counter == 2) {
           for (var i=0; i<$scope.stuAnswer.length; i++) {
+            var result = "incorrect";
             console.log("Comparing answers");
             if ($scope.stuAnswer[i] == data.answer) {
-              console.log("right");
-            } else {
-              console.log("wrong");
-            }
+              result = "correct";
+            } 
+            var str="<tr><td>" + $scope.stuAnswer[i] + "</td><td>" +  data.answer + "</td><td>" + result + "</td></tr>";
+            $("#display-answers").append(str);
+            
+            
+            
+     
           }
         }
       });
