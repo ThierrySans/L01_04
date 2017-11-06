@@ -46,22 +46,63 @@ var navApp = angular.module('navApp', ['ngRoute']);
 	  };
 
 	});
+
+	//PASSING ACCOUNT SERVICE
+    navApp.service('accountService', function() {
+	  var data = {
+		  utorid: ''
+	  };
+	  return {
+		setData: function(newObj) {
+		  data.utorid = newObj;
+	    },
+		getData: function(){
+		  return data.utorid;
+	    }
+	  };
+
+	});
     // *****************************************
 	// *****************************************
 	// HOME PAGE CONTROLLER
 	// *****************************************
 	// *****************************************
-    navApp.controller('mainController', function($scope) {
+    navApp.controller('mainController', function($scope, $http, accountService) {
         // create a message to display in our view
         $scope.message = 'Everyone come and see how good I look!';
-		
+
 		$scope.profnav = function() {
 			window.location.href = "../softserv/#!prof-students";
 		}
-		
+
+
 		$scope.studnav = function() {
-			window.location.href = "../softserv/#!student-problemsets";
+			// login edit start ------------------------------------------
+			var config = {
+				params: {
+					username: $scope.username,
+					password: $scope.password
+				},
+				headers : {'Accept' : 'application/json'}
+			}
+
+
+			$http.get("php/login.php",config).then(function(data) {
+				console.log("getting login status",data);
+				$scope.loginSuccess = data.data;
+				console.log("login status: ",$scope.loginSuccess);
+
+				if ($scope.loginSuccess === 0){ // strcmp result is 0
+				console.log("successful login!");
+				window.location.href = "../softserv/#!student-problemsets";
+				accountService.setData($scope.username);
+			}
+			});
+
+			// login edit end ------------------------------
+
 		}
+
     });
 
     // *****************************************
@@ -77,9 +118,9 @@ var navApp = angular.module('navApp', ['ngRoute']);
 				$scope.students = data.data;
 				console.log($scope.students);
 				//$scope.$apply();
-			});	
-		}	
-		
+			});
+		}
+
 		$scope.addstudent = function () {
 			var config = {
 				params: {
@@ -96,7 +137,7 @@ var navApp = angular.module('navApp', ['ngRoute']);
 				$scope.getstudents();
 				//$scope.$apply();
 			});
-			
+
 		}
 		$scope.getstudents();
 	});
@@ -113,7 +154,7 @@ var navApp = angular.module('navApp', ['ngRoute']);
 				answer: ""
 			};
 		$scope.units;
-		
+
 		/*
 		*/
 		$scope.getUnits = function () {
@@ -123,7 +164,7 @@ var navApp = angular.module('navApp', ['ngRoute']);
 				$scope.units = data.data;
 				//$scope.$apply();
 			});
-			
+
 		}
 		$scope.getUnits();
 		/*
@@ -134,23 +175,23 @@ var navApp = angular.module('navApp', ['ngRoute']);
 			var qLabel = "<label for='question" + num + "'>Question " + num + "</label>";
 			var qTextArea = "<textarea class='form-control' rows='5' ng-model='(questions[" + num + "]).question'></textarea>";
 			var qFormGroup = "<div class='form-group' id='question" + num + "'>" + qLabel + qTextArea + "</div>";
-			
+
 			var aLabel = "<label for='answer" + num + "'>Answer " + num + "</label>";
 			var aTextArea = "<input type='text' class='form-control' ng-model='(questions[" + num + "]).answer'></input>";
 			var aFormGroup = "<div class='form-group' id='answer" + num + "'>" + aLabel + aTextArea + "</div>";
-		  
+
 			var deleteButton = "<button type='button' onclick='deletequestion(" + num + ")'>Delete</button>";
-			
+
 			var string = qFormGroup + aFormGroup;
-			
+
 			return string;
 		}
-		
+
 		/*
 		function to add question field groups.
 		*/
 		$scope.addquestion = function() {
-			
+
 			$scope.numquestions += 1;
 			$scope.questions[$scope.numquestions] = {
 				question: "",
@@ -158,15 +199,15 @@ var navApp = angular.module('navApp', ['ngRoute']);
 			};
 			var string = $scope.genQuestionField($scope.numquestions);
 			$("#question-container").append($compile(string)($scope));
-			
+
 		}
-		
+
 		$scope.addproblemset = function() {
-	
+
 			//Create an array of valid questions and answers
 			$scope.validquestions = [];
 			//Pass this array, and other data to PHP to update database
-			
+
 			for (var i=1; i<$scope.questions.length; i++){
 				//Checks if question & answer is empty
 				var question = ($scope.questions[i]).question;
@@ -189,15 +230,15 @@ var navApp = angular.module('navApp', ['ngRoute']);
 				},
 				headers : {'Accept' : 'application/json'}
 			}
-				
+
 			$http.get("php/insertproblemset.php", config).then(function(data) {
 				console.log(data);
 			});
-		
-			
+
+
 		}
-		
-	});	
+
+	});
 	// *****************************************
 	// *****************************************
 	// PROBLEM SETS DISPLAY AND ADDING UNITS
@@ -210,7 +251,7 @@ var navApp = angular.module('navApp', ['ngRoute']);
 				$scope.unitproblemsets = data.data;
 				console.log($scope.unitproblemsets);
 				//$scope.$apply();
-			});	
+			});
 		}
 		$scope.viewproblemset = function(id) {
 			console.log("from problemsets page, the id ps id", id);
@@ -221,14 +262,17 @@ var navApp = angular.module('navApp', ['ngRoute']);
 		$scope.getproblemsets();
 	});
 
-    navApp.controller('student-problemsetsController', function($scope, $http, dataService) {
+    navApp.controller('student-problemsetsController', function($scope, $http, dataService, accountService) {
+    		$scope.user = accountService.getData();
+		console.log("accout user is",$scope.user);
+
 		$scope.getproblemsets = function() {
 			$http.get("php/getproblemsetinfo.php").then(function(data) {
 				console.log("getting problem set info");
 				$scope.unitproblemsets = data.data;
 				console.log($scope.unitproblemsets);
 				//$scope.$apply();
-			});	
+			});
 		}
 		$scope.viewproblemset = function(id) {
 			console.log("from problemsets page, the id ps id", id);
@@ -238,7 +282,7 @@ var navApp = angular.module('navApp', ['ngRoute']);
 		}
 		$scope.getproblemsets();
 	});
-	
+
     // *****************************************
 	// *****************************************
 	// PROBLEM SET VIEW
@@ -260,14 +304,24 @@ var navApp = angular.module('navApp', ['ngRoute']);
 				$scope.problemset = data.data;
 				console.log("problemset",$scope.problemset);
 				//$scope.$apply();
-			});	
+			});
 		}
 		$scope.getquestions();
 	});
 
-	navApp.controller('student-viewproblemsetController', function($scope, $http, dataService) {
+	// *****************************************
+	// *****************************************
+	// PROBLEM SET VIEW FOR STUDENTS
+	// *****************************************
+	// *****************************************
+	navApp.controller('student-viewproblemsetController', function($scope, $http, dataService, accountService) {
+		$scope.user = accountService.getData();
+		console.log($scope.user);
 		$scope.problemsetid = dataService.getData();
 		console.log("problemsetid",$scope.problemsetid);
+
+		$scope.stuAnswer = [];
+
 		$scope.getquestions = function() {
 			var config = {
 				params: {
@@ -281,7 +335,30 @@ var navApp = angular.module('navApp', ['ngRoute']);
 				$scope.problemset = data.data;
 				console.log("problemset",$scope.problemset);
 				//$scope.$apply();
-			});	
+			});
 		}
 		$scope.getquestions();
+
+		//INCOMPLETE
+		//INCOMPLETE
+		//INCOMPLETE
+		//INCOMPLETE
+		// needs to record the results somewhere
+
+		$scope.checkanswers = function() {
+      var counter = 0;
+      $.each($scope.problemset, function( qid, data ) {
+        counter += 1;
+        if (counter == 2) {
+          for (var i=0; i<$scope.stuAnswer.length; i++) {
+            console.log("Comparing answers");
+            if ($scope.stuAnswer[i] == data.answer) {
+              console.log("right");
+            } else {
+              console.log("wrong");
+            }
+          }
+        }
+      });
+		}
 	});
