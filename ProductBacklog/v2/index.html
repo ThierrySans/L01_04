@@ -154,14 +154,13 @@
                      <br/><br/>
                      <li>As Professor Ben, I want to add students to a course.</li>
                      <li>As Professor Ben, I want to create a unit. (A unit is defined as a chapter in the course and a problem set is a generated set of similar problems.)</li>
-                     <li>As Professor Sophie, I want to add problem set informations with a due-date to a unit.</li>
-                     <li>As Student Sonja, I want to view problem sets, so that I can answer them on my own.</li>
+                     <li>As Professor Sophie, I want to add a problem set with a due-date to a unit.</li>
+					 <li>As Professor Sophie, I want to see the list of Problem Sets for my course</li>
+					 <li>As Professor Sophie, I want to view a Problem Set from the list of Problem Sets.</li>
+                     <li>As Student Sonja, I want to view a list of Problem Sets.</li>
                      <li>As Student Sonja, I want to answer problem sets through the application, so that I can see the correct solutions.</li>
-					 <li>As Student Sonja, I want to be able to login to the application so that it can track which marks belong to me.<li>
-					 <li>As Professor Sophie, I want to unlock problem sets to students and allow them to attempt the questions an unlimited times before the due-date.</li>
-                     <li>As Professor Ben, I want to restrict students into having to retry an entire problem-set if they want to make another attempt for marks.</li>
-                     <li>As Ben I want to restrict the number of graded attempts per problem set.</li>
-                     <li>As Professor Sophie, I want the system to prevent students from attempting a problem set for marks past the due date.</li>
+                     <li>As Student Sonja, I want to be able to login to the application so that it can track which marks belong to me.</li>
+                     <li>As Professor Ben, I want to restrict the number of graded attempts per problem set.</li>
                      <li>As Professor Sophie, I want to have a system that will automatically compare the student's choice and the given solution for a problem-set, so that I don't need to manually mark problem-sets.</li>
                      <li>As Professor Sophie, I want the system to record the mark of a student's problem-set attempt that yields the highest mark.</li>
                      <li>As Professor Ben, I want the option to have the system record the mark of a student's most recent problem-set attempt.</li>
@@ -208,13 +207,13 @@
                      <li>
                         <span class="story_break_down">As Professor Ben, I want to add students to a course.</span>
                         <ol>
-                           <li>Initialize a SQLite database with tables to store professors with attributes (ID, FIRSTNAME, LASTNAME, PASSWORD) and students with attributes (UTORID, FIRSTNAME, LASTNAME, PASSWORD), and create a Databse Driver to handle queries and connections in Java.</li>
+                           <li>Initialize a mySQL database with tables to store students with attributes (UTORID, FIRSTNAME, LASTNAME, PASSWORD), and create a Database Driver to handle queries and connections in PHP.</li>
                            POINTS: 3<br>DEPENDENCIES: None
-                           <li>Create Java Classes that handle insertions, selections, and updates to the database under a package 'database'. Add methods in the appropriate class, that enable professors to insert students into the database, select a list of all students, and select a specific student using their UTORID.  Also implement methods to do the same tasks for professors. Implement a User Management API under package 'api' and add these methods to it.</li>
+                           <li>Create PHP Web Services that handle insertions, selections, and updates to the database under a folder 'php'. Add methods in the appropriate Web Services, that enable professors to insert students into the database, select a list of all students, and select a specific student using their UTORID.  Also implement methods to do the same tasks for professors.</li>
                            POINTS: 3<br>DEPENDENCIES: T1
-                           <li>Design a 'View Students' UI for professors that includes a list view of all students, and a form including text-fields for the first name, last name, utorid, email, and password of a student, where a professor can add a student by pressing a button 'Add Student'. Add this UI under package 'ui'.</li>
+                           <li>Design a UI for professors that includes a list view of all students, and a form including text-fields for the first name, last name, utorid, email, and password of a student, where a professor can add a student by pressing a button 'Add Student'.</li>
                            POINTS: 6<br>DEPENDENCIES: None
-                           <li>Connect the User Management API with the 'View Students' UI. Bind the list view of students to the list of students in the database. Add an event listener to the button 'Add Students', such that it grabs the values inputted in the text-fields: first name, last name, utorid, email, and password, and uses the User Management API to add the students. After insertion, update the list view of students to include the new student.
+                           <li>Connect the User Management API with the UI for viewing and adding students. Bind the list view of students to the list of students in the database. Add an event listener to the button 'Add Students', such that it grabs the values inputted in the text-fields: first name, last name, utorid, email, and password, and uses the User Management API to add the students. After insertion, update the list view of students to include the new student.
 							</li>
                            POINTS: 3<br>DEPENDENCIES: T1, T2, and T3
                         </ol>
@@ -222,67 +221,91 @@
                      <li>
                         <span class="story_break_down">As Professor Ben, I want to create a unit. (A unit is defined as a chapter in the course and a problem set is a generated set of similar problems.)</span>
                         <ol>
-                           <li>Add a unit table with attributes (UNITID, NAME) to the SQLite database.</li>
+                           <li>Add a unit table with attributes (UNITID, NAME) to the MySQL database.</li>
                            POINTS: 1<br>DEPENDENCIES: None
-                           <li>Under package 'database', add methods to the appropriate Java Classes to handle insertion of a unit, selection of all units, and selection of a specific unit using its UNITID. Initialize a Problem Set Management API for professors under package 'api', and add these methods to it.</li>
+                           <li>In the PHP folder, add the appropriate Web Services to handle insertion of a unit, selection of all units, and selection of a specific unit using its UNITID. Initialize a Problem Set Management controller for professors, and add these methods to it.</li>
                            POINTS: 2<br>DEPENDENCIES: T1
-                           <li>Design a 'Problem Set View' UI for professors to be able add a unit. Include a form with text-fields: UnitID and Unit Name, where a professor can add a unit by a pressing a button 'Add Unit'. Add this UI under package 'ui'.</li>
+                           <li>Design a UI for professors to be able add a unit. Include a form with text-fields: UnitID and Unit Name, where a professor can add a unit by a pressing a button 'Add Unit'. Add this UI under package 'ui'.</li>
                            POINTS: 4<br>DEPENDENCIES: None
                            <li>Connect the Problem Set Management API with the UI for professors to add units. Add an event listener to the button 'Add Students', such that it grabs the values inputted in the text-fields Unit ID, and Unit Name, and uses the Problem Set Management API to add the units. </li>
                            POINTS: 2<br>DEPENDENCIES: T1, T2, and T3
                         </ol>
                      </li>
                      <li>
-                        <span class="story_break_down">As Professor Sophie, I want to add problem set informations with a due-date to a unit.</span>
+                        <span class="story_break_down">As Professor Sophie, I want to add a problem set with a due-date to a unit.</span>
                         <ol>
-                           <li>Add a problem set table with attributes (PROBLEMSETID, UNITID, NAME, RELEASE_DATE, END_DATE) to the SQLite database</li>
-                           POINTS: 1
+                           <li>Add a problem set table with attributes (PROBLEMSETID, UNITID, NAME, RELEASE_DATE, END_DATE) to the MySQL database. Add a question table with attributes (ID, PROBLEMSETID, QUESTIONTEXT, ANSWER).</li>
+                           POINTS: 2
                            <br>DEPENDENCIES: None
-						   <li>Under package 'database', add methods to the appropriate Java Classes to handle insertion of a problem set (info only), selection of problem sets per their unit, and specific problem set given the PROBLEMSETID. Extend the Problem Set Management API to include these new methods.</li>
-                           POINTS: 3<br>DEPENDENCIES: T1
-                           <li>Extend the same UI used by professors to view problem sets 'Problem Set View' to include a form with text-fields: Problem Set ID, Unit ID, Name, and Date Pickers for Release-Date and End-Date. Include a button 'Add Problem Set' that the professors can use to add a problem set. Include a list-view of problem-sets available for each unit, and show the name, release date, and due date.</li>
-                           POINTS: 4<br>DEPENDENCIES: None
-                           <li>Connect the new forms in the 'Problem Set View' UI with the new methods in Problem Set Management API. Add an event listener for the button 'Add Problem Set' to grab inputted values in the form with fields (Problem Set ID, Unit ID, Name, Release-Date, and End-Date) and uses the Problem Set Management API to add the problem sets. Bind the list view of problem sets to the all problem sets in the database.</li>
-                           POINTS: 2<br>DEPENDENCIES: T1, T2, and T3
+						   <li>Under the php folder, add Web Services to handle insertion of a problem set, and questions. It should handle selection of problem sets per their unit, and specific problem set given the PROBLEMSETID.</li>
+                           POINTS: 4<br>DEPENDENCIES: T1
+						   <li>Design a UI for professors to add problem sets with individual questions. The UI will contain text fields for choosing the Unit, the Problem Set Name, and Release Date. There will be a default pair of fields a Question and an Answer. There will be a button 'Add Question' that appends more question and answer fields for Professors to add a new question to the problem set. Lastly, there will be a button to add the problem set into the database.
+						   </li>
+                           <br>
+                           POINTS: 6<br>DEPENDENCIES: None
+                           <li>Connect the new forms in the UI for viewing Problem Sets with the JavaScript controllers methods in Problem Set Management API. Add an event listener for the button 'Add Problem Set' to grab inputted values in the form with fields (Problem Set ID, Unit ID, Name, Release-Date, and End-Date), as well as all the question and answer fields. Then the data should be sent to the PHP service to be added to the database.</li>
+                           POINTS: 8<br>DEPENDENCIES: T1, T2, and T3
                         </ol>
                      </li>
 					 <li>
-                        <span class="story_break_down">As Student Sonja, I want to view problem sets, so that I can answer them on my own.</span>
+                        <span class="story_break_down">As Professor Sophie, I want to see the list of Problem Sets for my course</span>
                         <ol>
-                           <li>Create a list based UI for students to be able to view available problem sets.</li>
-                           POINTS: 2
+						   <li>Under the php folder, add a PHP Web Service to handle the selection of all problem sets.</li>
+                           POINTS: 3<br>DEPENDENCIES: None
+						   <li>Design a UI for Professors to view a list of Problem Sets. It will display the list of Problem Sets organized by their Unit. And for each Problem Set, it will display the Problem Set ID, Problem Set Name, the Date Due, and a button to choose to view the problem set.
+						   </li>
+						   POINTS: 5<br>DEPENDENCIES: None
+                           <li>Create a new Controller in JavaScript that connects with the PHP Web Service that selects all problem sets. The API in the Controller will return the list of Problem Sets in HTML Format, and append it into the HTML file to render the page.</li>
+                           POINTS: 8<br>DEPENDENCIES: T1
+                           <li>Connect the list view for viewing Problem Sets with the JavaScript controllers that render the HTML.</li>
+                           POINTS: 8<br>DEPENDENCIES: T1, T2, and T3
+                        </ol>
+                     </li>
+					 <li>
+                        <span class="story_break_down">As Professor Sophie, I want to view a Problem Set from the list of Problem Sets.</span>
+                        <ol>
+                           <li>Create a UI that displays the list of questions and answers for a Problem Set</li>
+						   <br>
+                           POINTS: 5
                            <br>DEPENDENCIES: None
-						   <li>Create database table for problem sets with attributes(PROBLEMSETID, PROBLEMSETUNITID, PROBLEMSETNAME, DUEDATE) and table for questions with attributes(ID, PROBLEMSETID, QUESTIONTEXT, ANSWER).</li>
-						   POINTS: 2
+						   <li>Create a Controller in JavaScript to handle the rendering of the problem set questions and answers on the page to view one problem set. Create a service to enable the transfer of the problem-set id from the page with the list of problem sets, to this new page (viewing a single problem set).</li>
+						   POINTS: 8
 						   <br>DEPENDENCIES: None
-						   <li>Create API to get problem set information from database based on selection from student.</li>
-                           POINTS: 2<br>DEPENDENCIES:T2
+						   <li>Bind the 'view' button in each Problem Set entry in the list UI for problem sets, to redirect to the new page for viewing the single problem set. Ensure that it redirects and transfers the appropriate problem-set ID. </li>
+                           POINTS: 5<br>DEPENDENCIES:T2
+                        </ol>
+                     </li>
+					  <li>
+                        <span class="story_break_down">As Student Sonja, I want to view a list of Problem Sets.</span>
+                        <ol>
+							<li>Create a log-in form in the landing page, with text-fields for the utorid and password, and a button for logging in.</li>
+                           <br>POINTS: 2
+                           <br>DEPENDENCIES: None
+							<li>Extend the API to retrieve the inputted utorid and password on button click, and verify the credentials of the user attempting to log in.</li>
+                           <br>POINTS: 4
+                           <br>DEPENDENCIES: T1
+							<li>Create an account transferring service in JavaScript to handle the transfer of the utorid for the appropriate student on log-in.</li>
+                           <br>POINTS: 3
+                           <br>DEPENDENCIES: None
+							<li>Copy the UI for the Professor's Viewing Problem Sets page, and insert it into the directory for Students. Modify the UI to display the utorid in the navigation bar.</li>
+                           <br>POINTS: 3
+                           <br>DEPENDENCIES: None
+							<li>Copy the Controller for the Professor's Viewing Problem Sets page, and insert it into the directory for Students. Include the account transferring service into the controller, to bind the utorid to the display.</li>
+                           <br>POINTS: 3
+                           <br>DEPENDENCIES: T3
                         </ol>
                      </li>
 					 <li>
                         <span class="story_break_down">As Student Sonja, I want to answer problem sets through the application, so that I can see the correct solutions.</span>
                         <ol>
-                           <li>Add text box UI element to collect student answer. Add UI element "submit" to collect all answers.</li>
-                           POINTS: 2
+						   <li>Copy the UI of the page for Professors viewing a single problem set, and insert it into the directory for Students. Modify the UI so that the answer is an input-field where a student can input their answer. Include a button for submitting all the answers for the problem set at the bottom of the page.</li>
+      					   <br>POINTS: 6
                            <br>DEPENDENCIES: None
-						   <li>Create API to compare collected answers with the answer given in the database.</li>
-						   POINTS: 2
+						   <li>Create API to compare collected answers with the answer given in the database. The comparison algorithm will compare each answer with the student's answer and output a grade on the performance of the student.</li>
+						   <br>POINTS: 4
 						   <br>DEPENDENCIES: T1
-						   <li>Create UI element that displays the correct answer from the database and whether or not the submitted answer matches.</li>
-                           POINTS: 2<br>DEPENDENCIES:T1, T2
-                        </ol>
-                     </li>
-					 <li>
-                        <span class="story_break_down">As Student Sonja, I want to be able to login to the application so that it can track which marks belong to me.</span>
-                        <ol>
-						   <li>Create UI to collect login username and password.</li>
-                           POINTS: 2
-                           <br>DEPENDENCIES: None
-						   <li>Create API to lookup the corresponding hashed password given a username and compare if it matches the given password's hash.</li>
-						   POINTS: 2
-						   <br>DEPENDENCIES: None
-						   <li>Connect API to UI and allow access if login is correct.</li>
-                           POINTS: 2<br>DEPENDENCIES:T1, T2
+						   <li>Extend the UI to display the correct answer from the database and whether or not the submitted answer matches.</li>
+                           <br>POINTS: 4<br>DEPENDENCIES:T1, T2
                         </ol>
                      </li>
 					  <!--
