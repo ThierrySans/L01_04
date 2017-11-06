@@ -21,9 +21,13 @@ Within **ProductBacklog** are folders to classify different versions of the back
 1) **v0** :
 Contains version 0 of the product backlog. This folder exists to store the html, css and image files associated with our report regarding personas and user stories. This website will display our team logo, personas and user stories.
 The website is hosted [here](http://fideslinga.com/cscc01/productbacklog/v0/)
-1) **v1** (Effective Sprint 0 - Present):
+2) **v1** (Effective Sprint 0 - Present):
 Contains version 1 of the product backlog. This folder exists to store the html, css and image files associated with our report regarding personas and user stories, as well as Task Breakdowns for the User Stories 1-5. This website will display our team logo, personas and user stories, and task-breakdowns.
 The website is hosted [here](http://fideslinga.com/cscc01/productbacklog/v1/)
+
+3) **v2** (Effective Sprint 0 - Present):
+Contains version 2 of the product backlog. This folder exists to store the html, css and image files associated with our report regarding personas and user stories, as well as Task Breakdowns for the User Stories 1-7. This website will display our team logo, personas and user stories, and task-breakdowns.
+The website is hosted [here](http://fideslinga.com/cscc01/productbacklog/v2/)
 
 ### SprintBacklog
 
@@ -32,6 +36,14 @@ Within **SprintBacklog** are folders to classify different sprints of the backlo
 1) **Sprint 0**:
 Contains Sprint 0 of the sprint backlog. This folder exists to store the report for this sprint.
 The report is hosted [here](SprintBacklog/s0/report.pdf)
+
+2) **Sprint 1**:
+Contains Sprint 1 of the sprint backlog. This folder exists to store the report for this sprint.
+The report is hosted [here](SprintBacklog/s1/report.pdf)
+
+3) **Sprint 2**:
+Contains Sprint 2 of the sprint backlog. This folder exists to store the report for this sprint.
+The report is hosted [here](SprintBacklog/s2/report.pdf)
 
 ### ProjectWebsite
 
