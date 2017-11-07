@@ -14,6 +14,11 @@
 
 ![Available Hours](https://github.com/CSCC01F17/L01_04/blob/master/AvailableHours.png)
 
+### SoftServ
+
+This is the source code for our product.
+The website is hosted [here](http://fideslinga.com/cscc01/softserv)
+
 ### ProductBacklog
 
 This folder contains the product backlog for this project.
