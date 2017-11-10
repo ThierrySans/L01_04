@@ -18,6 +18,10 @@ var navApp = angular.module('navApp', ['ngRoute']);
 						templateUrl : 'pages/prof-problemsets.html',
 						controller  : 'prof-problemsetsController'
 					})
+					.when('/prof-grades-problemsets', {
+						templateUrl : 'pages/prof-grades-problemsets.html',
+						controller  : 'prof-grades-problemsetsController'
+					})
 			        .when('/prof-viewproblemset', {
 						templateUrl : 'pages/prof-viewproblemset.html',
 						controller  : 'prof-viewproblemsetController'
@@ -261,6 +265,31 @@ var navApp = angular.module('navApp', ['ngRoute']);
 		}
 		$scope.getproblemsets();
 	});
+
+
+
+	navApp.controller('prof-grades-problemsetsController', function($scope, $http, dataService) {
+		$scope.getproblemsets = function() {
+			$http.get("php/getproblemsetgrades.php").then(function(data) {
+				console.log("getting problem set info");
+				$scope.unitproblemsets = data.data;
+				console.log($scope.unitproblemsets);
+				//$scope.$apply();
+			});
+		}
+		$scope.viewproblemset = function(id) {
+			console.log("from problemsets page, the id ps id", id);
+			dataService.setData(id);
+			console.log(dataService);
+			window.location.href = "../softserv/#!prof-grades-problemsets";
+		}
+		$scope.getproblemsets();
+	});
+
+
+
+
+
 
     navApp.controller('student-problemsetsController', function($scope, $http, dataService, accountService) {
     		$scope.user = accountService.getData();

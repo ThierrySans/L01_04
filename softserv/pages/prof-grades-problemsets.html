@@ -6,10 +6,10 @@
     </div>
     <ul class="nav navbar-nav">
       <li><a href="../softserv/#!prof-students">Students</a></li>
-      <li class="active"><a href="../softserv/#!prof-problemsets">Problem Sets</a></li>
+      <li ><a href="../softserv/#!prof-problemsets">Problem Sets</a></li>
 
-      <li><a href="../softserv/#!prof-grades-problemsets">Problem Sets Grades</a></li>
-      <li><a href="../softserv/#!prof-problemsets">Students Grades</a></li>
+      <li class="active"><a href="../softserv/#!prof-grades-problemsets">Problem Sets Grades</a></li>
+      <li><a href="../softserv/#!prof-students-grades">Students Grades</a></li>
 
       
       <li><a href="../softserv/#!prof-newproblemset">New Problem Set</a></li>
@@ -24,7 +24,7 @@
 </div>
 <div class="container">
    <span class="med dark-grey b">
-   Problem Sets
+   Students' Grades for Problem Sets
    </span>
    <div class="container">
 	   <div ng-repeat="(unitid, unitdat) in unitproblemsets">
@@ -35,21 +35,21 @@
 				 </span>
 				 <tr>
 					<th>Problem Set ID</th>
-					<th>Subject</th>
-					<th>Date Due</th>
-					<th>View</th>
+					<th>Student ID</th>
+					<th>Student First Name</th>
+					<th>Student Last Name</th>
+					<th>Marks</th>
+					
 				 </tr>
 			  </thead>
 			  <tbody>
 				 <tr ng-repeat="(problemsetid, problemsetdata) in unitdat.unitdata">
 					<td>{{problemsetid}}</td>
-					<td>{{problemsetdata.name}}</td>
-					<td>{{problemsetdata.datedue}}</td>
-					<td>
-						<button type="button" ng-click="viewproblemset(problemsetid)">
-							View
-						</button>
-					</td>
+					<td>{{problemsetdata.studentid}}</td>
+					<td>{{problemsetdata.studentfirstname}}</td>
+					<td>{{problemsetdata.studentlastname}}</td>
+					<td>{{problemsetdata.studentmark}}</td>
+					
 				 </tr>
 			  </tbody>
 		   </table>
