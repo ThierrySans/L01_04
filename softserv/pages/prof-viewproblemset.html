@@ -19,7 +19,7 @@
 </div>
 <div class="container">
    <span class="med dark-grey b">
-   Viewing Problem Set ...
+   Viewing Problem Set {{problemsetid}}
    </span>
    <div class="container">
 	   <div class="viewquestion" ng-repeat="(questionid, questiondata) in problemset">
@@ -30,4 +30,29 @@
 		   <div class="well well-sm">{{questiondata.answer}}</div>
 	   </div>
 	</div>
+</div>
+<div class="container">
+   <span class="med dark-grey b">
+   Problem Set {{problemsetid}} Grades
+   </span>
+   <table class="table table-bordered">
+      <thead>
+         <tr>
+            <th>UTORID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+			<th>Recent Score</th>
+			<th>Highest Score</th>
+         </tr>
+      </thead>
+      <tbody>
+         <tr ng-repeat="(utorid, student) in problemsetgrades">
+			<td>{{utorid}}</td>
+            <td>{{student.firstname}}</td>
+            <td>{{student.lastname}}</td>
+			<td>{{student.recentscore}}</td>
+			<td>{{student.highestscore}}</td>
+         </tr>
+      </tbody>
+   </table>
 </div>

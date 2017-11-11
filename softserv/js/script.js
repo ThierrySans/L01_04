@@ -246,7 +246,7 @@ var navApp = angular.module('navApp', ['ngRoute']);
 	});
 	// *****************************************
 	// *****************************************
-	// PROBLEM SETS DISPLAY AND ADDING UNITS
+	// PROFESSORS PROBLEM SETS DISPLAY (VIEWING ALL)
 	// *****************************************
 	// *****************************************
 	navApp.controller('prof-problemsetsController', function($scope, $http, dataService) {
@@ -267,31 +267,11 @@ var navApp = angular.module('navApp', ['ngRoute']);
 		$scope.getproblemsets();
 	});
 
-
-
-	navApp.controller('prof-grades-problemsetsController', function($scope, $http, dataService) {
-		$scope.getproblemsets = function() {
-			$http.get("php/getproblemsetgrades.php").then(function(data) {
-				console.log("getting problem set info");
-				$scope.unitproblemsets = data.data;
-				console.log($scope.unitproblemsets);
-				//$scope.$apply();
-			});
-		}
-		$scope.viewproblemset = function(id) {
-			console.log("from problemsets page, the id ps id", id);
-			dataService.setData(id);
-			console.log(dataService);
-			window.location.href = "../softserv/#!prof-grades-problemsets";
-		}
-		$scope.getproblemsets();
-	});
-
-
-
-
-
-
+	// *****************************************
+	// *****************************************
+	// (SINGLE) PROBLEM SET VIEW FOR STUDENTS
+	// *****************************************
+	// *****************************************
     navApp.controller('student-problemsetsController', function($scope, $http, dataService, accountService) {
     		$scope.user = accountService.getData();
 		console.log("accout user is",$scope.user);
@@ -315,12 +295,14 @@ var navApp = angular.module('navApp', ['ngRoute']);
 
     // *****************************************
 	// *****************************************
-	// PROBLEM SET VIEW
+	// (SINGLE) PROBLEM SET VIEW FOR PROFESSORS
 	// *****************************************
 	// *****************************************
 	navApp.controller('prof-viewproblemsetController', function($scope, $http, dataService) {
 		$scope.problemsetid = dataService.getData();
 		console.log("problemsetid",$scope.problemsetid);
+		
+		// get the questions for the problem set
 		$scope.getquestions = function() {
 			var config = {
 				params: {
@@ -336,7 +318,26 @@ var navApp = angular.module('navApp', ['ngRoute']);
 				//$scope.$apply();
 			});
 		}
+		
+		// get the student grades for the problem set
+		$scope.retrievegrades = function() {
+			var config = {
+				params: {
+					problemsetid: $scope.problemsetid
+				},
+				headers : {'Accept' : 'application/json'}
+			}
+			console.log("config",config);
+			$http.get("php/retrievegradesall.php",config).then(function(data) {
+				console.log("getting problem set grades for this problem set",data);
+				$scope.problemsetgrades = data.data;
+				console.log("problemset",$scope.problemsetgrades);
+				//$scope.$apply();
+			});
+		}
+		
 		$scope.getquestions();
+		$scope.retrievegrades();
 	});
 
 	// *****************************************
