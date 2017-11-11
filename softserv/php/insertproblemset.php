@@ -1,11 +1,6 @@
 <?php
 header('Content-Type: application/json');
-// php config
-$servername= 'localhost';
-$username = 'softserv_admin';
-$password = 'softserv';
-$db = 'softserv';
-
+include('./config.php');
 $unitid = $_GET["unitid"];
 $problemsetname = $_GET["problemsetname"];
 $datedue = $_GET["datedue"];

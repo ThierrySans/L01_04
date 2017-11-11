@@ -1,11 +1,6 @@
 <?php
 header('Content-Type: application/json');
-// php config
-$servername= 'localhost';
-$username = 'softserv_admin';
-$password = 'softserv';
-$db = 'softserv';
-
+include('./config.php');
 $studentid = $_GET["username"];
 $studentpassword = $_GET["password"];
 

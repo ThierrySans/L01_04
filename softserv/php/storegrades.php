@@ -1,11 +1,6 @@
 <?php
 header('Content-Type: application/json');
-// php config
-$servername= 'localhost';
-$username = 'softserv_admin';
-$password = 'softserv';
-$db = 'softserv';
-
+include('./config.php');
 // create a connection
 $studentid = $_GET["username"];
 $problemsetid = $_GET["problemsetid"];
@@ -49,6 +44,7 @@ if (empty($result)) {
 		}
 	}	
 }
+$result = "";
 echo json_encode($result);
 mysqli_close($conn);
 ?>

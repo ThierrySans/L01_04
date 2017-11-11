@@ -119,6 +119,7 @@ var navApp = angular.module('navApp', ['ngRoute']);
         $scope.getstudents = function() {
 			$http.get("php/getstudents.php").then(function(data) {
 				console.log("getting students");
+				console.log("whats going on",data);
 				$scope.students = data.data;
 				console.log($scope.students);
 				//$scope.$apply();

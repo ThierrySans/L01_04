@@ -1,12 +1,6 @@
-
 <?php
 header('Content-Type: application/json');
-// php config
-$servername= 'localhost';
-$username = 'softserv_admin';
-$password = 'softserv';
-$db = 'softserv';
-
+include('./config.php');
 // create a connection
 $conn = mysqli_connect($servername, $username, $password, $db);
 if (!$conn) {
