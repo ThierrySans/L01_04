@@ -11,40 +11,42 @@ if (!$conn) {
 	die("Connection failed: " . mysqli_connect_error());
 }
 $test_table = "SELECT * FROM PROBLEMSETGRADES";
-$get_highmark = "SELECT HIGHESTSCORE FROM PROBLEMSETGRADES WHERE PROBLEMSETID = $problemsetid AND StudentID = $studentid";
+$get_highmark = "SELECT HighestScore FROM PROBLEMSETGRADES WHERE ProblemsetID = $problemsetid AND StudentID = '$studentid'";
 $result = mysqli_query($conn, $test_table);
 
 //If no table
-if (empty($result)) {
+if ($result == false) {
 	$query = "CREATE TABLE PROBLEMSETGRADES (
 		ProblemsetID Int not null,
-		StudentID Int not null,
+		StudentID VARCHAR(20) not null,
 		HighestScore Int not null default 0,
 		RecentScore Int not null default 0,
 		primary key (ProblemsetID, StudentID)
 		)";
 		mysqli_query($conn, $query);
-		$sql_insert_marks= "INSERT INTO PROBLEMSETGRADES(ProblemsetID, StudentID, HighestScore, RecentScore) VALUES('$studentid','$problemsetid', '$mark', '$mark')";
+		$sql_insert_marks= "INSERT INTO PROBLEMSETGRADES(ProblemsetID, StudentID, HighestScore, RecentScore) VALUES('$studentid', $problemsetid, $mark, $mark)";
+	    mysqli_query($conn, $sql_insertmarks);
+	    $highmark = array("hello" => "hi");
+		//new entry in new table
 		
 } else {
-	$highmark = mysqli_query($conn, $sql_highmark);
+	$highmark_row = mysqli_query($conn, $get_highmark);
 	//If student or problemset not in table
-	if (empty($highmark)) {
-		$query = "INSERT INTO PROBLEMSETGRADES(ProblemsetID, StudentID, HighestScore, RecentScore) VALUES('$studentid','$problemsetid', '$mark', '$mark')";
+	if (mysqli_num_rows($highmark_row) == 0) {
+		$query = "INSERT INTO PROBLEMSETGRADES(ProblemsetID, StudentID, HighestScore, RecentScore) VALUES($problemsetid,'$studentid', $mark, $mark)";
 		$result = mysqli_query($conn, $query);
 	} else {
-		$highmark = mysqli_fetch_assoc($highmark);
-		$highmark = highmark["HighestScore"];
+		$highmark_row = mysqli_fetch_assoc($highmark_row);
+		$highmark = $highmark_row["HighestScore"];
 		if ($highmark > $mark) {
-			$query = "UPDATE PROBLEMSETGRADES SET RecentScore = $mark WHERE ProblemsetID = $problemsetid AND StudentID = $studentid";
+			$query = "UPDATE PROBLEMSETGRADES SET RecentScore = $mark WHERE ProblemsetID = $problemsetid AND StudentID = '$studentid'";
 			$result = mysqli_query($conn, $query);
 		} else {
-			$query = "UPDATE PROBLEMSETGRADES SET RecentScore = $mark, HighestScore = $mark WHERE ProblemsetID = $problemsetid AND StudentID = $studentid";
+			$query = "UPDATE PROBLEMSETGRADES SET RecentScore = $mark, HighestScore = $mark WHERE ProblemsetID = $problemsetid AND StudentID = '$studentid'";
 			$result = mysqli_query($conn, $query);
 		}
 	}	
 }
-$result = "";
-echo json_encode($result);
+echo json_encode($query);
 mysqli_close($conn);
 ?>
