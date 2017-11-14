@@ -33,6 +33,10 @@ navApp.config(function($routeProvider) {
         .when('/student-viewproblemset', {
             templateUrl: 'pages/student-viewproblemset.html',
             controller: 'student-viewproblemsetController'
+        })
+		.when('/prof-studentproblemsetgrades', {
+            templateUrl: 'pages/prof-studentproblemsetgrades.html',
+            controller: 'student-problemsetsController'
         });
 });
 //PASSING DATA SERVICE
@@ -116,7 +120,7 @@ navApp.controller('mainController', function($scope, $http, accountService) {
 // PROFESSOR ADDING STUDENTS
 // *****************************************
 // *****************************************
-navApp.controller('prof-studentsController', function($scope, $http) {
+navApp.controller('prof-studentsController', function($scope, $http,accountService) {
     // create a message to display in our view
     $scope.getstudents = function() {
         $http.get("php/getstudents.php").then(function(data) {
@@ -149,6 +153,13 @@ navApp.controller('prof-studentsController', function($scope, $http) {
 
     }
     $scope.getstudents();
+	
+	
+	$scope.viewstudentgrade = function(utorid) {
+		accountService.setData(utorid);
+		window.location.href = "../softserv/#!prof-studentproblemsetgrades";
+		
+	}
 });
 // *****************************************
 // *****************************************
@@ -277,7 +288,7 @@ navApp.controller('prof-problemsetsController', function($scope, $http, dataServ
 
 // *****************************************
 // *****************************************
-// (SINGLE) PROBLEM SET VIEW FOR STUDENTS
+// (MULTIPLE) PROBLEM SET VIEW FOR STUDENTS
 // *****************************************
 // *****************************************
 navApp.controller('student-problemsetsController', function($scope, $http, dataService, accountService) {
@@ -285,7 +296,15 @@ navApp.controller('student-problemsetsController', function($scope, $http, dataS
     console.log("accout user is", $scope.user);
 
     $scope.getproblemsets = function() {
-        $http.get("php/getproblemsetinfo.php").then(function(data) {
+		var config = {
+            params: {
+                username: $scope.user
+            },
+            headers: {
+                'Accept': 'application/json'
+            }
+        }
+        $http.get("php/getgrades.php").then(function(data) {
             console.log("getting problem set info");
             $scope.unitproblemsets = data.data;
             console.log($scope.unitproblemsets);
@@ -354,7 +373,7 @@ navApp.controller('prof-viewproblemsetController', function($scope, $http, dataS
 
 // *****************************************
 // *****************************************
-// PROBLEM SET VIEW FOR STUDENTS
+// (SINGLE) PROBLEM SET VIEW FOR STUDENTS
 // *****************************************
 // *****************************************
 navApp.controller('student-viewproblemsetController', function($scope, $http, dataService, accountService) {

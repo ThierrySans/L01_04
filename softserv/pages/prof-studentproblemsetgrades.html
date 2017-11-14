@@ -2,16 +2,11 @@
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">WebWork - Professor</a>
+      <a class="navbar-brand" href="#">WebWork</a>
     </div>
     <ul class="nav navbar-nav">
-      <li><a href="../softserv/#!prof-students">Students</a></li>
-      <li ><a href="../softserv/#!prof-problemsets">Problem Sets</a></li>
-
-      <li class="active"><a href="../softserv/#!prof-grades-problemsets">Problem Sets Grades</a></li>
-      <li><a href="../softserv/#!prof-students-grades">Students Grades</a></li>
-
-      
+      <li  class="active"><a href="../softserv/#!prof-students">Students</a></li>
+      <li><a href="../softserv/#!prof-problemsets">Problem Sets</a></li>
       <li><a href="../softserv/#!prof-newproblemset">New Problem Set</a></li>
     </ul>
   </div>
@@ -24,7 +19,7 @@
 </div>
 <div class="container">
    <span class="med dark-grey b">
-   Students' Grades for Problem Sets
+   Viewing Problem Set Grades for {{user}}
    </span>
    <div class="container">
 	   <div ng-repeat="(unitid, unitdat) in unitproblemsets">
@@ -35,21 +30,27 @@
 				 </span>
 				 <tr>
 					<th>Problem Set ID</th>
-					<th>Student ID</th>
-					<th>Student First Name</th>
-					<th>Student Last Name</th>
-					<th>Marks</th>
-					
+					<th>Subject</th>
+					<th>Date Due</th>
+					<th>Recent Mark</th>
+					<th>Highest Mark</th>
+					<!--<th>View</th>-->
 				 </tr>
 			  </thead>
 			  <tbody>
 				 <tr ng-repeat="(problemsetid, problemsetdata) in unitdat.unitdata">
 					<td>{{problemsetid}}</td>
-					<td>{{problemsetdata.studentid}}</td>
-					<td>{{problemsetdata.studentfirstname}}</td>
-					<td>{{problemsetdata.studentlastname}}</td>
-					<td>{{problemsetdata.studentmark}}</td>
-					
+					<td>{{problemsetdata.name}}</td>
+					<td>{{problemsetdata.datedue}}</td>
+					<td>{{problemsetdata.recentscore * 100}} %</td>
+					<td>{{problemsetdata.highestscore * 100}} %</td>
+					<!--
+					 <td>
+						<button type="button" ng-click="viewproblemset(problemsetid)">
+							View
+						</button>
+					</td>
+					-->
 				 </tr>
 			  </tbody>
 		   </table>

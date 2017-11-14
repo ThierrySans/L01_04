@@ -1,10 +1,6 @@
 <?php
 header('Content-Type: application/json');
-// php config
-$servername= 'localhost';
-$username = 'softserv_admin';
-$password = 'softserv';
-$db = 'softserv';
+include('./config.php');
 
 // create a connection
 $conn = mysqli_connect($servername, $username, $password, $db);
@@ -14,7 +10,7 @@ if (!$conn) {
 
 $studentid = $_GET["username"];
 
-$sql_getgrades= "SELECT PROBLEMSETID, HIGHESTSCORE, RECENTSCORE FROM PROBLEMSETGRADES WHERE STUDENTID = $studentid";
+$sql_getgrades= "SELECT PROBLEMSETS.ID AS ID, UNITID, UNITS.NAME AS UNITNAME, PROBLEMSETS.NAME AS NAME, DATEDUE, HighestScore, RecentScore FROM (PROBLEMSETGRADES RIGHT JOIN PROBLEMSETS ON ID = ProblemsetID AND StudentID = '$studentid') JOIN UNITS ON UNITS.ID = PROBLEMSETS.UNITID;";
 
 $result_getgrades= mysqli_query($conn, $sql_getgrades);
 
@@ -28,12 +24,29 @@ while ($row_getgrades = mysqli_fetch_assoc($result_getgrades)) {
 $grades= array();
 
 for ($i = 0; $i < count($return_getgrades); $i++) {
-	$gradesproblemset = $return_getgrades[$i]["PROBLEMSETID"];
-	$gradeshighestscore = $return_getgrades[$i]["HIGHESTSCORE"];
-	$gradesrecentscore= $return_getproblemsets[$i]["RECENTSCORE"];
+	$problemsetid = $return_getgrades[$i]["ID"];
+	$unitid = $return_getgrades[$i]["UNITID"];
+	$unitname = $return_getgrades[$i]["UNITNAME"];
+	$problemsetname = $return_getgrades[$i]["NAME"];
+	$datedue = $return_getgrades[$i]["DATEDUE"];
+	
+	
+	$highestscore = $return_getgrades[$i]["HighestScore"];
+	if ($highestscore == null) {
+		$highestscore = 0;
+	}
+	
+	$recentscore = $return_getgrades[$i]["RecentScore"];
+	if ($recentscore == null) {
+		$recentscore = 0;
+	}
+	
 
-	$grades[$gradesproblemset] = array("highestscore" => $gradeshighestscore,
-				"recentscore" => $gradesrecentscore);
+	$grades[$unitid]["unitdata"][$problemsetid] = array("name" => $problemsetname,
+		  "datedue" => $datedue,
+		  "highestscore" => $highestscore,
+		  "recentscore" => $recentscore);
+	$grades[$unitid]["unitname"] = $unitname;
 }
 
 echo json_encode($grades);
