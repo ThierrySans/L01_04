@@ -1,5 +1,5 @@
 <?
-$servername= '23.229.199.137';
+$servername= 'localhost';
 $username = 'softserv_admin';
 $password = 'softserv';
 $db = 'softserv';
