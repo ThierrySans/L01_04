@@ -198,105 +198,153 @@
                      <li>
                         <span class="story_break_down">As Professor Ben, I want to add students to a course.</span>
                         <ol>
-                           <li>Initialize a mySQL database with tables to store students with attributes (UTORID, FIRSTNAME, LASTNAME, PASSWORD), and create a Database Driver to handle queries and connections in PHP.</li>
+                           <li>Create a PHP web service that, when given a UTORID, First Name, Last Name, and Password, inserts a student with those credentials into the database. If the web service receives a UTORID that already exists in the database, then the received data won't be inserted into the database. Create another PHP web service that retrieves all student records from the database.</li>
                            POINTS: 3<br>DEPENDENCIES: None
-                           <li>Create PHP Web Services that handle insertions, selections, and updates to the database under a folder 'php'. Add methods in the appropriate Web Services, that enable professors to insert students into the database, select a list of all students, and select a specific student using their UTORID.  Also implement methods to do the same tasks for professors.</li>
-                           POINTS: 3<br>DEPENDENCIES: T1
-                           <li>Design a UI for professors that includes a list view of all students, and a form including text-fields for the first name, last name, utorid, email, and password of a student, where a professor can add a student by pressing a button 'Add Student'.</li>
-                           POINTS: 6<br>DEPENDENCIES: None
-                           <li>Connect the User Management API with the UI for viewing and adding students. Bind the list view of students to the list of students in the database. Add an event listener to the button 'Add Students', such that it grabs the values inputted in the text-fields: first name, last name, utorid, email, and password, and uses the User Management API to add the students. After insertion, update the list view of students to include the new student.
-							</li>
-                           POINTS: 3<br>DEPENDENCIES: T1, T2, and T3
-                        </ol>
-                     </li>
-                     <li>
-                        <span class="story_break_down">As Professor Ben, I want to create a unit. (A unit is defined as a chapter in the course and a problem set is a generated set of similar problems.)</span>
-                        <ol>
-                           <li>Add a unit table with attributes (UNITID, NAME) to the MySQL database.</li>
-                           POINTS: 1<br>DEPENDENCIES: None
-                           <li>In the PHP folder, add the appropriate Web Services to handle insertion of a unit, selection of all units, and selection of a specific unit using its UNITID. Initialize a Problem Set Management controller for professors, and add these methods to it.</li>
-                           POINTS: 2<br>DEPENDENCIES: T1
-                           <li>Design a UI for professors to be able add a unit. Include a form with text-fields: UnitID and Unit Name, where a professor can add a unit by a pressing a button 'Add Unit'. Add this UI under package 'ui'.</li>
-                           POINTS: 4<br>DEPENDENCIES: None
-                           <li>Connect the Problem Set Management API with the UI for professors to add units. Add an event listener to the button 'Add Students', such that it grabs the values inputted in the text-fields Unit ID, and Unit Name, and uses the Problem Set Management API to add the units. </li>
-                           POINTS: 2<br>DEPENDENCIES: T1, T2, and T3
+							
+                           <li>Create a UI for professors to view a list of currently enrolled students. Also include a form where a professor can fill in data to  add a new student into the database. The form will include text-fields for the first name, last name, utorid, and password. There will also be a 'Add Student' button, which the professor can click to insert the student data into the database.</li>
+                           POINTS: 6<br>DEPENDENCIES: T1
+							
+                           <li>Create a controller (JavaScript) for the professor UI for viewing the list of enrolled students and adding students. The controller should have a function that calls the PHP web service that retrieves the set of enrolled students from the database, and receives that data as a JSON object. It then renders that HTML into the UI. The controller should also have a function that is called when the 'Add Student' button is clicked. When clicked, it grabs the inputted values in the form fields and sends the data into the PHP web service for insertion to the database.</li>
+                           POINTS: 6<br>DEPENDENCIES: T1, T2
                         </ol>
                      </li>
                      <li>
                         <span class="story_break_down">As Professor Sophie, I want to add a problem set with a due-date to a unit.</span>
                         <ol>
-                           <li>Add a problem set table with attributes (PROBLEMSETID, UNITID, NAME, RELEASE_DATE, END_DATE) to the MySQL database. Add a question table with attributes (ID, PROBLEMSETID, QUESTIONTEXT, ANSWER).</li>
-                           POINTS: 2
+                           <li>Create a PHP web service that, when given a problem set name, unit id, and due date, inserts a new problem set with those credentials into the database. The same web service will also take in a JSON array of pairs of questions and answers for that problem set. It will insert each of these pairs of questions and answers, along with the problem set id into the table of questions, as a new question.</li>
+                           POINTS: 6
                            <br>DEPENDENCIES: None
-						   <li>Under the php folder, add Web Services to handle insertion of a problem set, and questions. It should handle selection of problem sets per their unit, and specific problem set given the PROBLEMSETID.</li>
-                           POINTS: 4<br>DEPENDENCIES: T1
-						   <li>Design a UI for professors to add problem sets with individual questions. The UI will contain text fields for choosing the Unit, the Problem Set Name, and Release Date. There will be a default pair of fields a Question and an Answer. There will be a button 'Add Question' that appends more question and answer fields for Professors to add a new question to the problem set. Lastly, there will be a button to add the problem set into the database.
+						   <li>Create a UI for professors to add problem sets with individual questions. The UI will contain text-fields for choosing the unit, the problem set name, and release date. There form will contain a default pair of fields (one question field, and one answer field). There will be an 'Add Question' button that will append a question and answer field to the form, where the professor can input another question into the problem set. Lastly, there will be an 'Add Problem Set' button for the professor to insert the problem set into the database.
 						   </li>
                            <br>
                            POINTS: 6<br>DEPENDENCIES: None
-                           <li>Connect the new forms in the UI for viewing Problem Sets with the JavaScript controllers methods in Problem Set Management API. Add an event listener for the button 'Add Problem Set' to grab inputted values in the form with fields (Problem Set ID, Unit ID, Name, Release-Date, and End-Date), as well as all the question and answer fields. Then the data should be sent to the PHP service to be added to the database.</li>
-                           POINTS: 8<br>DEPENDENCIES: T1, T2, and T3
+                           <li>Create a controller for the professor UI for adding problem sets. The controller should have a function that is called when the 'Add Question' button is clicked. When clicked, it appends a new question and answer field into the HTML form. The controller should also have a function that is called when the 'Add Problem Set' button is clicked. When clicked, it grabs the inputted values in the form fields and sends the data into the PHP web service for problem set insertion, and inserts the data for the new problem set into the two tables (QUESTIONS, and PROBLEMSETS)</li>
+                           POINTS: 8<br>DEPENDENCIES: T1, T2
                         </ol>
                      </li>
 					 <li>
                         <span class="story_break_down">As Professor Sophie, I want to see the list of Problem Sets for my course</span>
                         <ol>
-						   <li>Under the php folder, add a PHP Web Service to handle the selection of all problem sets.</li>
-                           POINTS: 3<br>DEPENDENCIES: None
-						   <li>Design a UI for Professors to view a list of Problem Sets. It will display the list of Problem Sets organized by their Unit. And for each Problem Set, it will display the Problem Set ID, Problem Set Name, the Date Due, and a button to choose to view the problem set.
+						   <li>Create a PHP web service that retrieves a set of all problem sets in the database, and organizes the problem sets by their unit id.</li>
+                           POINTS: 5<br>DEPENDENCIES: None
+						   <li>Create a UI for professors to view a list of problem sets. It will display the problem sets organized by their unit. For each problem set that is displayed, the list will have cells for the problem set's id, name, due date, as well as button should the professor want to view the questions (and answers) for that problem set.
 						   </li>
-						   POINTS: 5<br>DEPENDENCIES: None
-                           <li>Create a new Controller in JavaScript that connects with the PHP Web Service that selects all problem sets. The API in the Controller will return the list of Problem Sets in HTML Format, and append it into the HTML file to render the page.</li>
-                           POINTS: 8<br>DEPENDENCIES: T1
-                           <li>Connect the list view for viewing Problem Sets with the JavaScript controllers that render the HTML.</li>
-                           POINTS: 8<br>DEPENDENCIES: T1, T2, and T3
+						   POINTS: 8<br>DEPENDENCIES: None
+                           <li>Create a new controller for the professor UI for viewing the list of problem sets. The controller should have a function that calls the PHP web service to retrieve the set of problem sets (organized by their unit), and recieves that data as a JSON object. The function then renders the HTML into the UI.</li>
+                           POINTS: 8<br>DEPENDENCIES: T1, T2
                         </ol>
                      </li>
 					 <li>
                         <span class="story_break_down">As Professor Sophie, I want to view a Problem Set from the list of Problem Sets.</span>
                         <ol>
-                           <li>Create a UI that displays the list of questions and answers for a Problem Set</li>
+                           <li>Create a UI for professors that displays the list of questions and answers for a problem set.</li>
 						   <br>
                            POINTS: 5
                            <br>DEPENDENCIES: None
-						   <li>Create a Controller in JavaScript to handle the rendering of the problem set questions and answers on the page to view one problem set. Create a service to enable the transfer of the problem-set id from the page with the list of problem sets, to this new page (viewing a single problem set).</li>
+						   <li>Create a new controller for the professor's UI for viewing a single problem set. The controller should have a function that calls the PHP web service for retrieving problem set questions and answers given a problem set id, receives the data as a JSON object,  and then renders the HTML into the UI. Also, create a service that enables the transfer of the problem set id from the page listing all problem sets, to this new page.</li>
 						   POINTS: 8
 						   <br>DEPENDENCIES: None
-						   <li>Bind the 'view' button in each Problem Set entry in the list UI for problem sets, to redirect to the new page for viewing the single problem set. Ensure that it redirects and transfers the appropriate problem-set ID. </li>
+						   <li>Bind the 'View' button in each problem set entry in the professor's UI for viewing the list of problem sets, to redirect to the new page for viewing a single a problem set. Ensure that when 'View' is clicked, the page redirects appropriately and transfers the correct problem set id. </li>
                            POINTS: 5<br>DEPENDENCIES:T2
                         </ol>
                      </li>
 					  <li>
                         <span class="story_break_down">As Student Sonja, I want to view a list of Problem Sets.</span>
                         <ol>
-							<li>Create a log-in form in the landing page, with text-fields for the utorid and password, and a button for logging in.</li>
+							<li>Extend the landing page UI to include a log-in form for students. This form should include text-fields for the student's UTORID and password, and a button for logging in.</li>
                            <br>POINTS: 2
                            <br>DEPENDENCIES: None
-							<li>Extend the API to retrieve the inputted utorid and password on button click, and verify the credentials of the user attempting to log in.</li>
+							<li>Extend the controller for the landing page to include a function  that calls a PHP web service that, when given a UTORID and password, returns true if a student with those given credentials exist in the database.</li>
                            <br>POINTS: 4
                            <br>DEPENDENCIES: T1
-							<li>Create an account transferring service in JavaScript to handle the transfer of the utorid for the appropriate student on log-in.</li>
+							<li>Create an account transferring service 'accountService' to handle the transfer of a student's UTORID from the landing page to the student's home page. The accountService should be included in both the landing page UI controller, as well as the student's problem set list view UI controller.</li>
                            <br>POINTS: 3
                            <br>DEPENDENCIES: None
-							<li>Copy the UI for the Professor's Viewing Problem Sets page, and insert it into the directory for Students. Modify the UI to display the utorid in the navigation bar.</li>
+							<li>Create a new UI for students to view the list of available problem sets. The UI would look like the current professor's UI for viewing their list of problem sets. Modify the UI to display the UTORID of the student logged in, on the navigation bar.</li>
                            <br>POINTS: 3
                            <br>DEPENDENCIES: None
-							<li>Copy the Controller for the Professor's Viewing Problem Sets page, and insert it into the directory for Students. Include the account transferring service into the controller, to bind the utorid to the display.</li>
+							<li>Create a controller for the UI for students to view the list of available problem sets. The controller should be similar to the respective controller for professors. Include the accountService into this controller, to bind the UTORID of the logged in student in the UI.</li>
                            <br>POINTS: 3
                            <br>DEPENDENCIES: T3
                         </ol>
                      </li>
+					  
 					 <li>
                         <span class="story_break_down">As Student Sonja, I want to answer problem sets through the application, so that I can see the correct solutions.</span>
                         <ol>
-						   <li>Copy the UI of the page for Professors viewing a single problem set, and insert it into the directory for Students. Modify the UI so that the answer is an input-field where a student can input their answer. Include a button for submitting all the answers for the problem set at the bottom of the page.</li>
+						   <li>Create a new UI for students to view the questions and answers for a single problem set. The UI would look like the the current professor's UI for viewing the questions and answers for a single problem set. Modify the (professor's) UI so that the answers are text-fields instead, and include a 'Submit' button so that the logged in student can submit their answers for the problem set.</li>
       					   <br>POINTS: 6
                            <br>DEPENDENCIES: None
-						   <li>Create API to compare collected answers with the answer given in the database. The comparison algorithm will compare each answer with the student's answer and output a grade on the performance of the student.</li>
+						   <li>Create a controller for the student's UI for viewing questions and answers for a single problem set. The controller will be similar to the respective controller for professors. In addition, the controller should include a function that is called when the student clicks 'Submit'. When clicked, the function compares each student answer to the correct answer, and displays which questions they got right, and wrong.</li>
 						   <br>POINTS: 4
 						   <br>DEPENDENCIES: T1
-						   <li>Extend the UI to display the correct answer from the database and whether or not the submitted answer matches.</li>
+						   <li>Extend the UI for students to view the questions and answers to display a side-by-side comparison of the student's answers and the correct answers. This UI element will consist of three columns: the student's answer, the correct answer, and the student's performance (correct/incorrect).</li>
                            <br>POINTS: 4<br>DEPENDENCIES:T1, T2
+                        </ol>
+                     </li>
+					  
+					  <!--SPRINT 3 BREAKDOWNS STARTING HERE-->
+					  <li>
+                        <span class="story_break_down">As Professor Sophie, I want the system to store the most recent and highest mark for a problem set for each student that attempted it.</span>
+                        <ol>
+						   <li>Create a new PHP web service that, when given a student's UTORID, a ProblemSetID, and a mark for their most recent attempt of that problem set, updates the student's recorded grades (if any) for that problem set. The column 'RecentGrade' is updated for every attempt, but 'HighestGrade' is only updated if the most recent attempted grade is higher than the current record for 'HighestGrade'. If there is no current record for the student and problem set (thus, it is the student's first attempt of that problem set), then we create a new record with the columns 'RecentMark' and 'HighestMark' containing the same values. </li>
+      					   <br>POINTS: 5
+                           <br>DEPENDENCIES: None
+						   <li>Extend the JavaScript function that compares the student's answers with the correct answers in the database, to count the number of points for that student and that problem set, and calculate their mark for that attempt. The function would then call the php web service to store the grades for that student's attempt.</li>
+						   <br>POINTS: 5
+						   <br>DEPENDENCIES: T1
+						   <li>Extend the students' UI for viewing a single problem set so that, after they submit their answers, they can see the mark for that attempt right away.</li>
+                           <br>POINTS: 3
+						   <br>DEPENDENCIES: T2
+                        </ol>
+                     </li>
+					  
+					  <li>
+                        <span class="story_break_down">As Professor Ben, I want to see the performace of a student, by viewing the grades for each problem set for a single student.</span>
+                        <ol>
+						   <li>Create a new php web service that, when given a student's UTORID, retrieves the grades (including most recent, and highest score) for each problem set for that student in a form of a JSON object. </li>
+      					   <br>POINTS: 5
+                           <br>DEPENDENCIES: None
+						   <li>Extend the professor's UI for viewging the list of enrolled students to include a new column 'View Grades' that includes a 'View' button for each student.</li>
+						   <br>POINTS: 2
+						   <br>DEPENDENCIES: None
+						   <li>Create a new UI for professors to view the list of problem set grades for a single student. The UTORID of the student being examined should be visible on the page. The problem sets should be listed and categorized by unit (similar to the student UI for viewing a list of all problems sets), where for each problem set, there are two additional cells displaying the students' most recent mark, and their highest mark for that problem set.</li>
+                           <br>POINTS: 5
+						   <br>DEPENDENCIES: None
+						   <li>Extend the controller for the Professor's UI for viewing the list of enrolled students to include the accountService for passing a UTORID from one page to another. When the 'View' button for a student is clicked, the controller should pass the selected student's UTORID to the accountService and then redirect to a new page where the professor can see the grades of that student for each problem set.</li>
+                           <br>POINTS: 4
+						   <br>DEPENDENCIES: T2
+						   <li>Create a controller (JavaScript) for the professor UI for viewing the problem set grades for a single student. The controller should have a function that calls the PHP web service to retrieve problem set grades for the UTORID passed in by the accountService, recieves data as  JSON object, then renders the HTML onto to UI.</li>
+                           <br>POINTS: 6
+						   <br>DEPENDENCIES: T1, T2, T3, T4
+                        </ol>
+                     </li>
+					  
+					  <li>
+                        <span class="story_break_down">As Professor Ben, I want to see the performance of the class for a problem set, by seeing the list of students' grades (most recent, and highest scores) for a single problem set.</span>
+                        <ol>
+						   <li>Create a PHP web service that, when given a ProblemSetID, retrieves a set of grades (including most recent, and highest scores) for each student, including those who have not made an attempt for that problem set.</li>
+      					   <br>POINTS: 5
+                           <br>DEPENDENCIES: None
+						   <li>Extend the Professor's UI for viewing a single problem set to include a table with columns: UTORID, First Name, Last Name, Recent Grade, and Highest Grade. This table will be populated by a function in the controller that will render the student grade data onto the HTML table.</li>
+						   <br>POINTS: 4
+						   <br>DEPENDENCIES: None
+						   <li>Extend the controller (JavaScript) for professor's UI for viewing a single problem set to include another function that calls the PHP web service using the provided ProblemSetID and retrieves the data from the web service as a JSON object. This function then populates the UI table element in the page (create in previous task).</li>
+                           <br>POINTS: 5
+						   <br>DEPENDENCIES: T1, T2
+						  </ol>
+                     </li>
+					  
+					  <!-- SPRINT 4 BREAKDOWNS START HERE-->
+					  <li>
+                        <span class="story_break_down">As Professor Ben, I want to create a unit. (A unit is defined as a chapter in the course and a problem set is a generated set of similar problems.)</span>
+                        <ol>
+                           <li>Create a PHP web service that, when given a unit name, inserts a unit with those credentials into the database.</li>
+                           POINTS: 3<br>DEPENDENCIES: None
+                           <li>Extend the professor's UI for adding problem sets to allow insertions of new units into the database. The UI should include a form that contains text-fields for the unit name, and a 'Add Unit' button which the professor can click to add the unit into the database.</li>
+                           POINTS: 5<br>DEPENDENCIES: None
+                           <li>Extend the controller for the professor's UI for adding problem sets to include a function that is called when the the 'Add Unit' button is clicked. When clicked, it grabs the inputted values in the form fields and sends the data into the PHP web service for unit insertion, and inserts the data for the new unit into the database. </li>
+                           POINTS: 5<br>DEPENDENCIES: T1, T2
                         </ol>
                      </li>
 					  <!--
