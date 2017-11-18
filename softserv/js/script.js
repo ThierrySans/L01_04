@@ -403,11 +403,7 @@ navApp.controller('student-viewproblemsetController', function($scope, $http, da
         });
     }
     $scope.getquestions();
-
-    //INCOMPLETE
-    //INCOMPLETE
-    //INCOMPLETE
-    //INCOMPLETE
+	
     // needs to record the results somewhere
     $scope.checkanswers = function() {
         var counter = 0;
