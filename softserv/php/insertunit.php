@@ -1,11 +1,7 @@
 
 <?php
 header('Content-Type: application/json');
-// php config
-$servername= 'localhost';
-$username = 'softserv_admin';
-$password = 'softserv';
-$db = 'softserv';
+include('./config.php');
 
 $unitname = $_GET["unitname"];
 // create a connection
@@ -22,5 +18,4 @@ $sql_insertunit = "INSERT INTO UNITS('NAME') VALUES ('$unitname')";
 $result_insertunit = mysqli_query($conn, $sql_insertunit);
 echo json_encode($unitid);
 mysqli_close($conn);
-
 ?>

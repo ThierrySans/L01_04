@@ -1,10 +1,6 @@
 <?php
 header('Content-Type: application/json');
-// php config
-$servername= 'localhost';
-$username = 'softserv_admin';
-$password = 'softserv';
-$db = 'softserv';
+include('./config.php');
 
 $studentid = $_GET["username"];
 $studentpassword = $_GET["password"];
@@ -26,5 +22,4 @@ $cmp_result = strcmp("$expected_hashed_password","$studentpassword");
 echo json_encode($cmp_result);
 // echo json_encode($expected_hashed_password, password_hash($studentpassword, PASSWORD_DEFAULT)));
 mysqli_close($conn);
-
 ?>

@@ -1,11 +1,6 @@
-
 <?php
 header('Content-Type: application/json');
-// php config
-$servername= 'localhost';
-$username = 'softserv_admin';
-$password = 'softserv';
-$db = 'softserv';
+include('./config.php');
 
 // create a connection
 $problemsetid = $_GET["problemsetid"];
@@ -40,5 +35,4 @@ for ($i = 0; $i < count($return_getquestions); $i++) {
 
 echo json_encode($questions);
 mysqli_close($conn);
-
 ?>

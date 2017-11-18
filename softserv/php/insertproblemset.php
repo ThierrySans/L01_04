@@ -1,10 +1,6 @@
 <?php
 header('Content-Type: application/json');
-// php config
-$servername= 'localhost';
-$username = 'softserv_admin';
-$password = 'softserv';
-$db = 'softserv';
+include('./config.php');
 
 $unitid = $_GET["unitid"];
 $problemsetname = $_GET["problemsetname"];
@@ -39,5 +35,4 @@ if ($result_insertproblemset != false) {
 //$result_insertproblemset = mysqli_query($conn, $sql_insertproblemset);
 echo json_encode($questions["1"]["question"]);
 mysqli_close($conn);
-
 ?>

@@ -1,10 +1,6 @@
 <?php
 header('Content-Type: application/json');
-// php config
-$servername= 'localhost';
-$username = 'softserv_admin';
-$password = 'softserv';
-$db = 'softserv';
+include('./config.php');
 
 $studentid = $_GET["utorid"];
 $studentfirstname = $_GET["firstname"];
@@ -23,5 +19,4 @@ $sql_getstudents = "INSERT INTO STUDENTS VALUES ('$studentid', '$studentfirstnam
 $result_getstudents = mysqli_query($conn, $sql_getstudents);
 echo json_encode($fieldvals);
 mysqli_close($conn);
-
 ?>
