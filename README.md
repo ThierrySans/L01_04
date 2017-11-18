@@ -10,10 +10,6 @@
 | Mahesh Neer Singh     | mahesh.singh@mail.utoronto.ca |
 | Cheng Ge              | steve.ge@mail.utoronto.ca     |
 
-### Available Hours
-
-![Available Hours](https://github.com/CSCC01F17/L01_04/blob/master/AvailableHours.png)
-
 ### SoftServ
 
 This is the source code for our product.
@@ -22,37 +18,46 @@ The website is hosted [here](http://fideslinga.com/cscc01/softserv)
 ### ProductBacklog
 
 This folder contains the product backlog for this project.
-Within **ProductBacklog** are folders to classify different versions of the backlog.
+Within **ProductBacklog** are folders to classify different versions of the backlog. These folders exist to store the html, css and image files associated with our report regarding personas and user stories, as well as Task Breakdowns for most recent User Stories. This website will display our team logo, personas and user stories, and task-breakdowns.
 1) **v0** :
-Contains version 0 of the product backlog. This folder exists to store the html, css and image files associated with our report regarding personas and user stories. This website will display our team logo, personas and user stories.
-The website is hosted [here](http://fideslinga.com/cscc01/productbacklog/v0/)
-2) **v1** (Effective Sprint 0):
-Contains version 1 of the product backlog. This folder exists to store the html, css and image files associated with our report regarding personas and user stories, as well as Task Breakdowns for the User Stories 1-5. This website will display our team logo, personas and user stories, and task-breakdowns.
-The website is hosted [here](http://fideslinga.com/cscc01/productbacklog/v1/)
+Contains version 0 of the product backlog (Deliverable 2).
+The product backlog is hosted [here](http://fideslinga.com/cscc01/productbacklog/v0/)
 
-3) **v2** (Effective Sprint 1 - Sprint 2):
-Contains version 2 of the product backlog. This folder exists to store the html, css and image files associated with our report regarding personas and user stories, as well as Task Breakdowns for the User Stories 1-7. This website will display our team logo, personas and user stories, and task-breakdowns.
-The website is hosted [here](http://fideslinga.com/cscc01/productbacklog/v2/)
+2) **v1** (Effective Sprint 0, Deliverable 3):
+Contains version 1 of the product backlog.
+The product backlog is hosted [here](http://fideslinga.com/cscc01/productbacklog/v1/)
 
-3) **v3** (Effective Sprint 3 - Sprint 4):
-Contains version 3 of the product backlog. This folder exists to store the html, css and image files associated with our report regarding personas and user stories, as well as Task Breakdowns for the User Stories 1-7. This website will display our team logo, personas and user stories, and task-breakdowns.
-The website is hosted [here](http://fideslinga.com/cscc01/productbacklog/v3/)
+3) **v2** (Effective Sprint 1 - Sprint 2, Deliverable 4):
+Contains version 2 of the product backlog. 
+The product backlog is hosted [here](http://fideslinga.com/cscc01/productbacklog/v2/)
+
+3) **v3** (Effective Sprint 3 - Sprint 4, Deliverable 5):
+Contains version 3 of the product backlog.
+The product backlog is hosted [here](http://fideslinga.com/cscc01/productbacklog/v3/)
 
 ### SprintBacklog
 
 This folder contains the spring backlog for this project.
-Within **SprintBacklog** are folders to classify different sprints of the backlog.
+Within **SprintBacklog** are folders to classify different sprints of the backlog. These folder exists to store the report for this sprint.
 1) **Sprint 0**:
-Contains Sprint 0 of the sprint backlog. This folder exists to store the report for this sprint.
-The report is hosted [here](SprintBacklog/s0/report.pdf)
+Contains Sprint 0 (Deliverable 3) of the sprint backlog.
+The sprint backlog is hosted [here](SprintBacklog/s0/report.pdf)
 
 2) **Sprint 1**:
-Contains Sprint 1 of the sprint backlog. This folder exists to store the report for this sprint.
-The report is hosted [here](SprintBacklog/s1/report.pdf)
+Contains Sprint 1 (Deliverable 4) of the sprint backlog.
+The sprint backlog is hosted [here](SprintBacklog/s1/report.pdf)
 
 3) **Sprint 2**:
-Contains Sprint 2 of the sprint backlog. This folder exists to store the report for this sprint.
-The report is hosted [here](SprintBacklog/s2/report.pdf)
+Contains Sprint 2 (Deliverable 4) of the sprint backlog.
+The sprint backlog is hosted [here](SprintBacklog/s2/report.pdf)
+
+4) **Sprint 3**:
+Contains Sprint 3 (Deliverable 5) of the sprint backlog.
+The sprint backlog is hosted [here](SprintBacklog/s3/report.pdf)
+
+5) **Sprint 4**:
+Contains Sprint 4 (Deliverable 5) of the sprint backlog.
+The sprint backlog is hosted [here](SprintBacklog/s4/report.pdf)
 
 ### ProjectWebsite
 
