@@ -347,23 +347,28 @@ var navApp = angular.module('navApp', ['ngRoute']);
 
 		$scope.checkanswers = function() {
       var counter = 0;
-      $.each($scope.problemset, function( qid, data ) {
-        counter += 1;
-        if (counter == 2) {
-          for (var i=0; i<$scope.stuAnswer.length; i++) {
-            var result = "incorrect";
-            console.log("Comparing answers");
-            if ($scope.stuAnswer[i] == data.answer) {
-              result = "correct";
-            } 
-            var str="<tr><td>" + $scope.stuAnswer[i] + "</td><td>" +  data.answer + "</td><td>" + result + "</td></tr>";
-            $("#display-answers").append(str);
-            
-            
-            
-     
-          }
-        }
-      });
+      $.each($scope.problemset, function(qid, data) {
+            counter += 1;
+            if (counter == 2) {
+				//Counting the grades
+				var countCorrectAnswer = 0;
+				var str = "";
+                for (var i = 0; i < $scope.stuAnswer.length; i++) {
+                    var result = "incorrect";
+                    console.log("Comparing answers");
+                    if ($scope.stuAnswer[i] == data.answer) {
+                        result = "correct";
+						countCorrectAnswer+=1;
+                    }
+                    var answerStr = "<tr><td>" + $scope.stuAnswer[i] + "</td><td>" + data.answer + "</td><td>" + result + "</td></tr>";
+					str += answerStr;
+                }
+				$scope.mark = countCorrectAnswer/$scope.stuAnswer.length;
+				$scope.show_mark = true;
+				
+				$("#display-answers").empty();
+				$("#display-answers").append(str);
+            }
+        });
 		}
 	});
