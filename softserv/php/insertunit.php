@@ -11,7 +11,7 @@ if (!$conn) {
 // Set SQL query and input the partial course name
 
 //variables
-$sql_insertunit = "INSERT INTO UNITS('NAME') VALUES ('$unitname')";
+$sql_insertunit = "INSERT INTO UNITS(NAME) VALUES ('$unitname')";
 
 $result_insertunit = mysqli_query($conn, $sql_insertunit);
 echo json_encode($unitid);

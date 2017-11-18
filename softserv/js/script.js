@@ -261,6 +261,23 @@ navApp.controller('prof-newproblemsetController', function($scope, $http, $compi
 
 
     }
+	
+	/*
+	*Adds a new unit into the database
+	*/
+	$scope.addunit = function() {
+		var config = {
+			params: {
+				unitname: $scope.unitname
+			},
+			headers: {
+                'Accept': 'application/json'
+            }
+		}
+		$http.get("php/insertunit.php", config).then(function(data) {
+            console.log(data);
+        });
+	}
 
 });
 // *****************************************
