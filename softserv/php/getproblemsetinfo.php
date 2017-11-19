@@ -7,7 +7,7 @@ if (!$conn) {
 	die("Connection failed: " . mysqli_connect_error());
 }
 
-$sql_getproblemsets= "SELECT UNITID, UNITS.NAME AS UNITNAME, PROBLEMSETS.ID AS ID, PROBLEMSETS.NAME AS NAME, DATEDUE FROM PROBLEMSETS JOIN UNITS WHERE UNITS.ID = PROBLEMSETS.UNITID ORDER BY UNITID";
+$sql_getproblemsets= "SELECT UNITID, UNITNAME, t.ID AS ID, NAME, DATEDUE, HighestScore, RecentScore FROM (SELECT UNITID, UNITS.NAME AS UNITNAME, PROBLEMSETS.ID AS ID, PROBLEMSETS.NAME AS NAME, DATEDUE FROM PROBLEMSETS JOIN UNITS WHERE UNITS.ID = PROBLEMSETS.UNITID ORDER BY UNITID) AS t LEFT OUTER JOIN (SELECT AVG(HighestScore) AS HighestScore, AVG(RecentScore) AS RecentScore, ProblemSetID AS ID FROM PROBLEMSETGRADES GROUP BY ProblemSetID) AS s ON t.ID=s.ID";
 
 $result_getproblemsets = mysqli_query($conn, $sql_getproblemsets);
 
@@ -27,9 +27,24 @@ for ($i = 0; $i < count($return_getproblemsets); $i++) {
 	$problemsetname = $return_getproblemsets[$i]["NAME"];
 	$problemsetdatedue = $return_getproblemsets[$i]["DATEDUE"];
 	
+	$problemsetrecentavg = $return_getproblemsets[$i]["RecentScore"];
+	
+	if ($problemsetrecentavg == NULL) {
+		$problemsetrecentavg = "N/A";
+	} else {
+		$problemsetrecentavg = ($problemsetrecentavg*100)."%";
+	}
+	
+	$problemsethighestavg = $return_getproblemsets[$i]["HighestScore"];
+	
+	if ($problemsethighestavg == NULL) {
+		$problemsethighestavg = "N/A";
+	} else {
+		$problemsethighestavg = ($problemsethighestavg*100)."%";
+	}
 	
 	$problemsets[$problemsetunitid]["unitdata"][$problemsetid] = array("name" => $problemsetname,
-				"datedue" => $problemsetdatedue);
+				"datedue" => $problemsetdatedue, "recentavg" => $problemsetrecentavg, "highestavg" => $problemsethighestavg);
 	$problemsets[$problemsetunitid]["unitname"] = $problemsetunitname;
 }
 
