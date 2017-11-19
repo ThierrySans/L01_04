@@ -2,14 +2,12 @@
 header('Content-Type: application/json');
 include('./config.php');
 
-function getGrades() {
+function getGrades($studentid) {
 	// create a connection
 	$conn = mysqli_connect($servername, $username, $password, $db);
 	if (!$conn) {
 		die("Connection failed: " . mysqli_connect_error());
 	}
-
-	$studentid = $_GET["username"];
 
 	$sql_getgrades= "SELECT PROBLEMSETS.ID AS ID, UNITID, UNITS.NAME AS UNITNAME, PROBLEMSETS.NAME AS NAME, DATEDUE, HighestScore, RecentScore FROM (PROBLEMSETGRADES RIGHT JOIN PROBLEMSETS ON ID = ProblemsetID AND StudentID = '$studentid') JOIN UNITS ON UNITS.ID = PROBLEMSETS.UNITID;";
 
@@ -53,6 +51,6 @@ function getGrades() {
 	return $grades;
 	
 }
-
-json_encode(getGrades());
+$student = $_GET["username"];
+json_encode(getGrades($student));
 ?>
