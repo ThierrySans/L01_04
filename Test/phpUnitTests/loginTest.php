@@ -3,20 +3,20 @@ use PHPUnit\Framework\TestCase;
 
 class loginTest extends TestCase
 {
-	public function password_validation_when_no_password_test()
+	public function test_password_validation_when_no_password()
 	{
 		$this->assertEquals(password_validation("", "");
 	}
 	
-	public function password_validation_when_match_test()
+	public function test_password_validation_when_matching()
 	{
-		$this->assertEquals(password_validation("password", "password")};
+		$this->assertEquals(password_validation("password", "password"));
 	}
-	public function password_validation_when_not_matching_but_same_length_test()
+	public function test_password_validation_when_not_matching_but_same_length()
 	{
-		$this->assertNotEquals(password_validation("password0", "password1")};
+		$this->assertNotEquals(password_validation("password0", "password1"));
 	}
-	public function password_validation_when_not_matching_test()
+	public function test_password_validation_when_not_matching()
 	{
 		$this->assertNotEquals(password_validation("password", "not password"));
 	}

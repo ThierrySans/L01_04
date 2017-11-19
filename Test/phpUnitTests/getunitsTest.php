@@ -3,13 +3,13 @@ use PHPUnit\Framework\TestCase;
 
 class getunitsTest extends TestCase
 {
-	public function get_units_when_empty_test()
+	public function test_get_units_when_empty()
 	{
-		$units = []
+		$units = [];
 		$this->assertEquals(get_units($units, array());
 	}
 	
-	public function get_units_when_one_element_test()
+	public function test_get_units_when_one_element()
 	{
 		$name["Name"] = "name";
 		$id["ID"] = "id";
@@ -17,7 +17,7 @@ class getunitsTest extends TestCase
 		$result["id"] = "name";
 		$this->assertEquals(get_units($units, $result));
 	}
-	public function get_units_when_many_test()
+	public function test_get_units_when_many()
 	{
 		$name["Name"] = "name";
 		$id["ID"] = "id";
