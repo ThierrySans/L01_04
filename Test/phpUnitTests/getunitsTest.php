@@ -5,7 +5,7 @@ class getunitsTest extends TestCase
 {
 	public function get_units_when_empty_test()
 	{
-		$units = []
+		$units = [];
 		$this->assertEquals(get_units($units, array());
 	}
 	
