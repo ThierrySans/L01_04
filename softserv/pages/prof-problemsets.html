@@ -37,6 +37,8 @@
 					<th>Problem Set ID</th>
 					<th>Subject</th>
 					<th>Date Due</th>
+					<th>Recent Score Avg</th>
+					<th>Highest Score Avg</th>
 					<th>View</th>
 				 </tr>
 			  </thead>
@@ -45,6 +47,8 @@
 					<td>{{problemsetid}}</td>
 					<td>{{problemsetdata.name}}</td>
 					<td>{{problemsetdata.datedue}}</td>
+					<td>{{problemsetdata.recentavg}}</td>
+					<td>{{problemsetdata.highestavg}}</td>
 					<td>
 						<button type="button" ng-click="viewproblemset(problemsetid)">
 							View
