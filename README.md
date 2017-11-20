@@ -67,3 +67,6 @@ The website is hosted [here](http://fideslinga.com/cscc01/projectwebsite/)
 ### Minutes
 
 This folder exists to store the meeting minutes for our team. A separate text file is created after each team meeting, outlining what was discussed and decided during the meeting.
+
+### Code Review Video
+The video for team SoftServ's code review is located [here.] (https://youtu.be/xw07CdtKk9Y)
