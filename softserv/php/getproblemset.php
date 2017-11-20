@@ -34,7 +34,7 @@ function get_problems($return_getquestions){
 	return $questions;
 }
 
-get_problems($return_getquestions);
+$questions = get_problems($return_getquestions);
 
 echo json_encode($questions);
 mysqli_close($conn);
