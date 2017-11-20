@@ -153,7 +153,6 @@
                      <span class="story-subtitle">CORE FUNCTIONALITY</span>
                      <br/><br/>
                      <li>As Professor Ben, I want to add students to a course.</li>
-                     <li>As Professor Ben, I want to create a unit. (A unit is defined as a chapter in the course and a problem set is a generated set of similar problems.)</li>
                      <li>As Professor Sophie, I want to add a problem set with a due-date to a unit.</li>
 					 <li>As Professor Sophie, I want to see the list of Problem Sets for my course</li>
 					 <li>As Professor Sophie, I want to view a Problem Set from the list of Problem Sets.</li>
@@ -162,8 +161,10 @@
                      <li>As Professor Sophie, I want the system to store the most recent and highest mark for a problem set for each student that attempted it.</li>
 					 <li>As Professor Ben, I want to see the performace of a student, by viewing the grades for each problem set for a single student.</li>
                      <li>As Professor Ben, I want to see the performance of the class for a problem set, by seeing the list of students' grades (most recent, and highest scores) for a single problem set.</li>
+					 <li>As Professor Ben, I want to create a unit. (A unit is defined as a chapter in the course and a problem set is a generated set of similar problems.)</li>
+					 <li>As Professor Sophie, I want to see the average for each problem set.</li>
+					 <li>As Student Sonja, I want to see the average for each problem set.</li>
 					 <li>As Professor Ben, I want to restrict the number of graded attempts per problem set.</li>
-                     <li>As Student Sonja, I want to be able to download a hard-copy of the problem set, so I can work on it by hand.</li>
                      <br/>
                      <br/><br/>
                      <span class="story-subtitle">MANAGING ACADEMIC PROGRESS</span>
@@ -172,6 +173,7 @@
                      <br/>
                      <li>As Student Sonja, I want to see a summary of my marks from different problem sets all in one page, so that I don't have to calculate them myself.</li>
                      <li>As Student Sonja, I want to see the average mark for a problem set, so that I can compare it with my mark.</li>
+					 <li>As Student Sonja, I want to be able to download a hard-copy of the problem set, so I can work on it by hand.</li>
                      <br/><br/>
                      <span class="story-subtitle">MANAGING PROBLEM SETS</span>
                      <br/><br/>
@@ -345,6 +347,28 @@
                            POINTS: 5<br>DEPENDENCIES: None
                            <li>Extend the controller for the professor's UI for adding problem sets to include a function that is called when the the 'Add Unit' button is clicked. When clicked, it grabs the inputted values in the form fields and sends the data into the PHP web service for unit insertion, and inserts the data for the new unit into the database. </li>
                            POINTS: 5<br>DEPENDENCIES: T1, T2
+                        </ol>
+                     </li>
+					 <li>
+                        <span class="story_break_down">As Professor Sophie, I want to see the average for each problem set.</span>
+                        <ol>
+                           <li>Extend the PHP web service for getting problem set information for professors to retrieve two new columns: Recent Average, and Highest Average, for each problem set.</li>
+                           POINTS: 3<br>DEPENDENCIES: None
+                           <li>Extend the professor's UI for viewing the list of problem sets to include two new columns for each problem set row: Recent Average, and Highest Average.</li>
+                           POINTS: 4<br>DEPENDENCIES: None
+                           <li>Extend the controller for the professor's UI for viewing the list of problem sets to render the additional data recieved from the PHP web service (columns Recent Average, and Highest Average).</li>
+                           POINTS: 4<br>DEPENDENCIES: T1, T2
+                        </ol>
+                     </li>
+					 <li>
+                        <span class="story_break_down">As Student Sonja, I want to see the average for each problem set.</span>
+                        <ol>
+                           <li>Extend the PHP web service for getting problem set information for students to retrieve two new columns: Recent Average, and Highest Average, for each problem set.</li>
+                           POINTS: 3<br>DEPENDENCIES: None
+                           <li>Extend the student's UI for viewing the list of problem sets to include two new columns for each problem set row: Recent Average, and Highest Average.</li>
+                           POINTS: 4<br>DEPENDENCIES: None
+                           <li>Extend the controller for the student's UI for viewing the list of problem sets to render the additional data recieved from the PHP web service (columns Recent Average, and Highest Average).</li>
+                           POINTS: 4<br>DEPENDENCIES: T1, T2
                         </ol>
                      </li>
 					  <!--
