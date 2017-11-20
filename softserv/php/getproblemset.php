@@ -1,6 +1,6 @@
 <?php
 header('Content-Type: application/json');
-include('./config.php');
+include(dirname(__FILE__).'/config.php');
 // create a connection
 $problemsetid = $_GET["problemsetid"];
 
@@ -20,17 +20,21 @@ while ($row_getquestions = mysqli_fetch_assoc($result_getquestions)) {
 	$return_getquestions[] = $row_getquestions;
 }
 
-$questions = array();
+function get_problems($return_getquestions){
+	$questions = array();
 
-for ($i = 0; $i < count($return_getquestions); $i++) {
-	$questionid = $return_getquestions[$i]["ID"];
-	$questiontext = $return_getquestions[$i]["QUESTIONTEXT"];
-	$answer= $return_getquestions[$i]["ANSWER"];
+	for ($i = 0; $i < count($return_getquestions); $i++) {
+		$questionid = $return_getquestions[$i]["ID"];
+		$questiontext = $return_getquestions[$i]["QUESTIONTEXT"];
+		$answer= $return_getquestions[$i]["ANSWER"];
 
-	$questions[$questionid] = array("text" => $questiontext,
-				"answer" => $answer);
-
+		$questions[$questionid] = array("text" => $questiontext,
+					"answer" => $answer);
+	}
+	return $questions;
 }
+
+get_problems($return_getquestions);
 
 echo json_encode($questions);
 mysqli_close($conn);
