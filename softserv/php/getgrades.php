@@ -2,26 +2,27 @@
 header('Content-Type: application/json');
 include('./config.php');
 
-function getGrades($studentid) {
-	// create a connection
-	$conn = mysqli_connect($servername, $username, $password, $db);
-	if (!$conn) {
-		die("Connection failed: " . mysqli_connect_error());
-	}
+$studentid = $_GET["username"];
+// create a connection
+$conn = mysqli_connect($servername, $username, $password, $db);
+if (!$conn) {
+	die("Connection failed: " . mysqli_connect_error());
+}
 
-	$sql_getgrades= "SELECT PROBLEMSETS.ID AS ID, UNITID, UNITS.NAME AS UNITNAME, PROBLEMSETS.NAME AS NAME, DATEDUE, HighestScore, RecentScore FROM (PROBLEMSETGRADES RIGHT JOIN PROBLEMSETS ON ID = ProblemsetID AND StudentID = '$studentid') JOIN UNITS ON UNITS.ID = PROBLEMSETS.UNITID;";
+$sql_getgrades= "SELECT PROBLEMSETS.ID AS ID, UNITID, UNITS.NAME AS UNITNAME, PROBLEMSETS.NAME AS NAME, DATEDUE, HighestScore, RecentScore FROM (PROBLEMSETGRADES RIGHT JOIN PROBLEMSETS ON ID = ProblemsetID AND StudentID = '$studentid') JOIN UNITS ON UNITS.ID = PROBLEMSETS.UNITID;";
 
-	$result_getgrades= mysqli_query($conn, $sql_getgrades);
+$result_getgrades= mysqli_query($conn, $sql_getgrades);
 
-	$frommysql_getgrades = array(); //retrieve from assoc array
+$frommysql_getgrades = array(); //retrieve from assoc array
 
-	// GET grades
-	while ($row_getgrades = mysqli_fetch_assoc($result_getgrades)) {
-		$return_getgrades[] = $row_getgrades;
-	}
+// GET grades
+while ($row_getgrades = mysqli_fetch_assoc($result_getgrades)) {
+	$return_getgrades[] = $row_getgrades;
+}
 
+
+function getGrades($return_getgrades) {
 	$grades= array();
-
 	for ($i = 0; $i < count($return_getgrades); $i++) {
 		$problemsetid = $return_getgrades[$i]["ID"];
 		$unitid = $return_getgrades[$i]["UNITID"];
@@ -47,10 +48,10 @@ function getGrades($studentid) {
 			  "recentscore" => $recentscore);
 		$grades[$unitid]["unitname"] = $unitname;
 	}
-	mysqli_close($conn);
 	return $grades;
 	
 }
-$student = $_GET["username"];
-json_encode(getGrades($student));
+
+json_encode(getGrades($return_getgrades));
+mysqli_close($conn);
 ?>
