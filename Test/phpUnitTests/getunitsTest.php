@@ -1,12 +1,12 @@
 <?php
 use PHPUnit\Framework\TestCase;
-
+require_once('../../softserv/php/getunits.php');
 class getunitsTest extends TestCase
 {
 	public function test_get_units_when_empty()
 	{
 		$units = [];
-		$this->assertEquals(get_units($units, array());
+		$this->assertEquals(get_units($units, array()));
 	}
 	
 	public function test_get_units_when_one_element()

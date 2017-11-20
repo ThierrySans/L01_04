@@ -16,15 +16,20 @@ $result_getstudents = mysqli_query($conn, $sql_getstudents);
 while ($row_getstudents = mysqli_fetch_assoc($result_getstudents)) {
 	$return_getstudents[] = $row_getstudents;
 }
-$getstudents = array();
-for ($i = 0; $i < count($return_getstudents); $i++) {
-	$utorid = $return_getstudents[$i]["UTORID"];
-	$firstname = $return_getstudents[$i]["FIRSTNAME"];
-	$lastname = $return_getstudents[$i]["LASTNAME"];
-	$password = $return_getstudents[$i]["PASSWORD"];
-	$getstudents[$utorid] = array("firstname" => $firstname,
-							      "lastname" => $lastname);
+
+function get_students($return_getstudents){
+	$getstudents = array();
+	for ($i = 0; $i < count($return_getstudents); $i++) {
+		$utorid = $return_getstudents[$i]["UTORID"];
+		$firstname = $return_getstudents[$i]["FIRSTNAME"];
+		$lastname = $return_getstudents[$i]["LASTNAME"];
+		$password = $return_getstudents[$i]["PASSWORD"];
+		$getstudents[$utorid] = array("firstname" => $firstname,
+								      "lastname" => $lastname);
+	}
+	return $getstudents;
 }
-echo json_encode($getstudents);
+
+echo json_encode(get_students($return_getstudents));
 mysqli_close($conn);
 ?>
