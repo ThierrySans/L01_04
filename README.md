@@ -39,6 +39,7 @@ The product backlog is hosted [here](http://fideslinga.com/cscc01/productbacklog
 
 This folder contains the spring backlog for this project.
 Within **SprintBacklog** are folders to classify different sprints of the backlog. These folder exists to store the report for this sprint.
+
 1) **Sprint 0**:
 Contains Sprint 0 (Deliverable 3) of the sprint backlog.
 The sprint backlog is hosted [here](SprintBacklog/s0/report.pdf)
@@ -58,6 +59,21 @@ The sprint backlog is hosted [here](SprintBacklog/s3/report.pdf)
 5) **Sprint 4**:
 Contains Sprint 4 (Deliverable 5) of the sprint backlog.
 The sprint backlog is hosted [here](SprintBacklog/s4/report.pdf)
+
+### Test
+
+This folder exists to store the test related files. This includes PHP unit tests for our source code, Validation tests, as well as a code inspection review.
+
+1) **ValidationTests**:
+Contains the Validation Testing report and instructions for user stories.
+The report is hosted [here](Test/ValidationTests/ValidationTest.pdf)
+
+2) **CodeInspection**:
+Contains the compiled Code Inspection report for all our team members, as well as the Code Inspection summary report.
+
+The Code Inpsection strategy and review is hosted [here](Test/CodeInspection/report.pdf)
+
+The Code Inpsection summary is hosted [here](Test/CodeInspection/reportsummary.pdf)
 
 ### ProjectWebsite
 
