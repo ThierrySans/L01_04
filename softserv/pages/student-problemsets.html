@@ -31,8 +31,10 @@
 					<th>Problem Set ID</th>
 					<th>Subject</th>
 					<th>Date Due</th>
-					<th>Recent Mark</th>
-					<th>Highest Mark</th>
+					<th>Recent Score</th>
+					<th>Recent Score Avg</th>
+					<th>Highest Score</th>
+					<th>Highest Score Avg</th>
 					<th>View</th>
 				 </tr>
 			  </thead>
@@ -41,8 +43,10 @@
 					<td>{{problemsetid}}</td>
 					<td>{{problemsetdata.name}}</td>
 					<td>{{problemsetdata.datedue}}</td>
-					<td>{{problemsetdata.recent_attempted_mark}}</td>
-					<td>{{problemsetdata.high_mark}}</td>
+					<td>{{problemsetdata.recentscore}}</td>
+					<td>{{problemsetdata.recentscoreavg}}</td>
+					<td>{{problemsetdata.highestscore}}</td>
+					<td>{{problemsetdata.highestscoreavg}}</td>
 					<td>
 						<button type="button" ng-click="viewproblemset(problemsetid)">
 							View

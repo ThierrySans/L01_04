@@ -36,7 +36,7 @@ navApp.config(function($routeProvider) {
         })
 		.when('/prof-studentproblemsetgrades', {
             templateUrl: 'pages/prof-studentproblemsetgrades.html',
-            controller: 'student-problemsetsController'
+            controller: 'prof-studentproblemsetgradesController'
         });
 });
 //PASSING DATA SERVICE
@@ -280,6 +280,34 @@ navApp.controller('prof-newproblemsetController', function($scope, $http, $compi
 	}
 
 });
+
+// *****************************************
+// *****************************************
+// PROFESSORS PROBLEM SET GRADES FOR STUDENT
+// *****************************************
+// *****************************************
+navApp.controller('prof-studentproblemsetgradesController', function($scope, $http, dataService, accountService) {
+	
+    $scope.user = accountService.getData();
+    $scope.getproblemsets = function() {
+		var config = {
+			params: {
+				username: $scope.user
+			},
+			headers: {
+                'Accept': 'application/json'
+            }
+		}
+        $http.get("php/getgrades.php",config).then(function(data) {
+            console.log("getting problem set info");
+            $scope.unitproblemsets = data.data;
+            console.log($scope.unitproblemsets);
+            //$scope.$apply();
+        });
+    }
+    $scope.getproblemsets();
+});
+
 // *****************************************
 // *****************************************
 // PROFESSORS PROBLEM SETS DISPLAY (VIEWING ALL)
@@ -321,8 +349,9 @@ navApp.controller('student-problemsetsController', function($scope, $http, dataS
                 'Accept': 'application/json'
             }
         }
-        $http.get("php/getgrades.php").then(function(data) {
+        $http.get("php/getgrades.php", config).then(function(data) {
             console.log("getting problem set info");
+			console.log(data);
             $scope.unitproblemsets = data.data;
             console.log($scope.unitproblemsets);
             //$scope.$apply();

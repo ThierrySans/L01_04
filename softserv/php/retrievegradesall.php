@@ -1,7 +1,8 @@
 <?php
 header('Content-Type: application/json');
 include('./config.php');
-function retrieveGrades($problemsetid) { 
+$problemset = $_GET["problemsetid"];
+//function retrieveGrades($problemsetid) { 
 	// create a connection
 	$conn = mysqli_connect($servername, $username, $password, $db);
 	if (!$conn) {
@@ -45,19 +46,25 @@ function retrieveGrades($problemsetid) {
 		$highestscore = $frommysql_retrievegradesall[$i]["HighestScore"];
 		$recentscore = $frommysql_retrievegradesall[$i]["RecentScore"];
 		if ($highestscore == null) {
-			$highestscore = 0;
+			$highestscore = "N/A";
+		} else {
+			$highestscore = ($highestscore*100)."%";
 		}
 		if ($recentscore == null) {
 			$recentscore = 0;
+		} else {
+			$recentscore = ($recentscore*100)."%";
 		}
 		$retrievegradesall[$utorid] = array("firstname" => $firstname,
 											"lastname" => $lastname,
 											"highestscore" => $highestscore,
 											"recentscore" => $recentscore);
 	}
-	mysqli_close($conn);
-	return $retrievegradesall;
-}
-$problemset = $_GET["problemsetid"];
-json_encode(retrieveGrades($problemset));
+	//mysqli_close($conn);
+	//return $retrievegradesall;
+//}
+//$problemset = $_GET["problemsetid"];
+//json_encode(retrieveGrades($problemset));
+json_encode($retrievegradesall);
+mysqli_close($conn);
 ?>
