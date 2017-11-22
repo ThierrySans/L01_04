@@ -15,6 +15,13 @@
 This is the source code for our product.
 The website is hosted [here](http://fideslinga.com/cscc01/softserv)
 
+Instructions for Deployment (v4 latest)
+
+- git clone 'https://github.com/CSCC01F17/L01_04'
+- git checkout b13c4cf
+- cd L01_04 (make sure you are in L01_04 directory)
+- php -S localhost:8000
+
 ### ProductBacklog
 
 This folder contains the product backlog for this project.
