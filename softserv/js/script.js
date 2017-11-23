@@ -189,12 +189,16 @@ navApp.controller('prof-newproblemsetController', function($scope, $http, $compi
     $scope.getUnits();
     /*
     function to generate a question field group
-    with a question field, and answer field.
+    with a question field, variable field and answer field.
     */
     $scope.genQuestionField = function(num) {
         var qLabel = "<label for='question" + num + "'>Question " + num + "</label>";
         var qTextArea = "<textarea class='form-control' rows='5' ng-model='(questions[" + num + "]).question'></textarea>";
         var qFormGroup = "<div class='form-group' id='question" + num + "'>" + qLabel + qTextArea + "</div>";
+
+        var qLabel = "<label for='variable" + num + "'>Variable " + num + "</label>";
+        var qTextArea = "<textarea class='form-control' rows='5' ng-model='(questions[" + num + "]).variable'></textarea>";
+        var qFormGroup = "<div class='form-group' id='variable" + num + "'>" + qLabel + qTextArea + "</div>";
 
         var aLabel = "<label for='answer" + num + "'>Answer " + num + "</label>";
         var aTextArea = "<input type='text' class='form-control' ng-model='(questions[" + num + "]).answer'></input>";
@@ -215,6 +219,7 @@ navApp.controller('prof-newproblemsetController', function($scope, $http, $compi
         $scope.numquestions += 1;
         $scope.questions[$scope.numquestions] = {
             question: "",
+            variable: "",
             answer: ""
         };
         var string = $scope.genQuestionField($scope.numquestions);
@@ -224,19 +229,21 @@ navApp.controller('prof-newproblemsetController', function($scope, $http, $compi
 
     $scope.addproblemset = function() {
 
-        //Create an array of valid questions and answers
+        //Create an array of valid questions, variables and answers
         $scope.validquestions = [];
         //Pass this array, and other data to PHP to update database
 
         for (var i = 1; i < $scope.questions.length; i++) {
-            //Checks if question & answer is empty
+            //Checks if question, variable & answer is empty
             var question = ($scope.questions[i]).question;
+            var variable = ($scope.questions[i]).variable;
             var answer = ($scope.questions[i]).answer;
             //If both are non-empty, then add to the questions database
             if (/\S/.test(question)) {
                 if (/\S/.test(answer)) {
                     var questionSet = {
                         question: question,
+                        variable: variable,
                         answer: answer
                     }
                     $scope.validquestions.push(questionSet);
