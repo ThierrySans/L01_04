@@ -1,0 +1,57 @@
+sprint 5 notes
+variables in problem set questions:
+
+IN VARIABLE TEXT FIELD:
+var(1-5)
+var2(10.0-80.9)
+
+IN QUESTION TEXT FIELD:
+John has {{var}} apples and Alice has {{var2}} apples,
+how many apples are there in total?
+
+IN ANSWER TEXT FIELD:
+var + var2  
+
+User Story 1:
+- Extend UI for new problem set to include a variable text field for an indivual question (html) Che
+points: 4
+- Extend function that adds new problem sets to add a new variable text field. (js) M
+points: 4
+- Extend API to store variable text field under column "variable" in table "questions" (php) Cha
+points: 4
+
+User Story 2:
+- Parse variable text field to find and create the variables (php) J
+points: 5
+- Parse question text field to find and replace embeded variables (php) J 
+depends: task 1
+points: 4
+- Parse answer text field to create an equation with the variables (php) Cha
+https://stackoverflow.com/questions/18880772/calculate-math-expression-from-a-string-using-eval
+points: 5
+
+User Story 3:
+Professor is able to define when a student can achieve a badge.
+
+correct parameters defined here:
+-BADGE TYPE 1: A badge that is earned when a student achieves X% average for all attempted problem set.
+-BADGE TYPE 2: A badge that is earned when a student completes X amount of problem sets. (problem set attempts in the table)
+- BADGE TYPE 3: A badge that is earned when a student achieves X% mark for Problem Set with ID Y.
+
+- UI page to create badges (html) M
+point: 1
+- Extend UI to include a selector for a new badge that a professor wants to create. (html) Che
+points: 1
+- Extend UI to include an add button to submit parameters about the badge. (html) Che
+points: 1
+- Feed information to the selector about the badge types (js) F
+depends: task 1
+points: 3
+- Updage UI page with correct parameters for the given badge (js) F
+depends: task 2&3
+points: 5
+- Get input info parameters to be sent to the database (js) F
+depends: task 4
+points: 3
+- Extend API to store badges (php) M
+points: 3
