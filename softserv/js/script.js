@@ -196,17 +196,17 @@ navApp.controller('prof-newproblemsetController', function($scope, $http, $compi
         var qTextArea = "<textarea class='form-control' rows='5' ng-model='(questions[" + num + "]).question'></textarea>";
         var qFormGroup = "<div class='form-group' id='question" + num + "'>" + qLabel + qTextArea + "</div>";
 
-        var qLabel = "<label for='variable" + num + "'>Variable " + num + "</label>";
-        var qTextArea = "<textarea class='form-control' rows='5' ng-model='(questions[" + num + "]).variable'></textarea>";
-        var qFormGroup = "<div class='form-group' id='variable" + num + "'>" + qLabel + qTextArea + "</div>";
+        var vLabel = "<label for='variables" + num + "'>Variables " + num + "</label>";
+        var vTextArea = "<textarea class='form-control' rows='3' ng-model='(questions[" + num + "]).variables'></textarea>";
+        var vFormGroup = "<div class='form-group' id='variables" + num + "'>" + vLabel + vTextArea + "</div>";
 
         var aLabel = "<label for='answer" + num + "'>Answer " + num + "</label>";
         var aTextArea = "<input type='text' class='form-control' ng-model='(questions[" + num + "]).answer'></input>";
         var aFormGroup = "<div class='form-group' id='answer" + num + "'>" + aLabel + aTextArea + "</div>";
 
         var deleteButton = "<button type='button' onclick='deletequestion(" + num + ")'>Delete</button>";
-
-        var string = qFormGroup + aFormGroup;
+		
+        var string = "<div style='border: 1px solid #EEEEEE; padding: 10px; margin: 10px'>" + qFormGroup + vFormGroup + aFormGroup + "</div>";
 
         return string;
     }
@@ -219,7 +219,7 @@ navApp.controller('prof-newproblemsetController', function($scope, $http, $compi
         $scope.numquestions += 1;
         $scope.questions[$scope.numquestions] = {
             question: "",
-            variable: "",
+            variables: "",
             answer: ""
         };
         var string = $scope.genQuestionField($scope.numquestions);
@@ -236,14 +236,14 @@ navApp.controller('prof-newproblemsetController', function($scope, $http, $compi
         for (var i = 1; i < $scope.questions.length; i++) {
             //Checks if question, variable & answer is empty
             var question = ($scope.questions[i]).question;
-            var variable = ($scope.questions[i]).variable;
+            var variables = ($scope.questions[i]).variables;
             var answer = ($scope.questions[i]).answer;
             //If both are non-empty, then add to the questions database
             if (/\S/.test(question)) {
                 if (/\S/.test(answer)) {
                     var questionSet = {
                         question: question,
-                        variable: variable,
+                        variables: variables,
                         answer: answer
                     }
                     $scope.validquestions.push(questionSet);
