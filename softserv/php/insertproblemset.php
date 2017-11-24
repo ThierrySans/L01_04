@@ -5,6 +5,7 @@ $unitid = $_GET["unitid"];
 $problemsetname = $_GET["problemsetname"];
 $datedue = $_GET["datedue"];
 $questions = json_decode($_GET["questions"], true);
+
 // create a connection
 $conn = mysqli_connect($servername, $username, $password, $db);
 if (!$conn) {
@@ -23,7 +24,8 @@ if ($result_insertproblemset != false) {
 	for ($i=0; $i<count($questions); $i++) {
 		$questiontext = $questions["$i"]["question"];
 		$answer = $questions["$i"]["answer"];
-		$sql_insertquestion = "INSERT INTO QUESTIONS(PROBLEMSETID, QUESTIONTEXT, ANSWER) VALUES('$problemsetid','$questiontext','$answer')";
+		$variable = $questions["$i"]["variables"];
+		$sql_insertquestion = "INSERT INTO QUESTIONS(PROBLEMSETID, QUESTIONTEXT, ANSWER, VARIABLES) VALUES('$problemsetid','$questiontext','$answer', '$variable')";
 		
 		$result_insertquestion = mysqli_query($conn, $sql_insertquestion);
 	}

@@ -21,8 +21,8 @@ if ($result == false) {
 	$query = "CREATE TABLE PROBLEMSETGRADES (
 		ProblemsetID Int not null,
 		StudentID VARCHAR(20) not null,
-		HighestScore Int not null default 0,
-		RecentScore Int not null default 0,
+		HighestScore Float(3,2) not null default 0,
+		RecentScore Float(3,2) not null default 0,
 		primary key (ProblemsetID, StudentID)
 		)";
 		mysqli_query($conn, $query);
