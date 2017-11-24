@@ -20,7 +20,7 @@ $row_maxproblemsetid = mysqli_fetch_assoc($result_maxproblemsetid);
 $problemsetid = $row_maxproblemsetid["ID"];
 
 if ($result_insertproblemset != false) {
-	for ($i=1; $i<count($questions) + 1; $i++) {
+	for ($i=0; $i<count($questions); $i++) {
 		$questiontext = $questions["$i"]["question"];
 		$answer = $questions["$i"]["answer"];
 		$sql_insertquestion = "INSERT INTO QUESTIONS(PROBLEMSETID, QUESTIONTEXT, ANSWER) VALUES('$problemsetid','$questiontext','$answer')";

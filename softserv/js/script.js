@@ -243,6 +243,7 @@ navApp.controller('prof-newproblemsetController', function($scope, $http, $compi
                 }
             }
         }
+		console.log("valid questions",$scope.validquestions);
         var config = {
             params: {
                 unitid: $scope.unitid,
