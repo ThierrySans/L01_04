@@ -26,14 +26,16 @@
 		   <table class="table table-bordered">
 			  <thead>
 				 <span class="med dark-grey b">
-					 {{unitdat.unitname}}
+					 {{unitdat.name}}
 				 </span>
 				 <tr>
 					<th>Problem Set ID</th>
 					<th>Subject</th>
 					<th>Date Due</th>
-					<th>Recent Mark</th>
-					<th>Highest Mark</th>
+					<th>Recent Score</th>
+					<th>Recent Score Avg</th>
+					<th>Highest Score</th>
+					<th>Highest Score Avg</th>
 					<!--<th>View</th>-->
 				 </tr>
 			  </thead>
@@ -43,7 +45,9 @@
 					<td>{{problemsetdata.name}}</td>
 					<td>{{problemsetdata.datedue}}</td>
 					<td>{{problemsetdata.recentscore}}</td>
+					<td>{{problemsetdata.recentscoreavg}}</td>
 					<td>{{problemsetdata.highestscore}}</td>
+					<td>{{problemsetdata.recentscoreavg}}</td>
 					<!--
 					 <td>
 						<button type="button" ng-click="viewproblemset(problemsetid)">

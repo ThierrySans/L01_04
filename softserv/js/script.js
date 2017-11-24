@@ -1,3 +1,4 @@
+
 var navApp = angular.module('navApp', ['ngRoute']);
 
 // configure our routes
@@ -34,7 +35,7 @@ navApp.config(function($routeProvider) {
             templateUrl: 'pages/student-viewproblemset.html',
             controller: 'student-viewproblemsetController'
         })
-		.when('/prof-studentproblemsetgrades', {
+        .when('/prof-studentproblemsetgrades', {
             templateUrl: 'pages/prof-studentproblemsetgrades.html',
             controller: 'prof-studentproblemsetgradesController'
         });
@@ -120,7 +121,7 @@ navApp.controller('mainController', function($scope, $http, accountService) {
 // PROFESSOR ADDING STUDENTS
 // *****************************************
 // *****************************************
-navApp.controller('prof-studentsController', function($scope, $http,accountService) {
+navApp.controller('prof-studentsController', function($scope, $http, accountService) {
     // create a message to display in our view
     $scope.getstudents = function() {
         $http.get("php/getstudents.php").then(function(data) {
@@ -153,13 +154,13 @@ navApp.controller('prof-studentsController', function($scope, $http,accountServi
 
     }
     $scope.getstudents();
-	
-	
-	$scope.viewstudentgrade = function(utorid) {
-		accountService.setData(utorid);
-		window.location.href = "../softserv/#!prof-studentproblemsetgrades";
-		
-	}
+
+
+    $scope.viewstudentgrade = function(utorid) {
+        accountService.setData(utorid);
+        window.location.href = "../softserv/#!prof-studentproblemsetgrades";
+
+    }
 });
 // *****************************************
 // *****************************************
@@ -205,7 +206,7 @@ navApp.controller('prof-newproblemsetController', function($scope, $http, $compi
         var aFormGroup = "<div class='form-group' id='answer" + num + "'>" + aLabel + aTextArea + "</div>";
 
         var deleteButton = "<button type='button' onclick='deletequestion(" + num + ")'>Delete</button>";
-		
+
         var string = "<div style='border: 1px solid #EEEEEE; padding: 10px; margin: 10px'>" + qFormGroup + vFormGroup + aFormGroup + "</div>";
 
         return string;
@@ -250,7 +251,7 @@ navApp.controller('prof-newproblemsetController', function($scope, $http, $compi
                 }
             }
         }
-		console.log("valid questions",$scope.validquestions);
+        console.log("valid questions", $scope.validquestions);
         var config = {
             params: {
                 unitid: $scope.unitid,
@@ -269,23 +270,23 @@ navApp.controller('prof-newproblemsetController', function($scope, $http, $compi
 
 
     }
-	
-	/*
-	*Adds a new unit into the database
-	*/
-	$scope.addunit = function() {
-		var config = {
-			params: {
-				unitname: $scope.unitname
-			},
-			headers: {
+
+    /*
+     *Adds a new unit into the database
+     */
+    $scope.addunit = function() {
+        var config = {
+            params: {
+                unitname: $scope.unitname
+            },
+            headers: {
                 'Accept': 'application/json'
             }
-		}
-		$http.get("php/insertunit.php", config).then(function(data) {
+        }
+        $http.get("php/insertunit.php", config).then(function(data) {
             console.log(data);
         });
-	}
+    }
 
 });
 
@@ -295,18 +296,18 @@ navApp.controller('prof-newproblemsetController', function($scope, $http, $compi
 // *****************************************
 // *****************************************
 navApp.controller('prof-studentproblemsetgradesController', function($scope, $http, dataService, accountService) {
-	
+
     $scope.user = accountService.getData();
     $scope.getproblemsets = function() {
-		var config = {
-			params: {
-				username: $scope.user
-			},
-			headers: {
+        var config = {
+            params: {
+                username: $scope.user
+            },
+            headers: {
                 'Accept': 'application/json'
             }
-		}
-        $http.get("php/getgrades.php",config).then(function(data) {
+        }
+        $http.get("php/getgrades.php", config).then(function(data) {
             console.log("getting problem set info");
             $scope.unitproblemsets = data.data;
             console.log($scope.unitproblemsets);
@@ -349,7 +350,7 @@ navApp.controller('student-problemsetsController', function($scope, $http, dataS
     console.log("accout user is", $scope.user);
 
     $scope.getproblemsets = function() {
-		var config = {
+        var config = {
             params: {
                 username: $scope.user
             },
@@ -359,7 +360,7 @@ navApp.controller('student-problemsetsController', function($scope, $http, dataS
         }
         $http.get("php/getgrades.php", config).then(function(data) {
             console.log("getting problem set info");
-			console.log(data);
+            console.log(data);
             $scope.unitproblemsets = data.data;
             console.log($scope.unitproblemsets);
             //$scope.$apply();
@@ -431,7 +432,7 @@ navApp.controller('prof-viewproblemsetController', function($scope, $http, dataS
 // *****************************************
 // *****************************************
 navApp.controller('student-viewproblemsetController', function($scope, $http, dataService, accountService) {
-	$scope.show_mark = false;
+    $scope.show_mark = false;
     $scope.user = accountService.getData();
     console.log($scope.user);
     $scope.problemsetid = dataService.getData();
@@ -464,52 +465,50 @@ navApp.controller('student-viewproblemsetController', function($scope, $http, da
     //INCOMPLETE
     // needs to record the results somewhere
     $scope.checkanswers = function() {
-        var counter = 0;
-        $.each($scope.problemset, function(qid, data) {
-            counter += 1;
-            if (counter == 2) {
-				//Counting the grades
-				var countCorrectAnswer = 0;
-				var str = "";
-                for (var i = 0; i < $scope.stuAnswer.length; i++) {
-                    var result = "incorrect";
-                    console.log("Comparing answers");
-                    if ($scope.stuAnswer[i] == data.answer) {
-                        result = "correct";
-						countCorrectAnswer+=1;
-                    }
-                    var answerStr = "<tr><td>" + $scope.stuAnswer[i] + "</td><td>" + data.answer + "</td><td>" + result + "</td></tr>";
-					str += answerStr;
-                }
-				$scope.mark = countCorrectAnswer/$scope.stuAnswer.length;
-				$scope.show_mark = true;
-				
-				$("#display-answers").empty();
-				$("#display-answers").append(str);
+        var stuAnsIter = 0;
+        var countCorrectAnswer = 0;
+        var str = "";
+        $.each($scope.problemset, function(qid, qdata) {
+
+            var result = "incorrect";
+            console.log("Comparing answers");
+            if ($scope.stuAnswer[stuAnsIter] == qdata.answer) {
+                result = "correct";
+                countCorrectAnswer += 1;
             }
+
+            var answerStr = "<tr><td>" + $scope.stuAnswer[stuAnsIter] + "</td><td>" + qdata.answer + "</td><td>" + result + "</td></tr>";
+            str += answerStr;
+			stuAnsIter += 1;
         });
 		
-		//Setting up data to send to ssend 
-		//$scope.user for utorid
-		//$scope.problemsetid for problemsetid
-		$scope.updatemark = function() {
-			var config = {
-				params: {
-					username: $scope.user,
-					problemsetid: $scope.problemsetid,
-					mark: $scope.mark
-				},
-				headers: {
-					'Accept': 'application/json'
-				}
-			}
-			console.log("config", config);
-			$http.get("php/storegrades.php", config).then(function(data) {
-				console.log("storing the grades", data);
-				//$scope.$apply();
-			});
-    	}
-		$scope.updatemark();
-		
+		$scope.mark = countCorrectAnswer / $scope.stuAnswer.length;
+		$scope.show_mark = true;
+
+		$("#display-answers").empty();
+		$("#display-answers").append(str);
+
+        //Setting up data to send to ssend 
+        //$scope.user for utorid
+        //$scope.problemsetid for problemsetid
+        $scope.updatemark = function() {
+            var config = {
+                params: {
+                    username: $scope.user,
+                    problemsetid: $scope.problemsetid,
+                    mark: $scope.mark
+                },
+                headers: {
+                    'Accept': 'application/json'
+                }
+            }
+            console.log("config", config);
+            $http.get("php/storegrades.php", config).then(function(data) {
+                console.log("storing the grades", data);
+                //$scope.$apply();
+            });
+        }
+        $scope.updatemark();
+
     }
 });
