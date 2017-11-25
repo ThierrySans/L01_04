@@ -87,11 +87,14 @@ $questions = array();
 for ($i = 0; $i < count($return_getquestions); $i++) {
 	$questionid = $return_getquestions[$i]["ID"];
 	$questiontext = $return_getquestions[$i]["QUESTIONTEXT"];
-	$answer= $return_getquestions[$i]["ANSWER"];
+	
 	$variabletext = $return_getquestions[$i]["VARIABLES"];
 
 	$variables_array = get_variables($variabletext);
 	$questiontext = replace_question_w_variables($questiontext, $variables_array);
+	
+	$answer_with_variables = replace_question_w_variables($return_getquestions[$i]["ANSWER"], $variables_array);
+	$answer= eval('return '.$answer_with_variables.';');
 
 	$questions[$questionid] = array("text" => $questiontext,
 				"answer" => $answer);
