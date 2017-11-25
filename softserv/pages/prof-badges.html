@@ -49,7 +49,7 @@
 		  <div class="col-sm-4">
 			  <div class="form-group">
 				 <label for="badgetype">Badge Type:</label>
-				 <select class="form-control" ng-model="badgetype" id="badgetype">
+				 <select class="form-control" ng-model="badgetype" id="badgetype" ng-change="badgeTypeChange()">
 					 <option value="1" selected="selected">Type 1 : Course Avg</option>
 					 <option value="2">Type 2 : Problem Set Avg</option>
 					 <option value="3">Type 3 : Attempted Problem Sets</option>

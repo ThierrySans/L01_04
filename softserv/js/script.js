@@ -525,11 +525,11 @@ navApp.controller('student-viewproblemsetController', function($scope, $http, da
 navApp.controller('prof-badgesController', function($scope, $http, dataService, accountService) {
 	$scope.badgequalificationlabel = "Minimum Course Average:";
 	$scope.badge2 = false;
-	$("#badgetype").change(function() {
-		if ($scope.badgetype == 1) {
+	$scope.badgeTypeChange = function () {
+		if ($scope.badgetype == "1") {
 			$scope.badgequalificationlabel = "Minimum Course Average:";
 			$scope.badge2 = false;
-		} else if ($scope.badgetype == 2) {
+		} else if ($scope.badgetype == "2") {
 			$scope.badgequalificationlabel = "Minimum Problem Set Average:";
 			$scope.badge2 = true;
 		} else {
@@ -537,5 +537,5 @@ navApp.controller('prof-badgesController', function($scope, $http, dataService, 
 			$scope.badge2 = false;
 		}
 		console.log($scope.badgetype);
-	}); 
+	}
 });
