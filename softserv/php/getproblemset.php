@@ -12,17 +12,17 @@ function get_variables($variabletext){
 	$u = 0; 
 	$v = 0;
 	$w = 0; // index of "-"
-	for ($k = 0; $k < $n; $k++){
+	for ($k = 1; $k < $n; $k++){
    		if ($variabletext[$k] == '('){ $u = $k; }
 		else if ($variabletext[$k] == '-'){ $w = $k; }
-		else if ($variabletext[$k] == ')'){ $v = $k; }
-	    	if ($variabletext[$k] == '\n' || $k == $n - 1){  
+		else if ($variabletext[$k] == ')'){ $v = $k; $k = $k + 1; }
+	    	if ($variabletext[$k - 1] == ')' || $k == $n - 1){  
 			// done with current line, variable starts at j, ends at u - 1 (inclusive on both end points)
 			//                         range starts at u + 1, ends at v - 1 (inclusive on both end points)
 			$range_from = (int) substr($variabletext, $u + 1, $w - ($u + 1));
 			$range_to = (int) substr($variabletext, $w + 1, $v - ($w + 1));
 			// generate a random number between the 2 number user specified (integer)
-			$variables_array[substr($variabletext,  $j, $u - $j)] = rand($range_from, $range_to);		
+			$variables_array[substr($variabletext, $j, $u - $j)] = rand($range_from, $range_to);		
 			# update j and k for next line
 			$j = $k + 1;
 			$k = $k + 1;
