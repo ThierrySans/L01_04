@@ -1,8 +1,15 @@
 <!DOCTYPE html>
 <html ng-app="navApp">
-
     <head>
 		<script src="js/jquery.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.debug.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.min.js"></script>
+		<!--
+		<script src="js/jsPDF-1.3.2/jspdf.js"></script>
+		<script src="js/jsPDF-1.3.2/jspdf.plugin.standard_fonts_metrics.js"></script>
+		<script src="js/jsPDF-1.3.2/jspdf.plugin.split_text_to_size.js"></script>
+		<script src="js/jsPDF-1.3.2/jspdf.plugin.from_html.js"></script>
+		-->
 		
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -15,6 +22,28 @@
         <link rel="stylesheet" href="master.css" type="text/css">
         <!--Fonts-->
 	    <link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
+		<script>
+			function demoFromHTML() {
+			var doc = new jsPDF('p', 'in', 'letter');
+			var source = $('#testcase').first();
+			var specialElementHandlers = {
+			'#bypassme': function(element, renderer) {
+			return true;
+			}
+			};
+
+			doc.fromHTML(
+			source, // HTML string or DOM elem ref.
+			0.5, // x coord
+			0.5, // y coord
+			{
+			'width': 7.5, // max width of content on PDF
+			'elementHandlers': specialElementHandlers
+			});
+
+			doc.output('dataurl');
+			}
+		</script>
 		<!--Stuff-->
 		
 	    <script src="js/script.js"></script>
