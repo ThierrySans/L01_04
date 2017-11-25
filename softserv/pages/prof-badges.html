@@ -1,0 +1,62 @@
+<div class="container" id="nav-bar">
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">WebWork - Professor</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li><a href="../softserv/#!prof-students">Students</a></li>
+      <li><a href="../softserv/#!prof-problemsets">Problem Sets</a></li>
+      <li><a href="../softserv/#!prof-newproblemset">New Problem Set</a></li>
+	  <li class="active"><a href="../softserv/#!prof-badges">Badges</a></li>
+    </ul>
+  </div>
+</nav>
+</div>
+<div class="jumbotron" align="center" style="background:transparent !important" >
+   <span class="big dark-grey b">
+   WebWork
+   </span>
+</div>
+<div class="container">
+   <span class="med dark-grey b">
+   Badges
+   </span>
+   <form>
+	  <div class="row">
+		  <div class="col-sm-8">
+			  <span class="small dark-grey b">
+			  Create a New Badge
+			  </span>
+			  <!--Add questions here-->
+			  <div id="question-container">
+				  <div style='border: 1px solid #EEEEEE; padding: 10px; margin:10px'>
+					  <div class="form-group" id="badgename">
+						 <label for="badgename">Badge Name</label>
+						 <input class="form-control" ng-model="badgename">
+					  </div>
+					  <div class="form-group" id="badgequalification">
+						 <label for="badgequalification">{{badgequalificationlabel}}</label>
+						 <input class="form-control" ng-model="badgequalification">
+					  </div>
+					  <div class="form-group" id="badgequalification2" ng-show="badge2">
+						 <label for="badgequalification2">Problem Set ID</label>
+						 <input class="form-control" ng-model="badgequalification2">
+					  </div>
+				  </div>
+			  </div>
+		  </div>
+		  <div class="col-sm-4">
+			  <div class="form-group">
+				 <label for="badgetype">Badge Type:</label>
+				 <select class="form-control" ng-model="badgetype" id="badgetype">
+					 <option value="1" selected="selected">Type 1 : Course Avg</option>
+					 <option value="2">Type 2 : Problem Set Avg</option>
+					 <option value="3">Type 3 : Attempted Problem Sets</option>
+				 </select>
+			  </div>
+			  <button type="submit" class="btn btn-default" ng-click="addbadge()">Add Badge</button>
+		  </div>
+	  </div>
+   </form>
+</div>
