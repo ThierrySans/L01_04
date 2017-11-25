@@ -16,24 +16,34 @@
    </span>
 </div>
 <div class="container">
+	<form>
+	<div id="print">
+	<div id="printcontained">
    <span class="med dark-grey b">
-   Viewing Problem Set {{problemsetid}}
+   Problem Set {{problemsetid}}
    </span>
-   <div class="container">
-   	<form>
-	   <div class="viewquestion" ng-repeat="(questionid, questiondata) in problemset">
-		   <span class="sma dark-grey">
-			   Question {{$index + 1}}
-		   </span>
-		   <div class="well well-sm">{{questiondata.text}}</div>
-		   <span class="sma dark-grey">
-			   Answer
-		   </span>
-		   <div class="well well-sm"><input type="text" ng-model="stuAnswer[$index]"></div>
-
-	   </div>
-	<div><input class="submit-answers" type="submit" ng-click="checkanswers()"></div>
+	   <div class="container">
+		   <div class="viewquestion" ng-repeat="(questionid, questiondata) in problemset">
+			   <span class="sma dark-grey">
+				   Question {{$index + 1}}:
+				   <br/>
+				   {{questiondata.text}}
+			   </span>
+			   &nbsp;
+			   <input type="text" ng-model="stuAnswer[$index]">
+			   &nbsp;
+			</div>
+		</div>
+	</div>
+		</div>
+	&nbsp;
 	<div>
+	<a href="javascript:demoFromHTML()" class="btn btn-default col-sm-4" style="margin-right: 20px">Download as a PDF</a>
+	<input class="btn btn-default submit-answers col-sm-4" type="submit" ng-click="checkanswers()">
+	</div>
+	&nbsp;
+	<div>
+		&nbsp;
 		<table class="table table-bordered">
 			<thead>
 				<tr>
@@ -47,8 +57,7 @@
 		</table>
 	</div>
 	</form>
-	</div>	
-</div>
+	</div>
 <div class="container">
 	<span class='med dark-grey b' ng-show="show_mark">Your Mark is {{mark * 100}} %</span>
 </div>
