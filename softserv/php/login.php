@@ -1,4 +1,10 @@
 <?php
+/*
+This is a web service that alows students to login to access their grades
+stored in the database. It takes as input a username and password. It returns
+the string comparison between the password entered and the password in the
+database.
+*/
 header('Content-Type: application/json');
 include('./config.php');
 $studentid = $_GET["username"];
