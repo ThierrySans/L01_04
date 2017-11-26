@@ -311,7 +311,7 @@ navApp.controller('prof-studentproblemsetgradesController', function($scope, $ht
                 'Accept': 'application/json'
             }
         }
-        $http.get("php/getgrades.php", config).then(function(data) {
+        $http.get("php/retrievegradesall_student.php", config).then(function(data) {
             console.log("getting problem set info");
             $scope.unitproblemsets = data.data;
             console.log($scope.unitproblemsets);

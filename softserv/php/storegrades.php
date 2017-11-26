@@ -1,17 +1,19 @@
 <?php
+header('Content-Type: application/json');
+include('./config.php');
+
 /*
 This is a web service that inserts a grade into our database.
 It takes as input a username, problemsetid and mark then returns
 the highest mark.
 */
-header('Content-Type: application/json');
-include('./config.php');
+
+// getting our variables
 $studentid = $_GET["username"];
 $problemsetid = $_GET["problemsetid"];
 $mark = $_GET["mark"];
 
-	// create a connection
-
+// create a connection
 $conn = mysqli_connect($servername, $username, $password, $db);
 if (!$conn) {
 	die("Connection failed: " . mysqli_connect_error());
@@ -35,16 +37,20 @@ if ($result == false) {
 		$highmark = array("hello" => "hi");
 		//new entry in new table
 
-} //else {
-	//OK
+} 
+
+// getting the highest mark for that problem set
 $get_highmark = "SELECT HighestScore FROM PROBLEMSETGRADES WHERE ProblemsetID = $problemsetid AND StudentID = '$studentid'";
 
 $highmark_row = mysqli_query($conn, $get_highmark);
-//If student or problemset not in table
+
+//If student or problemset not in the PROBLEMSETGRADES table, insert a new record
 if (mysqli_num_rows($highmark_row) == 0) {
 	$query = "INSERT INTO PROBLEMSETGRADES(ProblemsetID, StudentID, HighestScore, RecentScore) VALUES($problemsetid,'$studentid', $mark, $mark)";
 	$result = mysqli_query($conn, $query);
 } else {
+	// otherwise, update the highest mark if it is lower than the current record
+	// update the recent mark
 	$highmark_row = mysqli_fetch_assoc($highmark_row);
 	$highmark = $highmark_row["HighestScore"];
 	if ($highmark > $mark) {

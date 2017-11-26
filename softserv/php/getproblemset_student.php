@@ -2,9 +2,18 @@
 header('Content-Type: application/json');
 include('./config.php');
 /*
+This is a web service that parses questions and answers for a problem set for a student to answer.
+It takes as input a problem set id, and retrieves all question data (including question text,
+answers, and variables). It generates random variables from the variables text defined by the
+professor, and recreates the questions and answers with those variables. The web service then
+returns these questions for the student to view and answer.
+*/
+
+/*
 *Given the string in the variables text field (must be no space in input, use new line to seperate variable)
 *returns an array of variables, where index of the array is the name of the variable (string) and the content of the entries are random numbers that are assigned to the variables using the range given in the input string
 */
+
 function get_variables($variabletext){
 	$variables_array = array();
     	$n = strlen($variabletext);
@@ -62,28 +71,28 @@ function replace_question_w_variables($questiontext, $variables_array){
 	return $resultquestion;
 }
 
-// create a connection
+// getting our variables
 $problemsetid = $_GET["problemsetid"];
 
+// creating a connection
 $conn = mysqli_connect($servername, $username, $password, $db);
 if (!$conn) {
 	die("Connection failed: " . mysqli_connect_error());
 }
 
+// query to retrieve all questions associated with the problem set.
 $sql_getquestions = "SELECT * FROM QUESTIONS WHERE PROBLEMSETID = '$problemsetid'";
 
 $result_getquestions = mysqli_query($conn, $sql_getquestions);
 
-$frommysql_getquestions = array(); //retrieve from assoc array
-
-// GET problemsets
+// get the rows returned by mysql query
 while ($row_getquestions = mysqli_fetch_assoc($result_getquestions)) {
 	$return_getquestions[] = $row_getquestions;
 }
 
-//function get_problems($return_getquestions){
 $questions = array();
 
+// parsing the row data into a JSON array
 for ($i = 0; $i < count($return_getquestions); $i++) {
 	$questionid = $return_getquestions[$i]["ID"];
 	$questiontext = $return_getquestions[$i]["QUESTIONTEXT"];

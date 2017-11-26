@@ -1,21 +1,27 @@
 <?php
+header('Content-Type: application/json');
+include('./config.php');
+
 /*
 This is a web service that retrieves all grades for all students from our database.
 It takes as input a problemsetid and returns all the grades associated
 with a student.
 */
-header('Content-Type: application/json');
-include('./config.php');
+
+// getting our variables
 $problemsetid = $_GET["problemsetid"];
-	// create a connection
+
+// creating a connection
 $conn = mysqli_connect($servername, $username, $password, $db);
 if (!$conn) {
 	die("Connection failed: " . mysqli_connect_error());
 }
+
+// query to test if table exists
 $test_table = "SELECT * FROM PROBLEMSETGRADES";
 $result_retrievegradesall = mysqli_query($conn, $test_table);
 
-//If no table
+//If no table, create a new table
 if (empty($result_retrievegradesall)) {
 	$query = "CREATE TABLE PROBLEMSETGRADES (
 		ProblemsetID Int not null,
@@ -28,13 +34,10 @@ if (empty($result_retrievegradesall)) {
 }
 
 //retrieving problem set grades for that problem set
+
 $sql_retrievegradesall = "SELECT UTORID,FIRSTNAME,LASTNAME,HighestScore,RecentScore FROM (STUDENTS LEFT JOIN PROBLEMSETGRADES ON PROBLEMSETGRADES.StudentID = STUDENTS.UTORID AND ProblemSetID = $problemsetid)";
 $result_retrievegradesall = mysqli_query($conn, $sql_retrievegradesall);
 
-//formatting into JSON format
-$frommysql_retrievegradesall = array(); //retrieve from assoc array
-
-// GET problemsets
 while ($row_retrievegradesall = mysqli_fetch_assoc($result_retrievegradesall)) {
 	$frommysql_retrievegradesall[] = $row_retrievegradesall;
 }
@@ -49,6 +52,7 @@ for ($i = 0; $i < $len_retrievegradesall; $i++) {
 	$lastname = $frommysql_retrievegradesall[$i]["LASTNAME"];
 	$highestscore = $frommysql_retrievegradesall[$i]["HighestScore"];
 	$recentscore = $frommysql_retrievegradesall[$i]["RecentScore"];
+	
 	if ($highestscore == null) {
 		$highestscore = "N/A";
 	} else {

@@ -1,15 +1,15 @@
 <?php
+header('Content-Type: application/json');
+include('./config.php');
+
 /*
 This is a web service that deletes a problem set from our database.
 It takes as input a problem set ID and deletes all instances of 
 that problem set in our tables PROBLEMSETGRADES and PROBLEMSETS.
 */
-header('Content-Type: application/json');
-include('./config.php');
 
 // getting our variables
 $problemsetid = $_GET["problemsetid"];
-
 
 // create a connection
 $conn = mysqli_connect($servername, $username, $password, $db);

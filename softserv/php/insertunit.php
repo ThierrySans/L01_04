@@ -1,10 +1,12 @@
 <?php
+header('Content-Type: application/json');
+include('./config.php');
+
 /*
 This is a web service that inserts a unit into our database.
 It takes as input a unitname and returns a unitid.
 */
-header('Content-Type: application/json');
-include('./config.php');
+
 $unitname = $_GET["unitname"];
 // create a connection
 $conn = mysqli_connect($servername, $username, $password, $db);
