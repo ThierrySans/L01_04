@@ -1,4 +1,9 @@
 <?php
+/*
+This is a web service that retrieves all problem sets from our database.
+It takes no input and returns the the unitid, unitname, id, name, duedate,
+highscore and recentscore of every problem set.
+*/
 header('Content-Type: application/json');
 include('./config.php');
 // create a connection
@@ -7,6 +12,7 @@ if (!$conn) {
 	die("Connection failed: " . mysqli_connect_error());
 }
 
+// query
 $sql_getproblemsets= "SELECT UNITID, UNITNAME, t.ID AS ID, NAME, DATEDUE, HighestScore, RecentScore FROM (SELECT UNITID, UNITS.NAME AS UNITNAME, PROBLEMSETS.ID AS ID, PROBLEMSETS.NAME AS NAME, DATEDUE FROM PROBLEMSETS JOIN UNITS WHERE UNITS.ID = PROBLEMSETS.UNITID ORDER BY UNITID) AS t LEFT OUTER JOIN (SELECT AVG(HighestScore) AS HighestScore, AVG(RecentScore) AS RecentScore, ProblemSetID AS ID FROM PROBLEMSETGRADES GROUP BY ProblemSetID) AS s ON t.ID=s.ID";
 
 $result_getproblemsets = mysqli_query($conn, $sql_getproblemsets);
@@ -20,6 +26,7 @@ while ($row_getproblemsets = mysqli_fetch_assoc($result_getproblemsets)) {
 
 $problemsets = array();
 
+// split data retrieved from query into a php associative array
 for ($i = 0; $i < count($return_getproblemsets); $i++) {
 	$problemsetunitid = $return_getproblemsets[$i]["UNITID"];
 	$problemsetunitname = $return_getproblemsets[$i]["UNITNAME"];
