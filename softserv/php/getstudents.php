@@ -1,4 +1,9 @@
 <?php
+/*
+This is a web service that gets students from our database.
+It takes no input and returns the utorid, firstname, lastname and
+password of all students.
+*/
 header('Content-Type: application/json');
 include('./config.php');
 // create a connection
@@ -7,7 +12,7 @@ if (!$conn) {
 	die("Connection failed: " . mysqli_connect_error());
 }
 
-// Set SQL query and input the partial course name
+// Set SQL query
 $sql_getstudents = "SELECT * FROM STUDENTS";
 
 $result_getstudents = mysqli_query($conn, $sql_getstudents);
