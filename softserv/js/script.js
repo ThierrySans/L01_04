@@ -342,6 +342,27 @@ navApp.controller('prof-problemsetsController', function($scope, $http, dataServ
         window.location.href = "../softserv/#!prof-viewproblemset";
     }
     $scope.getproblemsets();
+
+
+
+    /*
+    This function deletes a problem set with the given id
+    */
+    $scope.deleteproblemset = function(id) {
+        console.log("deleting problem set with id ", id);
+        var config = {
+            params: {
+                problemsetid: id
+            },
+            headers: {
+                'Accept': 'application/json'
+            }
+        }
+        $http.get("php/deleteproblemset.php", config).then(function(data) {
+            console.log(data);
+        });
+    }
+    
 });
 
 // *****************************************
@@ -378,23 +399,7 @@ navApp.controller('student-problemsetsController', function($scope, $http, dataS
     }
     $scope.getproblemsets();
 	
-	/*
-	This function deletes a problem set with the given id
-	*/
-	$scope.deleteproblemset = function(id) {
-        console.log("deleting problem set with id ", id);
-		var config = {
-            params: {
-                problemsetid: id
-            },
-            headers: {
-                'Accept': 'application/json'
-            }
-        }
-        $http.get("php/deleteproblemset.php", config).then(function(data) {
-            console.log(data);
-        });
-    }
+	
 });
 
 // *****************************************
