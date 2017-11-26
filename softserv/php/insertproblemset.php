@@ -1,4 +1,9 @@
 <?php
+/*
+This is a web service that inserts problem sets into our database.
+It takes as input a unitid, problemsetname, datedue, questions and
+returns the questions.
+*/
 header('Content-Type: application/json');
 include('./config.php');
 $unitid = $_GET["unitid"];
@@ -30,10 +35,6 @@ if ($result_insertproblemset != false) {
 		$result_insertquestion = mysqli_query($conn, $sql_insertquestion);
 	}
 }
-//variables
-//$sql_insertproblemset = "INSERT INTO PROBLEMSETS(PROBLEMSETID, UNITID, NAME) VALUES ('$problemsetid','$problemsetunitid','$problemsetname')";
-
-//$result_insertproblemset = mysqli_query($conn, $sql_insertproblemset);
 echo json_encode($questions["1"]["question"]);
 mysqli_close($conn);
 
