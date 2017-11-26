@@ -18,7 +18,7 @@ The website is hosted [here](http://fideslinga.com/cscc01/softserv)
 Instructions for Deployment (v4 latest)
 
 - git clone 'https://github.com/CSCC01F17/L01_04'
-- git checkout b13c4cf
+- git checkout 585f0b3
 - cd L01_04 (make sure you are in L01_04 directory)
 - php -S localhost:8000
 
@@ -41,6 +41,10 @@ The product backlog is hosted [here](http://fideslinga.com/cscc01/productbacklog
 3) **v3** (Effective Sprint 3 - Sprint 4, Deliverable 5):
 Contains version 3 of the product backlog.
 The product backlog is hosted [here](http://fideslinga.com/cscc01/productbacklog/v3/)
+
+4) **v4** (Effective Sprint 5, Final Deliverable):
+Contains version 4 of the product backlog.
+The product backlog is hosted [here](http://fideslinga.com/cscc01/productbacklog/v4/)
 
 ### SprintBacklog
 
@@ -66,6 +70,10 @@ The sprint backlog is hosted [here](SprintBacklog/s3/report.pdf)
 5) **Sprint 4**:
 Contains Sprint 4 (Deliverable 5) of the sprint backlog.
 The sprint backlog is hosted [here](SprintBacklog/s4/report.pdf)
+
+6) **Sprint 5**:
+Contains Sprint 5 (Final Deliverable) of the sprint backlog.
+The sprint backlog is hosted [here](SprintBacklog/s5/report.pdf)
 
 ### Test
 
