@@ -1,4 +1,9 @@
 <?php
+/*
+This is a web service that inserts a student into our database.
+It takes as input a utorid, firstname, lastname and password
+and returns the fieldvals.
+*/
 header('Content-Type: application/json');
 include('./config.php');
 $studentid = $_GET["utorid"];
