@@ -377,6 +377,24 @@ navApp.controller('student-problemsetsController', function($scope, $http, dataS
         window.location.href = "../softserv/#!student-viewproblemset";
     }
     $scope.getproblemsets();
+	
+	/*
+	This function deletes a problem set with the given id
+	*/
+	$scope.deleteproblemset = function(id) {
+        console.log("deleting problem set with id ", id);
+		var config = {
+            params: {
+                problemsetid: id
+            },
+            headers: {
+                'Accept': 'application/json'
+            }
+        }
+        $http.get("php/deleteproblemset.php", config).then(function(data) {
+            console.log(data);
+        });
+    }
 });
 
 // *****************************************
