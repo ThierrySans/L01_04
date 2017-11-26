@@ -387,7 +387,7 @@ navApp.controller('student-problemsetsController', function($scope, $http, dataS
                 'Accept': 'application/json'
             }
         }
-        $http.get("php/getgrades.php", config).then(function(data) {
+        $http.get("php/retrievegradesall_student.php", config).then(function(data) {
             console.log("getting problem set info");
             console.log(data);
             $scope.unitproblemsets = data.data;
@@ -426,7 +426,7 @@ navApp.controller('prof-viewproblemsetController', function($scope, $http, dataS
             }
         }
         console.log("config", config);
-        $http.get("php/getproblemset.php", config).then(function(data) {
+        $http.get("php/getproblemset_prof.php", config).then(function(data) {
             console.log("getting problem set questions", data);
             $scope.problemset = data.data;
             console.log("problemset", $scope.problemset);
@@ -445,7 +445,7 @@ navApp.controller('prof-viewproblemsetController', function($scope, $http, dataS
             }
         }
         console.log("config", config);
-        $http.get("php/retrievegradesall.php", config).then(function(data) {
+        $http.get("php/retrievegradesall_problemset.php", config).then(function(data) {
             console.log("getting problem set grades for this problem set", data);
             $scope.problemsetgrades = data.data;
             console.log("problemset", $scope.problemsetgrades);
@@ -481,7 +481,7 @@ navApp.controller('student-viewproblemsetController', function($scope, $http, da
             }
         }
         console.log("config", config);
-        $http.get("php/getproblemset.php", config).then(function(data) {
+        $http.get("php/getproblemset_student.php", config).then(function(data) {
             console.log("getting problem set questions", data);
             $scope.problemset = data.data;
             console.log("problemset", $scope.problemset);
