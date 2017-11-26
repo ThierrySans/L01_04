@@ -1,8 +1,12 @@
 <?php
+/*
+This is a web service that retrieves all grades for all students from our database.
+It takes as input a problemsetid and returns all the grades associated
+with a student.
+*/
 header('Content-Type: application/json');
 include('./config.php');
 $problemsetid = $_GET["problemsetid"];
-//function retrieveGrades($problemsetid) { 
 	// create a connection
 $conn = mysqli_connect($servername, $username, $password, $db);
 if (!$conn) {
@@ -60,11 +64,6 @@ for ($i = 0; $i < $len_retrievegradesall; $i++) {
 										"highestscore" => $highestscore,
 										"recentscore" => $recentscore);
 }
-	//mysqli_close($conn);
-	//return $retrievegradesall;
-//}
-//$problemset = $_GET["problemsetid"];
-//json_encode(retrieveGrades($problemset));
 echo json_encode($retrievegradesall);
 mysqli_close($conn);
 ?>
