@@ -1,4 +1,8 @@
 <?php
+/*
+This is a web service that retrieves all units from our database.
+It takes no input and returns the unitid and name of all units.
+*/
 header('Content-Type: application/json');
 include('./config.php');
 
