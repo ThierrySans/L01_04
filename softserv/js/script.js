@@ -1,7 +1,7 @@
 
 var navApp = angular.module('navApp', ['ngRoute']);
 
-// configure our routes
+// configure our routes and corresponding controller
 navApp.config(function($routeProvider) {
     $routeProvider.when('/', {
             templateUrl: 'pages/home.html',
@@ -82,7 +82,7 @@ navApp.service('accountService', function() {
 // *****************************************
 navApp.controller('mainController', function($scope, $http, accountService) {
     // create a message to display in our view
-    $scope.message = 'Everyone come and see how good I look!';
+    //$scope.message = 'Everyone come and see how good I look!';
 
     $scope.profnav = function() {
         window.location.href = "../softserv/#!prof-students";
@@ -103,12 +103,13 @@ navApp.controller('mainController', function($scope, $http, accountService) {
 
 
         $http.get("php/login.php", config).then(function(data) {
-            console.log("getting login status", data);
+            //console.log("getting login status", data);
             $scope.loginSuccess = data.data;
-            console.log("login status: ", $scope.loginSuccess);
+            //console.log("login status: ", $scope.loginSuccess);
 
+            // Successul login, jump to student-problemsets page
             if ($scope.loginSuccess === 0) { // strcmp result is 0
-                console.log("successful login!");
+                //console.log("successful login!");
                 window.location.href = "../softserv/#!student-problemsets";
                 accountService.setData($scope.username);
             }
@@ -126,17 +127,18 @@ navApp.controller('mainController', function($scope, $http, accountService) {
 // *****************************************
 // *****************************************
 navApp.controller('prof-studentsController', function($scope, $http, accountService) {
-    // create a message to display in our view
+    // get students data
     $scope.getstudents = function() {
         $http.get("php/getstudents.php").then(function(data) {
-            console.log("getting students");
-            console.log("whats going on", data);
+            //console.log("getting students");
+            //console.log("whats going on", data);
             $scope.students = data.data;
-            console.log($scope.students);
+            //console.log($scope.students);
             //$scope.$apply();
         });
     }
 
+    // add a student
     $scope.addstudent = function() {
         var config = {
             params: {
@@ -149,9 +151,9 @@ navApp.controller('prof-studentsController', function($scope, $http, accountServ
                 'Accept': 'application/json'
             }
         }
-        console.log("called this function");
+        //console.log("called this function");
         $http.get("php/insertstudent.php", config).then(function(data) {
-            console.log(data);
+            //console.log(data);
             $scope.getstudents();
             //$scope.$apply();
         });
@@ -159,7 +161,7 @@ navApp.controller('prof-studentsController', function($scope, $http, accountServ
     }
     $scope.getstudents();
 
-
+    // jump to prof-studentproblemsetgrades page
     $scope.viewstudentgrade = function(utorid) {
         accountService.setData(utorid);
         window.location.href = "../softserv/#!prof-studentproblemsetgrades";
@@ -180,12 +182,11 @@ navApp.controller('prof-newproblemsetController', function($scope, $http, $compi
     };
     $scope.units;
 
-    /*
-     */
+    // get units from database
     $scope.getUnits = function() {
-        console.log("called this function");
+        //console.log("called this function");
         $http.get("php/getunits.php").then(function(data) {
-            console.log(data);
+            //console.log(data);
             $scope.units = data.data;
             //$scope.$apply();
         });
@@ -232,6 +233,7 @@ navApp.controller('prof-newproblemsetController', function($scope, $http, $compi
 
     }
 
+    // add problem set
     $scope.addproblemset = function() {
 
         //Create an array of valid questions, variables and answers
@@ -255,7 +257,7 @@ navApp.controller('prof-newproblemsetController', function($scope, $http, $compi
                 }
             }
         }
-        console.log("valid questions", $scope.validquestions);
+        //console.log("valid questions", $scope.validquestions);
         var config = {
             params: {
                 unitid: $scope.unitid,
@@ -268,8 +270,9 @@ navApp.controller('prof-newproblemsetController', function($scope, $http, $compi
             }
         }
 
+        // passing problem set data to database
         $http.get("php/insertproblemset.php", config).then(function(data) {
-            console.log(data);
+            //console.log(data);
         });
 
 
@@ -287,8 +290,9 @@ navApp.controller('prof-newproblemsetController', function($scope, $http, $compi
                 'Accept': 'application/json'
             }
         }
+        // passing unit data to database
         $http.get("php/insertunit.php", config).then(function(data) {
-            console.log(data);
+            //console.log(data);
         });
     }
 
@@ -302,6 +306,8 @@ navApp.controller('prof-newproblemsetController', function($scope, $http, $compi
 navApp.controller('prof-studentproblemsetgradesController', function($scope, $http, dataService, accountService) {
 
     $scope.user = accountService.getData();
+
+    // get all grades of one student
     $scope.getproblemsets = function() {
         var config = {
             params: {
@@ -312,9 +318,9 @@ navApp.controller('prof-studentproblemsetgradesController', function($scope, $ht
             }
         }
         $http.get("php/retrievegradesall_student.php", config).then(function(data) {
-            console.log("getting problem set info");
+            //console.log("getting problem set info");
             $scope.unitproblemsets = data.data;
-            console.log($scope.unitproblemsets);
+            //console.log($scope.unitproblemsets);
             //$scope.$apply();
         });
     }
@@ -327,22 +333,25 @@ navApp.controller('prof-studentproblemsetgradesController', function($scope, $ht
 // *****************************************
 // *****************************************
 navApp.controller('prof-problemsetsController', function($scope, $http, dataService) {
+    // get al problem sets
     $scope.getproblemsets = function() {
         $http.get("php/getproblemsetinfo.php").then(function(data) {
-            console.log("getting problem set info");
+            //console.log("getting problem set info");
             $scope.unitproblemsets = data.data;
-            console.log($scope.unitproblemsets);
+            //console.log($scope.unitproblemsets);
             //$scope.$apply();
         });
     }
+
+    // view one specific problem set, jump to prof=viewproblemset page
     $scope.viewproblemset = function(id) {
-        console.log("from problemsets page, the id ps id", id);
+        //console.log("from problemsets page, the id ps id", id);
         dataService.setData(id);
-        console.log(dataService);
+        //console.log(dataService);
         window.location.href = "../softserv/#!prof-viewproblemset";
     }
-	
-	
+
+
     $scope.getproblemsets();
 
 
@@ -351,7 +360,7 @@ navApp.controller('prof-problemsetsController', function($scope, $http, dataServ
     This function deletes a problem set with the given id
     */
     $scope.deleteproblemset = function(id) {
-        console.log("deleting problem set with id ", id);
+        //console.log("deleting problem set with id ", id);
         var config = {
             params: {
                 problemsetid: id
@@ -360,12 +369,13 @@ navApp.controller('prof-problemsetsController', function($scope, $http, dataServ
                 'Accept': 'application/json'
             }
         }
+        // passing problem set id to database for deletion
         $http.get("php/deleteproblemset.php", config).then(function(data) {
-            console.log(data);
+            //console.log(data);
         });
 		$scope.getproblemsets();
     }
-    
+
 });
 
 // *****************************************
@@ -375,8 +385,8 @@ navApp.controller('prof-problemsetsController', function($scope, $http, dataServ
 // *****************************************
 navApp.controller('student-problemsetsController', function($scope, $http, dataService, accountService) {
     $scope.user = accountService.getData();
-    console.log("accout user is", $scope.user);
-
+    //console.log("accout user is", $scope.user);
+    // get all problem set data for this student
     $scope.getproblemsets = function() {
         var config = {
             params: {
@@ -387,22 +397,23 @@ navApp.controller('student-problemsetsController', function($scope, $http, dataS
             }
         }
         $http.get("php/retrievegradesall_student.php", config).then(function(data) {
-            console.log("getting problem set info");
-            console.log(data);
+            //console.log("getting problem set info");
+            //console.log(data);
             $scope.unitproblemsets = data.data;
-            console.log($scope.unitproblemsets);
+            //console.log($scope.unitproblemsets);
             //$scope.$apply();
         });
     }
+    // view one specific problem set for this student, jump to student-view problemset page
     $scope.viewproblemset = function(id) {
-        console.log("from problemsets page, the id ps id", id);
+        //console.log("from problemsets page, the id ps id", id);
         dataService.setData(id);
-        console.log(dataService);
+        //console.log(dataService);
         window.location.href = "../softserv/#!student-viewproblemset";
     }
     $scope.getproblemsets();
-	
-	
+
+
 });
 
 // *****************************************
@@ -412,9 +423,9 @@ navApp.controller('student-problemsetsController', function($scope, $http, dataS
 // *****************************************
 navApp.controller('prof-viewproblemsetController', function($scope, $http, dataService) {
     $scope.problemsetid = dataService.getData();
-    console.log("problemsetid", $scope.problemsetid);
+    //console.log("problemsetid", $scope.problemsetid);
 
-    // get the questions for the problem set
+    // get the questions for the specific problem set
     $scope.getquestions = function() {
         var config = {
             params: {
@@ -424,11 +435,12 @@ navApp.controller('prof-viewproblemsetController', function($scope, $http, dataS
                 'Accept': 'application/json'
             }
         }
-        console.log("config", config);
+        //console.log("config", config);
+        // get data of this problem set
         $http.get("php/getproblemset_prof.php", config).then(function(data) {
-            console.log("getting problem set questions", data);
+            //console.log("getting problem set questions", data);
             $scope.problemset = data.data;
-            console.log("problemset", $scope.problemset);
+            //console.log("problemset", $scope.problemset);
             //$scope.$apply();
         });
     }
@@ -443,11 +455,12 @@ navApp.controller('prof-viewproblemsetController', function($scope, $http, dataS
                 'Accept': 'application/json'
             }
         }
-        console.log("config", config);
+        //console.log("config", config);
+        // get grades for all students for this problem set
         $http.get("php/retrievegradesall_problemset.php", config).then(function(data) {
-            console.log("getting problem set grades for this problem set", data);
+            //console.log("getting problem set grades for this problem set", data);
             $scope.problemsetgrades = data.data;
-            console.log("problemset", $scope.problemsetgrades);
+            //console.log("problemset", $scope.problemsetgrades);
             //$scope.$apply();
         });
     }
@@ -464,12 +477,13 @@ navApp.controller('prof-viewproblemsetController', function($scope, $http, dataS
 navApp.controller('student-viewproblemsetController', function($scope, $http, dataService, accountService) {
     $scope.show_mark = false;
     $scope.user = accountService.getData();
-    console.log($scope.user);
+    //console.log($scope.user);
     $scope.problemsetid = dataService.getData();
-    console.log("problemsetid", $scope.problemsetid);
+    //console.log("problemsetid", $scope.problemsetid);
 
     $scope.stuAnswer = [];
 
+    // get questions in this problem set
     $scope.getquestions = function() {
         var config = {
             params: {
@@ -479,21 +493,18 @@ navApp.controller('student-viewproblemsetController', function($scope, $http, da
                 'Accept': 'application/json'
             }
         }
-        console.log("config", config);
+        //console.log("config", config);
+        // get data of this problem set for this student
         $http.get("php/getproblemset_student.php", config).then(function(data) {
-            console.log("getting problem set questions", data);
+            //console.log("getting problem set questions", data);
             $scope.problemset = data.data;
-            console.log("problemset", $scope.problemset);
+            //console.log("problemset", $scope.problemset);
             //$scope.$apply();
         });
     }
     $scope.getquestions();
 
-    //INCOMPLETE
-    //INCOMPLETE
-    //INCOMPLETE
-    //INCOMPLETE
-    // needs to record the results somewhere
+    // compare student's solution to real answer and calcualte the grade
     $scope.checkanswers = function() {
         var stuAnsIter = 0;
         var countCorrectAnswer = 0;
@@ -501,7 +512,7 @@ navApp.controller('student-viewproblemsetController', function($scope, $http, da
         $.each($scope.problemset, function(qid, qdata) {
 
             var result = "incorrect";
-            console.log("Comparing answers");
+            //console.log("Comparing answers");
             if ($scope.stuAnswer[stuAnsIter] == qdata.answer) {
                 result = "correct";
                 countCorrectAnswer += 1;
@@ -511,14 +522,15 @@ navApp.controller('student-viewproblemsetController', function($scope, $http, da
             str += answerStr;
 			stuAnsIter += 1;
         });
-		
+
 		$scope.mark = countCorrectAnswer / $scope.stuAnswer.length;
 		$scope.show_mark = true;
 
+    // display the mark
 		$("#display-answers").empty();
 		$("#display-answers").append(str);
 
-        //Setting up data to send to ssend 
+        //Setting up data to send to ssend
         //$scope.user for utorid
         //$scope.problemsetid for problemsetid
         $scope.updatemark = function() {
@@ -532,9 +544,10 @@ navApp.controller('student-viewproblemsetController', function($scope, $http, da
                     'Accept': 'application/json'
                 }
             }
-            console.log("config", config);
+            //console.log("config", config);
+            // passing grade to database for update
             $http.get("php/storegrades.php", config).then(function(data) {
-                console.log("storing the grades", data);
+                //console.log("storing the grades", data);
                 //$scope.$apply();
             });
         }
@@ -551,6 +564,7 @@ navApp.controller('student-viewproblemsetController', function($scope, $http, da
 navApp.controller('prof-badgesController', function($scope, $http, dataService, accountService) {
 	$scope.badgequalificationlabel = "Minimum Course Average:";
 	$scope.badge2 = false;
+  // there are 3 type of badges
 	$scope.badgeTypeChange = function () {
 		if ($scope.badgetype == "1") {
 			$scope.badgequalificationlabel = "Minimum Course Average:";
@@ -562,6 +576,6 @@ navApp.controller('prof-badgesController', function($scope, $http, dataService, 
 			$scope.badgequalificationlabel = "Minimum Number of Problem Sets Completed:";
 			$scope.badge2 = false;
 		}
-		console.log($scope.badgetype);
+		//console.log($scope.badgetype);
 	}
 });
