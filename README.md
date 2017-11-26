@@ -42,7 +42,7 @@ The product backlog is hosted [here](http://fideslinga.com/cscc01/productbacklog
 Contains version 3 of the product backlog.
 The product backlog is hosted [here](http://fideslinga.com/cscc01/productbacklog/v3/)
 
-4) **v3** (Effective Sprint 5, Final Deliverable):
+4) **v4** (Effective Sprint 5, Final Deliverable):
 Contains version 4 of the product backlog.
 The product backlog is hosted [here](http://fideslinga.com/cscc01/productbacklog/v4/)
 
