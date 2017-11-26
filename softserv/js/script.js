@@ -364,7 +364,6 @@ navApp.controller('prof-problemsetsController', function($scope, $http, dataServ
             console.log(data);
         });
 		$scope.getproblemsets();
-		$scope.$apply();
     }
     
 });

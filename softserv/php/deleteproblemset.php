@@ -1,4 +1,9 @@
 <?php
+/*
+This is a web service that deletes a problem set from our database.
+It takes as input a problem set ID and deletes all instances of 
+that problem set in our tables PROBLEMSETGRADES and PROBLEMSETS.
+*/
 header('Content-Type: application/json');
 include('./config.php');
 
