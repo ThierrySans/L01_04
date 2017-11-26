@@ -18,7 +18,7 @@ The website is hosted [here](http://fideslinga.com/cscc01/softserv)
 Instructions for Deployment (v4 latest)
 
 - git clone 'https://github.com/CSCC01F17/L01_04'
-- git checkout 585f0b3
+- git checkout 665cd41
 - cd L01_04 (make sure you are in L01_04 directory)
 - php -S localhost:8000
 

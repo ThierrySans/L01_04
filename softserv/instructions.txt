@@ -1,7 +1,7 @@
 HOW TO DEPLOY PRODUCT
 
 - git clone 'https://github.com/CSCC01F17/L01_04'
-- git checkout 585f0b3
+- git checkout 665cd41
 - cd L01_04 (make sure you are in L01_04 directory)
 - php -S localhost:8000
 - Now view the product here : http://localhost:8000/softserv/
