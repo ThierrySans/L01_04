@@ -1,6 +1,11 @@
+<!--
+This is the Professor's UI for viewing a single problem set.
+
+-->
 <div class="container" id="nav-bar">
 <nav class="navbar navbar-default">
   <div class="container-fluid">
+	<!--Navigation Bar-->
     <div class="navbar-header">
       <a class="navbar-brand" href="#">WebWork - Professor</a>
     </div>
@@ -13,11 +18,15 @@
   </div>
 </nav>
 </div>
+<!--Header-->
 <div class="jumbotron" align="center" style="background:transparent !important" >
    <span class="big dark-grey b">
    WebWork
    </span>
 </div>
+<!--Viewing the data for a single problem set, including the problem set ID.
+The data will include each question (text, answer, as well as variables if any)
+listed in order. Data is displayed in a table -->
 <div class="container">
    <span class="med dark-grey b">
    Viewing Problem Set {{problemsetid}}
@@ -40,6 +49,9 @@
 	   </div>
 	</div>
 </div>
+<!--Viewing the grades data for all students who may or may not have attemped 
+this problem set. The data will include for each student the recent attempted mark, and
+highest attempted mark for this problem set.-->
 <div class="container">
    <span class="med dark-grey b">
    Problem Set {{problemsetid}} Grades
