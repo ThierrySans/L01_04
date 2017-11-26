@@ -1,11 +1,15 @@
 <?php
+/*
+This is a web service that inserts a grade into our database.
+It takes as input a username, problemsetid and mark then returns
+the highest mark.
+*/
 header('Content-Type: application/json');
 include('./config.php');
 $studentid = $_GET["username"];
 $problemsetid = $_GET["problemsetid"];
 $mark = $_GET["mark"];
 
-//function storeGrades($studentid, $problemsetid, $mark) {
 	// create a connection
 
 $conn = mysqli_connect($servername, $username, $password, $db);
@@ -51,16 +55,7 @@ if (mysqli_num_rows($highmark_row) == 0) {
 		$result = mysqli_query($conn, $query);
 	}
 }	
-//}
-	//mysqli_close($conn);
-	//return (json_encode($query));
-//}
-/*
-$student = $_GET["username"];
-$problemset = $_GET["problemsetid"];
-$grade = $_GET["mark"];
-json_encode(storeGrades($student, $problemset, $grade));
-*/
+
 json_encode($get_highmark);
 mysqli_close($conn);
 ?>
