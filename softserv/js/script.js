@@ -341,6 +341,8 @@ navApp.controller('prof-problemsetsController', function($scope, $http, dataServ
         console.log(dataService);
         window.location.href = "../softserv/#!prof-viewproblemset";
     }
+	
+	
     $scope.getproblemsets();
 
 
@@ -361,6 +363,8 @@ navApp.controller('prof-problemsetsController', function($scope, $http, dataServ
         $http.get("php/deleteproblemset.php", config).then(function(data) {
             console.log(data);
         });
+		$scope.getproblemsets();
+		$scope.$apply();
     }
     
 });
