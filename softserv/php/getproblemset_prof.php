@@ -34,7 +34,7 @@ for ($i = 0; $i < count($return_getquestions); $i++) {
     $questionid   = $return_getquestions[$i]["ID"];
     $questiontext = $return_getquestions[$i]["QUESTIONTEXT"];
     $variabletext = $return_getquestions[$i]["VARIABLES"];
-    $answertext   = $return_getquestions[$i]["ANSWER"];
+    $answer   = $return_getquestions[$i]["ANSWER"];
     
     $questions[$questionid] = array(
         "text" => $questiontext,
