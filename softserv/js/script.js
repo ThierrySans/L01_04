@@ -60,6 +60,22 @@ navApp.service('dataService', function() {
 
 });
 
+//PASSING DATE SERVICE
+navApp.service('dateService', function() {
+    var data = {
+        date: '2017-12-01'
+    };
+    return {
+        setData: function(newObj) {
+            data.date = newObj;
+        },
+        getData: function() {
+            return data.date;
+        }
+    };
+
+});
+
 //PASSING ACCOUNT SERVICE
 navApp.service('accountService', function() {
     var data = {
@@ -332,7 +348,7 @@ navApp.controller('prof-studentproblemsetgradesController', function($scope, $ht
 // PROFESSORS PROBLEM SETS DISPLAY (VIEWING ALL)
 // *****************************************
 // *****************************************
-navApp.controller('prof-problemsetsController', function($scope, $http, dataService) {
+navApp.controller('prof-problemsetsController', function($scope, $http, dataService, dateService) {
     // get al problem sets
     $scope.getproblemsets = function() {
         $http.get("php/getproblemsetinfo.php").then(function(data) {
@@ -344,9 +360,10 @@ navApp.controller('prof-problemsetsController', function($scope, $http, dataServ
     }
 
     // view one specific problem set, jump to prof=viewproblemset page
-    $scope.viewproblemset = function(id) {
+    $scope.viewproblemset = function(id,datedue) {
         //console.log("from problemsets page, the id ps id", id);
         dataService.setData(id);
+		dateService.setData(date);
         //console.log(dataService);
         window.location.href = "../softserv/#!prof-viewproblemset";
     }
@@ -383,7 +400,7 @@ navApp.controller('prof-problemsetsController', function($scope, $http, dataServ
 // (MULTIPLE) PROBLEM SET VIEW FOR STUDENTS
 // *****************************************
 // *****************************************
-navApp.controller('student-problemsetsController', function($scope, $http, dataService, accountService) {
+navApp.controller('student-problemsetsController', function($scope, $http, dataService, accountService, dateService) {
     $scope.user = accountService.getData();
     //console.log("accout user is", $scope.user);
     // get all problem set data for this student
@@ -405,9 +422,10 @@ navApp.controller('student-problemsetsController', function($scope, $http, dataS
         });
     }
     // view one specific problem set for this student, jump to student-view problemset page
-    $scope.viewproblemset = function(id) {
+    $scope.viewproblemset = function(id,datedue) {
         //console.log("from problemsets page, the id ps id", id);
         dataService.setData(id);
+		dateService.setData(datedue);
         //console.log(dataService);
         window.location.href = "../softserv/#!student-viewproblemset";
     }
@@ -530,11 +548,12 @@ navApp.controller('prof-viewproblemsetController', function($scope, $http, dataS
 // (SINGLE) PROBLEM SET VIEW FOR STUDENTS
 // *****************************************
 // *****************************************
-navApp.controller('student-viewproblemsetController', function($scope, $http, dataService, accountService) {
+navApp.controller('student-viewproblemsetController', function($scope, $http, dataService, accountService, dateService) {
     $scope.show_mark = false;
     $scope.user = accountService.getData();
     //console.log($scope.user);
     $scope.problemsetid = dataService.getData();
+	$scope.problemsetdatedue = dataService.getData();
     //console.log("problemsetid", $scope.problemsetid);
 
     $scope.stuAnswer = [];
@@ -572,10 +591,10 @@ navApp.controller('student-viewproblemsetController', function($scope, $http, da
         var year = q.getYear();
         var today = new Date(year,month,day);
 
-        duedate = new Date('2011-04-11');
+        duedate = new Date($scope.problemsetdatedue);
 
         var on_time = 1;
-        var late = ""
+        var late = "";
 
         if(today < duedate){ // if late
             on_time = 0;
