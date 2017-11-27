@@ -363,7 +363,7 @@ navApp.controller('prof-problemsetsController', function($scope, $http, dataServ
     $scope.viewproblemset = function(id,datedue) {
         //console.log("from problemsets page, the id ps id", id);
         dataService.setData(id);
-		dateService.setData(date);
+		dateService.setData(datedue);
         //console.log(dataService);
         window.location.href = "../softserv/#!prof-viewproblemset";
     }
@@ -553,7 +553,7 @@ navApp.controller('student-viewproblemsetController', function($scope, $http, da
     $scope.user = accountService.getData();
     //console.log($scope.user);
     $scope.problemsetid = dataService.getData();
-	$scope.problemsetdatedue = dataService.getData();
+	$scope.problemsetdatedue = dateService.getData();
     //console.log("problemsetid", $scope.problemsetid);
 
     $scope.stuAnswer = [];
