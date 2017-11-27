@@ -90,32 +90,30 @@ navApp.controller('mainController', function($scope, $http, accountService) {
 
 
     $scope.studnav = function() {
-        // login edit start ------------------------------------------
-        var config = {
-            params: {
-                username: $scope.username,
-                password: $scope.password
-            },
-            headers: {
-                'Accept': 'application/json'
-            }
-        }
+		if ($scope.username != "" && $scope.password != "") {
+			var config = {
+				params: {
+					username: $scope.username,
+					password: $scope.password
+				},
+				headers: {
+					'Accept': 'application/json'
+				}
+			}
 
 
-        $http.get("php/login.php", config).then(function(data) {
-            //console.log("getting login status", data);
-            $scope.loginSuccess = data.data;
-            //console.log("login status: ", $scope.loginSuccess);
+			$http.get("php/login.php", config).then(function(data) {
+				//console.log("getting login status", data);
+				$scope.loginSuccess = data.data;
+				//console.log("login status: ", $scope.loginSuccess);
 
-            // Successul login, jump to student-problemsets page
-            if ($scope.loginSuccess === 0) { // strcmp result is 0
-                //console.log("successful login!");
-                window.location.href = "../softserv/#!student-problemsets";
-                accountService.setData($scope.username);
-            }
-        });
-
-        // login edit end ------------------------------
+				// Successul login, jump to student-problemsets page
+				if ($scope.loginSuccess === 0) {
+					window.location.href = "../softserv/#!student-problemsets";
+					accountService.setData($scope.username);
+				}
+			});
+		}
 
     }
 
