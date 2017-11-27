@@ -292,6 +292,8 @@ navApp.controller('prof-newproblemsetController', function($scope, $http, $compi
         $http.get("php/insertunit.php", config).then(function(data) {
             //console.log(data);
         });
+		// update the units in the display
+		$scope.getUnits();
     }
 
 });
