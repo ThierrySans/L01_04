@@ -173,6 +173,7 @@
 					 <li>As Student Sonja, I want to answer problem sets with randomized variables.</li>
 					 <li>As Professor Sophie, I want to delete problem sets.</li>
 					 <li>As Professor Ben, I want to see a graph of student performance.</li>
+					 <li>As Professor Ben, I want to restrict the problem set marked attempts to only attempts before the due date.</li>
 					 <!--End Sprint 5 User Stories-->
                      <br/><br/>
                      <span class="story-subtitle">SPECIAL</span>
@@ -456,6 +457,15 @@
                            POINTS: 3<br>DEPENDENCIES: None
                            <li>Extend the professor's UI for viewing a single problem set to include a graph that displays the student grades, as a bar graph. The graph will have a y-axis for the number of students, and an x-axis for the percent grades recieved by those number of students. We will use the google charts API for this. Bind the data for the graph from the data recieved by the PHP web service.</li>
                            POINTS: 3<br>DEPENDENCIES: T1
+                        </ol>
+                     </li>
+					 <li>
+                        <span class="story_break_down">As Professor Ben, I want to restrict the problem set marked attempts to only attempts before the due date.</span>
+                        <ol>
+                           <li>Add a restriction in the javascript function that compares the student and correct answers, as well as stores the grades, to check whether the submission of the problem set is before the due date. If it is after the duedate, the recent mark for that student will be recorded as 0.</li>
+                           POINTS: 2<br>DEPENDENCIES: None
+                           <li>Add a message to be displayed in the student's UI to view a single problem set. When the student answers a question but it is past the due date, the answer comparison will let them know whether they got the correct answer, but also if they are late or not.</li>
+                           POINTS: 1<br>DEPENDENCIES: T1
                         </ol>
                      </li>
                   </ol>
