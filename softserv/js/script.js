@@ -488,6 +488,34 @@ navApp.controller('prof-viewproblemsetController', function($scope, $http, dataS
     each being 20% in length. It then generates a graph of student performance.
     */
     $scope.graphgrades = function() {
+        google.charts.load('current', {
+            packages: ['corechart', 'bar']
+        });
+        google.charts.setOnLoadCallback(drawTrendlines);
+
+        /*
+        This function draws the distribution graph. It takes as input
+        data from the web service that returns grades separated by intervals.
+        */
+        var drawTrendlines = function() {
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Grade');
+            data.addColumn('number', 'Number of Students');
+            data.addRows(intervalgrades);
+
+            var options = {
+                title: 'Student Grades for Problem Set',
+                hAxis: {
+                    title: 'Achieved Grade (%)',
+                },
+                vAxis: {
+                    title: 'Number of Students'
+                }
+            };
+
+            var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+            chart.draw(data, options);
+        }
         var intervalgrades = [];
         var config = {
             params: {
@@ -506,34 +534,7 @@ navApp.controller('prof-viewproblemsetController', function($scope, $http, dataS
                 intervalgrades.push(new_arr);
             });
             //graphing the grades distribution
-			/*
-			This function draws the distribution graph. It takes as input
-			data from the web service that returns grades separated by intervals.
-			*/
-			google.charts.load('current', {
-            packages: ['corechart', 'bar']
-			});
-			google.charts.setOnLoadCallback(drawTrendLines);
-			function drawTrendLines() {
-				var data = new google.visualization.DataTable();
-				data.addColumn('string', 'Grade');
-				data.addColumn('number', 'Number of Students');
-				data.addRows(intervalgrades);
-
-				var options = {
-					title: 'Student Grades for Problem Set',
-					hAxis: {
-						title: 'Achieved Grade (%)',
-					},
-					vAxis: {
-						title: 'Number of Students'
-					}
-				};
-
-				var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
-				chart.draw(data, options);
-			}
-            
+            drawTrendlines();
         });
 
     }
