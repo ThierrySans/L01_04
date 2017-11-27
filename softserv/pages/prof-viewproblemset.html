@@ -52,6 +52,32 @@ listed in order. Data is displayed in a table -->
 this problem set. The data will include for each student the recent attempted mark, and
 highest attempted mark for this problem set.-->
 <div class="container">
+   <span class="med dark-grey b">
+   Problem Set {{problemsetid}} Grades
+   </span>
+   <table class="table table-bordered">
+      <thead>
+         <tr>
+            <th>UTORID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+			<th>Recent Score</th>
+			<th>Highest Score</th>
+         </tr>
+      </thead>
+      <tbody>
+         <tr ng-repeat="(utorid, student) in problemsetgrades">
+			<td>{{utorid}}</td>
+            <td>{{student.firstname}}</td>
+            <td>{{student.lastname}}</td>
+			<td>{{student.recentscore}}</td>
+			<td>{{student.highestscore}}</td>
+         </tr>
+      </tbody>
+   </table>
+</div>
+
+<div class="container">
    <div id="chart_div" style="width: 900px; height: 500px;"></div>
 </div>
 <!--Viewing the grades data for all students who may or may not have attemped 
