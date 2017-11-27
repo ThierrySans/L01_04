@@ -1,4 +1,3 @@
-
 var navApp = angular.module('navApp', ['ngRoute']);
 
 // configure our routes and corresponding controller
@@ -470,7 +469,7 @@ navApp.controller('prof-viewproblemsetController', function($scope, $http, dataS
 	each being 20% in length. It then generates a graph of student performance.
 	*/
 	$scope.graphgrades = function() {
-		$http.get("php/retrievegradesall_problemset_interval.php", config).then(function(data) {
+		$http.get("php/retrievegradesdistribution.php", config).then(function(data) {
             $scope.intervalgrades = data.data;
         });
 		google.charts.load('current', {packages: ['corechart', 'bar']});
