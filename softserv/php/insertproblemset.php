@@ -23,7 +23,7 @@ if (!$conn) {
 
 // query to insert the problem set.
 
-$sql_insertproblemset = "INSERT INTO PROBLEMSETS(UNITID, NAME, DATEDUE) VALUES('$unitid','$problemsetname','2019-02-03')";
+$sql_insertproblemset = "INSERT INTO PROBLEMSETS(UNITID, NAME, DATEDUE) VALUES('$unitid','$problemsetname','$datedue')";
 
 $result_insertproblemset = mysqli_query($conn, $sql_insertproblemset);
 $result_maxproblemsetid = mysqli_query($conn, "SELECT * FROM PROBLEMSETS ORDER BY ID DESC LIMIT 1");
