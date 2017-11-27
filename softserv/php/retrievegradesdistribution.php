@@ -35,7 +35,7 @@ if (empty($result_retrievegradesall)) {
 
 //retrieving problem set grades for that problem set
 
-$sql_retrievegradesall = "SELECT HighestScore FROM (STUDENTS LEFT JOIN PROBLEMSETGRADES ON PROBLEMSETGRADES.StudentID = STUDENTS.UTORID AND ProblemSetID = $problemsetid)";
+$sql_retrievegradesall = "SELECT HighestScore FROM PROBLEMSETGRADES WHERE ProblemSetID='$problemsetid'";
 $result_retrievegradesall = mysqli_query($conn, $sql_retrievegradesall);
 
 while ($row_retrievegradesall = mysqli_fetch_assoc($result_retrievegradesall)) {
@@ -53,22 +53,22 @@ $distribution["61-80"] = 0;
 $distribution["81-100"] = 0;
 for ($i = 0; $i < $len_retrievegradesall; $i++) {
 	$highestscore = $frommysql_retrievegradesall[$i]["HighestScore"];
+	$highestscore = $highestscore*100;
 	
-	if ($highestscore == null) {
-	}
-	else if ($highestscore < 21) {
-		$distribution["0-20"] += 1;
+	if ($highestscore < 21) {
+		$distribution["0-20"] = $distribution["0-20"] + 1;
 	}
 	else if ($highestscore < 41) { 
-		$distribution["21-40"] += 1;
+		$distribution["21-40"] = $distribution["21-40"] + 1;
 	}
 	else if ($highestscore < 61) { 
-		$distribution["41-60"] += 1;
+		$distribution["41-60"] = $distribution["41-60"] + 1;
 	}
 	else if ($highestscore < 81) { 
-		$distribution["61-80"] += 1;
+		$distribution["61-80"] = $distribution["61-80"] + 1;
 	}
 	else if ($highestscore < 101) { 
+		$distribution["81-100"] = $distribution["81-100"] + 1;
 	}
 }
 echo json_encode($distribution);

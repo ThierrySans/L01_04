@@ -492,6 +492,7 @@ navApp.controller('prof-viewproblemsetController', function($scope, $http, dataS
 			This function draws the distribution graph. It takes as input
 			data from the web service that returns grades separated by intervals.
 			*/
+			console.log(intervalgrades);
 			google.charts.load('current', {
             packages: ['corechart', 'bar']
 			});
