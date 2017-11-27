@@ -1,3 +1,4 @@
+
 var navApp = angular.module('navApp', ['ngRoute']);
 
 // configure our routes and corresponding controller
@@ -38,7 +39,7 @@ navApp.config(function($routeProvider) {
             templateUrl: 'pages/prof-studentproblemsetgrades.html',
             controller: 'prof-studentproblemsetgradesController'
         })
-	    .when('/prof-badges', {
+        .when('/prof-badges', {
             templateUrl: 'pages/prof-badges.html',
             controller: 'prof-badgesController'
         });
@@ -89,30 +90,30 @@ navApp.controller('mainController', function($scope, $http, accountService) {
 
 
     $scope.studnav = function() {
-		if ($scope.username != "" && $scope.password != "") {
-			var config = {
-				params: {
-					username: $scope.username,
-					password: $scope.password
-				},
-				headers: {
-					'Accept': 'application/json'
-				}
-			}
+        if ($scope.username != "" && $scope.password != "") {
+            var config = {
+                params: {
+                    username: $scope.username,
+                    password: $scope.password
+                },
+                headers: {
+                    'Accept': 'application/json'
+                }
+            }
 
 
-			$http.get("php/login.php", config).then(function(data) {
-				//console.log("getting login status", data);
-				$scope.loginSuccess = data.data;
-				//console.log("login status: ", $scope.loginSuccess);
+            $http.get("php/login.php", config).then(function(data) {
+                //console.log("getting login status", data);
+                $scope.loginSuccess = data.data;
+                //console.log("login status: ", $scope.loginSuccess);
 
-				// Successul login, jump to student-problemsets page
-				if ($scope.loginSuccess === 0) {
-					window.location.href = "../softserv/#!student-problemsets";
-					accountService.setData($scope.username);
-				}
-			});
-		}
+                // Successul login, jump to student-problemsets page
+                if ($scope.loginSuccess === 0) {
+                    window.location.href = "../softserv/#!student-problemsets";
+                    accountService.setData($scope.username);
+                }
+            });
+        }
 
     }
 
@@ -291,8 +292,8 @@ navApp.controller('prof-newproblemsetController', function($scope, $http, $compi
         $http.get("php/insertunit.php", config).then(function(data) {
             //console.log(data);
         });
-		// update the units in the display
-		$scope.getUnits();
+        // update the units in the display
+        $scope.getUnits();
     }
 
 });
@@ -372,7 +373,7 @@ navApp.controller('prof-problemsetsController', function($scope, $http, dataServ
         $http.get("php/deleteproblemset.php", config).then(function(data) {
             //console.log(data);
         });
-		$scope.getproblemsets();
+        $scope.getproblemsets();
     }
 
 });
@@ -463,35 +464,42 @@ navApp.controller('prof-viewproblemsetController', function($scope, $http, dataS
             //$scope.$apply();
         });
     }
-	
-	/*
-	This function grabs all grades of students separated by interval with
-	each being 20% in length. It then generates a graph of student performance.
-	*/
-	$scope.graphgrades = function() {
-		google.charts.load('current', {packages: ['corechart', 'bar']});
-		google.charts.setOnLoadCallback(drawTrendlines);
-		var drawTrendlines = function () {
-			  var data = new google.visualization.DataTable();
-			  data.addColumn('string', 'Grade');
-			  data.addColumn('number', 'Number of Students');
-			  data.addRows(intervalgrades);
 
-			  var options = {
-				title: 'Student Grades for Problem Set',
-						hAxis: {
-						  title: 'Achieved Grade (%)',
-						},
-						vAxis: {
-							title: 'Number of Students'
-						}
-			  };
+    /*
+    This function grabs all grades of students separated by interval with
+    each being 20% in length. It then generates a graph of student performance.
+    */
+    $scope.graphgrades = function() {
+        google.charts.load('current', {
+            packages: ['corechart', 'bar']
+        });
+        google.charts.setOnLoadCallback(drawTrendlines);
 
-			  var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
-			  chart.draw(data, options);
-			}
-		var intervalgrades = [];
-		var config = {
+        /*
+        This function draws the distribution graph. It takes as input
+        data from the web service that returns grades separated by intervals.
+        */
+        var drawTrendlines = function() {
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Grade');
+            data.addColumn('number', 'Number of Students');
+            data.addRows(intervalgrades);
+
+            var options = {
+                title: 'Student Grades for Problem Set',
+                hAxis: {
+                    title: 'Achieved Grade (%)',
+                },
+                vAxis: {
+                    title: 'Number of Students'
+                }
+            };
+
+            var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+            chart.draw(data, options);
+        }
+        var intervalgrades = [];
+        var config = {
             params: {
                 problemsetid: $scope.problemsetid
             },
@@ -499,22 +507,19 @@ navApp.controller('prof-viewproblemsetController', function($scope, $http, dataS
                 'Accept': 'application/json'
             }
         }
-		$http.get("php/retrievegradesdistribution.php",config).then(function(data) {
+        $http.get("php/retrievegradesdistribution.php", config).then(function(data) {
             $scope.intervalgrades = data.data;
-			
-			//parsing the interval grades array into regular JS array
-			$.each($scope.intervalgrades, function(range, numstudents) {
-				var new_arr = [range, numstudents];
-				intervalgrades.push(new_arr);
-			});
-			
-			console.log($scope.intervalgrades);
-			console.log(intervalgrades);
-			//graphing the grades distribution
-			drawTrendlines();
+
+            //parsing the interval grades array into regular JS array
+            $.each($scope.intervalgrades, function(range, numstudents) {
+                var new_arr = [range, numstudents];
+                intervalgrades.push(new_arr);
+            });
+            //graphing the grades distribution
+            drawTrendlines();
         });
-		
-	}
+
+    }
 
     $scope.getquestions();
     $scope.retrievegrades();
@@ -572,15 +577,15 @@ navApp.controller('student-viewproblemsetController', function($scope, $http, da
 
             var answerStr = "<tr><td>" + $scope.stuAnswer[stuAnsIter] + "</td><td>" + qdata.answer + "</td><td>" + result + "</td></tr>";
             str += answerStr;
-			stuAnsIter += 1;
+            stuAnsIter += 1;
         });
 
-		$scope.mark = countCorrectAnswer / $scope.stuAnswer.length;
-		$scope.show_mark = true;
+        $scope.mark = countCorrectAnswer / $scope.stuAnswer.length;
+        $scope.show_mark = true;
 
-    // display the mark
-		$("#display-answers").empty();
-		$("#display-answers").append(str);
+        // display the mark
+        $("#display-answers").empty();
+        $("#display-answers").append(str);
 
         //Setting up data to send to ssend
         //$scope.user for utorid
@@ -614,20 +619,20 @@ navApp.controller('student-viewproblemsetController', function($scope, $http, da
 // *****************************************
 // *****************************************
 navApp.controller('prof-badgesController', function($scope, $http, dataService, accountService) {
-	$scope.badgequalificationlabel = "Minimum Course Average:";
-	$scope.badge2 = false;
-  // there are 3 type of badges
-	$scope.badgeTypeChange = function () {
-		if ($scope.badgetype == "1") {
-			$scope.badgequalificationlabel = "Minimum Course Average:";
-			$scope.badge2 = false;
-		} else if ($scope.badgetype == "2") {
-			$scope.badgequalificationlabel = "Minimum Problem Set Average:";
-			$scope.badge2 = true;
-		} else {
-			$scope.badgequalificationlabel = "Minimum Number of Problem Sets Completed:";
-			$scope.badge2 = false;
-		}
-		//console.log($scope.badgetype);
-	}
+    $scope.badgequalificationlabel = "Minimum Course Average:";
+    $scope.badge2 = false;
+    // there are 3 type of badges
+    $scope.badgeTypeChange = function() {
+        if ($scope.badgetype == "1") {
+            $scope.badgequalificationlabel = "Minimum Course Average:";
+            $scope.badge2 = false;
+        } else if ($scope.badgetype == "2") {
+            $scope.badgequalificationlabel = "Minimum Problem Set Average:";
+            $scope.badge2 = true;
+        } else {
+            $scope.badgequalificationlabel = "Minimum Number of Problem Sets Completed:";
+            $scope.badge2 = false;
+        }
+        //console.log($scope.badgetype);
+    }
 });
