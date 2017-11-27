@@ -56,19 +56,19 @@ for ($i = 0; $i < $len_retrievegradesall; $i++) {
 	
 	if ($highestscore == null) {
 	}
-	elseif ($highestscore < 21) {
+	else if ($highestscore < 21) {
 		$distribution["0-20"] += 1;
 	}
-	elseif ($highestscore < 41) { 
+	else if ($highestscore < 41) { 
 		$distribution["21-40"] += 1;
 	}
-	elseif ($highestscore < 61) { 
+	else if ($highestscore < 61) { 
 		$distribution["41-60"] += 1;
 	}
-	elseif ($highestscore < 81) { 
+	else if ($highestscore < 81) { 
 		$distribution["61-80"] += 1;
 	}
-	else ($highestscore < 101) { 
+	else if ($highestscore < 101) { 
 		$distribution["81-100"] += 1;
 	}
 }

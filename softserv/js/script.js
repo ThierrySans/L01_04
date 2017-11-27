@@ -469,23 +469,13 @@ navApp.controller('prof-viewproblemsetController', function($scope, $http, dataS
 	each being 20% in length. It then generates a graph of student performance.
 	*/
 	$scope.graphgrades = function() {
-		$http.get("php/retrievegradesdistribution.php", config).then(function(data) {
-            $scope.intervalgrades = data.data;
-        });
 		google.charts.load('current', {packages: ['corechart', 'bar']});
 		google.charts.setOnLoadCallback(drawTrendlines);
-
-		function drawTrendlines() {
+		var drawTrendlines = function () {
 			  var data = new google.visualization.DataTable();
 			  data.addColumn('string', 'Grade');
 			  data.addColumn('number', 'Number of Students');
-			  data.addRows([
-				['0-20', 1],
-				['21-40', 2],
-				['41-60', 3],
-				['61-80', 4],
-				['81-100',7] 
-			  ]);
+			  data.addRows(intervalgrades);
 
 			  var options = {
 				title: 'Student Grades for Problem Set',
@@ -500,6 +490,30 @@ navApp.controller('prof-viewproblemsetController', function($scope, $http, dataS
 			  var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
 			  chart.draw(data, options);
 			}
+		var intervalgrades = [];
+		var config = {
+            params: {
+                problemsetid: $scope.problemsetid
+            },
+            headers: {
+                'Accept': 'application/json'
+            }
+        }
+		$http.get("php/retrievegradesdistribution.php",config).then(function(data) {
+            $scope.intervalgrades = data.data;
+			
+			//parsing the interval grades array into regular JS array
+			$.each($scope.intervalgrades, function(range, numstudents) {
+				var new_arr = [range, numstudents];
+				intervalgrades.push(new_arr);
+			});
+			
+			console.log($scope.intervalgrades);
+			console.log(intervalgrades);
+			//graphing the grades distribution
+			drawTrendlines();
+        });
+		
 	}
 
     $scope.getquestions();
