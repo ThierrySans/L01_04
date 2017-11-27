@@ -565,12 +565,29 @@ navApp.controller('student-viewproblemsetController', function($scope, $http, da
         var stuAnsIter = 0;
         var countCorrectAnswer = 0;
         var str = "";
+
+        var q = new Date();
+        var month = q.getMonth();
+        var day = q.getDay();
+        var year = q.getYear();
+        var today = new Date(year,month,day);
+
+        duedate = new Date('2011-04-11');
+
+        var on_time = 1;
+        var late = ""
+
+        if(today < duedate){ // if late
+            on_time = 0;
+            late = " (but late)";
+        }
+
         $.each($scope.problemset, function(qid, qdata) {
 
             var result = "incorrect";
             //console.log("Comparing answers");
             if ($scope.stuAnswer[stuAnsIter] == qdata.answer) {
-                result = "correct";
+                result = "correct" + late;
                 countCorrectAnswer += 1;
             }
 
@@ -579,8 +596,12 @@ navApp.controller('student-viewproblemsetController', function($scope, $http, da
             stuAnsIter += 1;
         });
 
-        $scope.mark = countCorrectAnswer / $scope.stuAnswer.length;
+       
+        $scope.mark = on_time * (countCorrectAnswer / $scope.stuAnswer.length);
         $scope.show_mark = true;
+
+
+
 
         // display the mark
         $("#display-answers").empty();
