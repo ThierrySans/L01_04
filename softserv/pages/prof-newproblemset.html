@@ -34,21 +34,36 @@
 					  <div class="form-group" id="question1">
 						 <label for="question1">Question 1</label>
              <p>
-               Eg. &#123;&#8203;&#123;var1&#125;&#8203;&#125; + &#123;&#8203;&#123;var2&#125;&#8203;&#125; = ? &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;where &#123;&#8203;&#123;var1&#125;&#8203;&#125; is the first variable, &#123;&#8203;&#123;var2&#125;&#8203;&#125; is the second variable
+               Eg. Alice has &#123;&#8203;&#123;var1&#125;&#8203;&#125; apples, Bob has &#123;&#8203;&#123;var2&#125;&#8203;&#125; apples, how many apples in total do they have ? 
+             </p>
+
+
+             <p>
+               Note: &#123;&#8203;&#123;var1&#125;&#8203;&#125; is the first variable, &#123;&#8203;&#123;var2&#125;&#8203;&#125; is the second variable.
              </p>
 						 <textarea class="form-control" rows="5" ng-model="(questions[1]).question"></textarea>
 					  </div>
 					  <div class="form-group" id="variables1">
 						 <label for="variables1">Variables 1</label>
+            
              <p>
-               Eg. var1(1-5) var2(6-8) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;where (1-5) is the range of var1, a space is required to seperate variables
+             	Eg. var1(1-5)
+             </p>
+             <p>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var2(6-8) 
+             </p>
+             <p>
+             	Note: (1-5) is the range of var1, (6-8) is the range of var2. A new line (or a space) is required to seperate variables. (Leave it empty, if there are no variables)
              </p>
 						 <textarea class="form-control" rows="3" ng-model="(questions[1]).variables"></textarea>
 					  </div>
 					  <div class="form-group" id="answer1">
 						 <label for="answer1">Answer 1</label>
              <p>
-               Eg. &#123;&#8203;&#123;var1&#125;&#8203;&#125; + &#123;&#8203;&#123;var2&#125;&#8203;&#125; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;where &#123;&#8203;&#123;var1&#125;&#8203;&#125; is the first variable, &#123;&#8203;&#123;var2&#125;&#8203;&#125; is the second variable
+               Eg. &#123;&#8203;&#123;var1&#125;&#8203;&#125; + &#123;&#8203;&#123;var2&#125;&#8203;&#125; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+             </p>
+             <p>
+             	Note: &#123;&#8203;&#123;var1&#125;&#8203;&#125; is the first variable, &#123;&#8203;&#123;var2&#125;&#8203;&#125; is the second variable
              </p>
 						 <input type="text" class="form-control" ng-model="(questions[1]).answer">
 					  </div>
