@@ -464,9 +464,48 @@ navApp.controller('prof-viewproblemsetController', function($scope, $http, dataS
             //$scope.$apply();
         });
     }
+	
+	/*
+	This function grabs all grades of students separated by interval with
+	each being 20% in length. It then generates a graph of student performance.
+	*/
+	$scope.graphgrades = function() {
+		$http.get("php/retrievegradesall_problemset_interval.php", config).then(function(data) {
+            $scope.intervalgrades = data.data;
+        });
+		google.charts.load('current', {packages: ['corechart', 'bar']});
+		google.charts.setOnLoadCallback(drawTrendlines);
+
+		function drawTrendlines() {
+			  var data = new google.visualization.DataTable();
+			  data.addColumn('string', 'Grade');
+			  data.addColumn('number', 'Number of Students');
+			  data.addRows([
+				['0-20', 1],
+				['21-40', 2],
+				['41-60', 3],
+				['61-80', 4],
+				['81-100',7] 
+			  ]);
+
+			  var options = {
+				title: 'Student Grades for Problem Set',
+						hAxis: {
+						  title: 'Achieved Grade (%)',
+						},
+						vAxis: {
+							title: 'Number of Students'
+						}
+			  };
+
+			  var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+			  chart.draw(data, options);
+			}
+	}
 
     $scope.getquestions();
     $scope.retrievegrades();
+    $scope.graphgrades();
 });
 
 // *****************************************
