@@ -68,7 +68,7 @@ for ($i = 0; $i < $len_retrievegradesall; $i++) {
 	elseif ($highestscore < 81) { 
 		$distribution["61-80"] += 1;
 	}
-	else ($highestscore < 101) { 
+	else { 
 		$distribution["81-100"] += 1;
 	}
 }
