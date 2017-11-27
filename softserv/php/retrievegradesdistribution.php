@@ -69,7 +69,6 @@ for ($i = 0; $i < $len_retrievegradesall; $i++) {
 		$distribution["61-80"] += 1;
 	}
 	else if ($highestscore < 101) { 
-		$distribution["81-100"] += 1;
 	}
 }
 echo json_encode($distribution);
