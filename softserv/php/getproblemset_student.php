@@ -103,10 +103,15 @@ for ($i = 0; $i < count($return_getquestions); $i++) {
 	$questiontext = replace_question_w_variables($questiontext, $variables_array);
 	
 	$answer_with_variables = replace_question_w_variables($return_getquestions[$i]["ANSWER"], $variables_array);
-	$answer= eval('return '.$answer_with_variables.';');
+	
+	if (count($variables_array) != 0) {
+		$answer = eval('return '.$answer_with_variables.';');
+	} else {
+		$answer = $return_getquestions[$i]["ANSWER"];
+	}
 
 	$questions[$questionid] = array("text" => $questiontext,
-				"answer" => $answer);
+				"answer" => "$answer");
 	
 }
 

@@ -555,7 +555,7 @@ navApp.controller('student-viewproblemsetController', function($scope, $http, da
         $http.get("php/getproblemset_student.php", config).then(function(data) {
             //console.log("getting problem set questions", data);
             $scope.problemset = data.data;
-            //console.log("problemset", $scope.problemset);
+            console.log("problemset", data);
             //$scope.$apply();
         });
     }
